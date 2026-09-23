@@ -1,0 +1,1073 @@
+Đặc tả yêu cầu VietinCare AI phiên bản 1.1
+Phiên bản 1.1 ngày 21/09/2026. Phạm vi: web VI/EN, bốn vai trò, chat RAG và ticket; MySQL 8.0.46 là hệ quản trị duy nhất. Yêu cầu triển khai và tiêu chí nghiệm thu theo PROJECT_SCOPE.md; chức năng hiện tại vẫn là demo.
+ĐẶC TẢ YÊU CẦU ỨNG DỤNG – V1.0
+        
+        
+        
+        
+Nhóm 10 - Thành viên nhóm 
+        
+        
+Hoàng Lưu Thùy Linh (Trưởng nhóm)
+        
+        
+        
+        
+Hà Thúy Nội
+        
+        
+Tên ứng dụng: Hệ thống quản lý hỗ trợ khách hàng có tích hợp AI (VietinBank Customer Support AI System - VietinCare AI)
+        
+        
+        
+        
+GIỚI THIỆU CHUNG
+Mục đích
+Tài liệu là cơ sở để nhóm phân tích, thiết kế, lập trình, kiểm thử và nghiệm thu hệ thống.Tài liệu được xây dựng dựa trên kết quả thu thập và làm rõ yêu cầu của ứng dụng, mô tả các yêu cầu chức năng, yêu cầu phi chức năng, tác nhân, các điều kiện phụ thuộc và các use case chính của hệ thống. Hệ thống hướng tới việc tự động hóa hoạt động hỗ trợ khách hàng, hỗ trợ tổng đài viên xử lý yêu cầu và nâng cao chất lượng chăm sóc khách hàng thông qua các chức năng AI.
+        
+        
+Phạm vi
+Đặc điểm ứng dụng: Vietincare là hệ thống quản lý chăm sóc khách hàng tự động hoá tích hợp trí tuệ nhân tạo (AI Chatbot, RAG Knowledge Base, AI Copilot cho Agent, Sentiment Analysis và Ticket Management )
+Đối tượng phục vụ:
+Khách hàng: Khách hàng cá nhân/doanh nghiệp sử dụng dịch vụ ngân hàng cần tra cứu thông tin và phản hồi sự cố 
+        
+        
+Tổng đài viên (Agent): tiếp nhận ca hỗ trợ phức tạp, xử lý ticket và sử dụng trợ lý AI
+Quản lý CSKH (Supervisor): Giám sát hiệu suất, theo dõi báo cáo và đánh giá chỉ số CSAT (NPS là mở rộng)
+Quản lý hệ thống (Admin): Quản lý các tài khoản, phân quyền, cấu  hình hệ thống và cập nhật cơ sở tri thức
+Đối tượng sử dụng tài liệu này: 
+Đội ngũ phát triển dự án (BA, Developers, Tester/QA)
+Ban quản lý dự án, Khối Công Nghệ Thông tin và Khối Và Khối Chăm  Sóc Khách hàng VietinBank
+        
+        
+Các định nghĩa, thuật ngữ, từ viết tắt
+STT
+Thuật ngữ, từ viết tắt
+              
+              
+Giải thích
+              
+              
+Ghi chú
+              
+              
+1
+AI
+Artificial Intelligence – Trí tuệ nhân tạo
+Công nghệ cốt lõi
+2
+Chatbot AI
+Hệ thống hội thoại tự động sử dụng AI để hỗ trợ khách hàng
+Hỗ trợ trên web demo
+3
+RAG
+Retrieval-Augmented Generation – sinh câu trả lời dựa trên dữ liệu truy xuất từ cơ sở tri thức
+Knowledge Base
+4
+Ticket
+Phiếu/yêu cầu hỗ trợ của khách hàng được hệ thống tạo và phân loại
+Quản lý CSKH
+5
+Handover
+Chuyển phiên hỗ trợ từ AI sang tổng đài viên
+Chuyển luồng tư vấn
+6
+AI Copilot
+Chức năng AI gợi ý câu trả lời/tài liệu nghiệp vụ cho tổng đài viên
+Hỗ trợ Agent
+7
+CSAT (NPS là mở rộng)
+Các chỉ số đánh giá mức độ hài lòng và mức độ sẵn sàng giới thiệu dịch vụ
+Analytics
+8
+OTP
+One-Time Password – mật khẩu dùng một lần để xác thực
+Bảo mật
+9
+CRM
+Customer Relationship Management – hệ thống quản lý quan hệ khách hàng
+Tích hợp
+10
+PCI-DSS
+Tiêu chuẩn an toàn dữ liệu ngành thẻ thanh toán
+Bảo mật ngân hàng
+11
+TLS 1.3
+Giao thức bảo mật cho dữ liệu truyền tải
+Data in transit
+12
+Uptime
+Tỷ lệ thời gian hệ thống hoạt động sẵn sàng
+Không cam kết uptime sản xuất
+13
+CSKH
+Chăm sóc khách hàng
+              
+              
+14
+Knowledge Base
+Lưu trữ và quản lý các tài liệu, câu hỏi thường gặp và thông tin nghiệp vụ làm nguồn dữ liệu cho hệ thống AI
+Tài liệu tham khảo
+STT
+Tên tài liệu
+Ghi chú
+1
+Thu thập và làm rõ yêu cầu ứng dụng của Hệ thống quản lý hỗ trợ khách hàng có tích hợp AI (VietinBank Customer Support AI System - VietinCare AI)
+              
+              
+              
+              
+              
+              
+Tài liệu cơ sở
+              
+              
+2
+Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân
+Yêu cầu bảo mật
+              
+              
+3
+PCI-DSS
+Yêu cầu an toàn thông tin ngân hàng
+              
+              
+4
+Mô hình Trí tuệ Nhân tạo ChatGPT / Claude (OpenAI / Anthropic)
+Công cụ hỗ trợ AI
+MÔ TẢ TỔNG QUAN ỨNG DỤNG
+Mô hình Use case 
+        
+        
+Luồng và quan hệ phiên bản 1.1: Customer → Web VI/EN → Backend nghiệp vụ và AI → MySQL duy nhất. Agent xử lý hỗ trợ; Supervisor giám sát; Admin quản lý. Chat → Ticket khi cần → Xử lý → Đóng → CSAT.
+Luồng 2.1 Biểu đồ usecase
+        
+        
+Danh sách các tác nhân và mô tả
+Tác nhân
+Mô tả tác nhân
+Ghi chú
+Khách hàng
+Khách hàng cá nhân/doanh nghiệp sử dụng các kênh hỗ trợ để đặt câu hỏi, tra cứu và gửi yêu cầu.
+Người dùng chính
+Tổng đài viên (Agent)
+Tiếp nhận các phiên được Handover, xử lý ticket và sử dụng AI Copilot để hỗ trợ trả lời.
+Nhân viên CSKH
+Quản lý CSKH (Supervisor)
+Theo dõi hoạt động, báo cáo, chất lượng hỗ trợ và các chỉ số CSAT (NPS là mở rộng).
+Quản lý
+Quản trị hệ thống (Admin)
+Quản lý tài khoản, phân quyền, Knowledge Base, tài liệu RAG và Audit log.
+Quản trị
+Danh sách Use case và mô tả
+ID
+Tên Use case
+Mô tả ngắn gọn Use case
+Chức năng
+Ghi chú
+UC001
+Đăng nhập
+Người dùng đăng nhập hệ thống
+Quản lý tài khoản
+UC002
+Gửi yêu cầu hỗ trợ
+Khách hàng trao đổi với Chatbot
+Chatbot AI
+UC003
+Tạo Ticket
+Khách hàng gửi yêu cầu hỗ trợ
+Quản lý Ticket
+UC004
+Phân loại Ticket
+AI xác định chủ đề và ý định
+AI
+UC005
+Phân tích cảm xúc
+AI phân tích cảm xúc khách hàng
+AI
+UC006
+Chuyển giao
+              
+              
+Chuyển phiên từ AI sang Agent
+CSKH
+UC007
+Xử lý Ticket
+Agent tiếp nhận và xử lý yêu cầu
+CSKH
+UC008
+Trả lời thông minh bằng AI 
+              
+              
+              
+              
+AI gợi ý câu trả lời
+AI
+UC009
+Tóm tắt hội thoại
+AI tạo bản tóm tắt
+AI
+UC010
+Đánh giá hỗ trợ
+Khách hàng đánh giá phiên hỗ trợ
+CSKH
+UC011
+Quản lý Knowledge Base
+Admin quản lý FAQ/tài liệu
+Knowledge Base
+UC012
+Quản lý người dùng
+Admin quản lý tài khoản/phân quyền
+Quản trị
+UC013
+Xem Dashboard
+Supervisor xem thống kê
+Báo cáo
+UC014
+Quản lý Audit Log
+Theo dõi thao tác hệ thống
+Bảo mật
+UC015
+Cấu hình hệ thống
+              
+              
+Quản lý tham số vận hành không chứa bí mật
+              
+              
+Bảo mật
+              
+              
+Các điều kiện phụ thuộc
+Cấu hình hạ tầng phần cứng & mạng:
+Một backend chia module, phục vụ web VI/EN và kết nối MySQL duy nhất; không yêu cầu cluster.
+Mô hình AI được backend gọi qua giao diện dịch vụ; không yêu cầu GPU riêng. Nhà cung cấp/mô hình được chốt khi triển khai.
+Đường truyền mạng băng thông rộng bảo mật cao, kết nối ổn định.
+Hệ quản trị cơ sở dữ liệu & Công cụ:
+Database quan hệ: MySQL Community Server 8.0.46 lưu trữ dữ liệu nghiệp vụ, ticket, người dùng.
+Lưu trữ RAG: MySQL lưu đoạn tài liệu và embedding JSON trong KnowledgeChunk; backend tính độ tương đồng cosine. 
+Phần mềm & Tích hợp:
+Core Banking/CRM và ứng dụng ngân hàng thật thuộc giai đoạn mở rộng; bản cốt lõi dùng dữ liệu giả lập.
+Thông báo trong giao diện; SMS/email và OTP là mở rộng.
+ĐẶC TẢ CÁC YÊU CẦU CHỨC NĂNG (FUNCTIONAL)
+UC001_Đăng nhập 
+        
+        
+Mô tả use case UC001
+Tiêu chí
+              
+              
+Nội dung
+              
+              
+Mục đích
+Xác thực Customer, Agent, Supervisor và Admin trước khi truy cập chức năng được cấp quyền.
+Mô tả
+Customer, Agent, Supervisor và Admin đăng nhập bằng email/mật khẩu; backend xác thực và kiểm tra quyền. OTP/SSO là mở rộng.
+Tác nhân
+Customer, Agent, Supervisor, Admin
+Tiền điều kiện 
+              
+              
+              
+              
+Người dùng đã có tài khoản active trên hệ thống
+Luồng sự kiện chính
+              
+              
+1.  Người dùng truy cập trang Đăng nhập
+              
+              
+              
+              
+2.  Người dùng nhập Email và mật khẩu, chọn "Đăng nhập"
+              
+              
+              
+              
+3. Backend kiểm tra tài khoản hoạt động và đối chiếu mật khẩu băm.
+              
+              
+4. Backend tạo phiên và ghi audit log.
+              
+              
+5. Điều hướng đến giao diện theo vai trò.
+Luồng sự kiện phụ 
+1a. Sai email/mật khẩu: Hệ thống báo lỗi. Nếu nhập sai 5 lần liên tiếp, khoá tài khoản 15 phút
+              
+              
+2a. Phiên không hợp lệ/hết hạn: yêu cầu đăng nhập lại; không cấp quyền dựa trên giao diện.
+              
+              
+Hậu điều kiện
+              
+              
+- Hệ thống khởi tạo phiên làm việc (Session/JWT Token) bảo mật cho người dùng.
+- Người dùng được cấp quyền truy cập đúng giao diện tương ứng với vai trò (Role).
+- Nhật ký đăng nhập (Audit Log) được ghi nhận lại trên hệ thống.
+Biểu đồ
+Luồng hoạt động – UC001: Đăng nhập 
+Luồng và quan hệ phiên bản 1.1: Người dùng → Email/mật khẩu → Backend xác thực MySQL → Phiên → Giao diện theo vai trò; sai thông tin → báo lỗi.
+Luồng 3.1 Luồng hoạt động UC001 – Đăng nhập
+        
+        
+Luồng trao đổi – UC001:Đăng nhập
+Luồng và quan hệ phiên bản 1.1: Người dùng → Email/mật khẩu → Backend xác thực MySQL → Phiên → Giao diện theo vai trò; sai thông tin → báo lỗi.
+Luồng 3.2 Luồng trao đổi UC001 – Đăng nhập
+        
+        
+        
+        
+UC002_Gửi yêu cầu hỗ trợ  
+        
+        
+        
+        
+Mô tả use case UC002
+Tiêu chí
+              
+              
+Nội dung
+              
+              
+Mục đích
+Giải đáp câu hỏi từ tri thức đã xuất bản qua web trong môi trường demo.
+Mô tả
+Khách hàng trò chuyện trực tiếp với Chatbot; Chatbot sử dụng công nghệ RAG để tra cứu Knowledge Base và truy xuất câu trả lời chuẩn xác
+Tác nhân
+Khách hàng
+Tiền điều kiện 
+              
+              
+              
+              
+Khách hàng đã đăng nhập và mở khung chat trên website.
+Luồng sự kiện chính
+1. Khách hàng nhập tin nhắn vào cửa sổ chat. 
+              
+              
+              
+              
+2. Chatbot AI tiếp nhận và chuyển câu hỏi sang module RAG. 
+              
+              
+              
+              
+3. AI RAG đọc KnowledgeChunk từ MySQL, xếp hạng độ tương đồng ở backend và tổng hợp câu phản hồi. 
+              
+              
+              
+              
+4. Chatbot hiển thị câu trả lời cho Khách hàng
+              
+              
+Luồng sự kiện phụ 
+1a. Không đủ nguồn theo ngưỡng đã hiệu chỉnh hoặc AI lỗi: thông báo chưa có thông tin xác thực và đề nghị gặp Agent/tạo ticket. Không mặc định dùng ngưỡng 70%.
+              
+              
+Hậu điều kiện
+              
+              
+Khách hàng nhận được thông tin phản hồi tự động trên giao diện chat. Lịch sử hội thoại chat được ghi nhận và lưu trữ vào CSDL.
+Biểu đồ
+Luồng hoạt động – UC002: Gửi yêu cầu hỗ trợ
+Luồng và quan hệ phiên bản 1.1: Customer đã đăng nhập → Message → Backend → KnowledgeChunk đã xuất bản trong MySQL → RAG → Phản hồi kèm nguồn; thiếu nguồn → đề nghị hỗ trợ.
+Luồng 3.3 Luồng hoạt động UC002 – Gửi yêu cầu hỗ trợ
+        
+        
+        
+        
+Luồng trao đổi – UC002: Gửi yêu cầu hỗ trợ 
+Luồng và quan hệ phiên bản 1.1: Customer đã đăng nhập → Message → Backend → KnowledgeChunk đã xuất bản trong MySQL → RAG → Phản hồi kèm nguồn; thiếu nguồn → đề nghị hỗ trợ.
+Luồng 3.4 Luồng trao đổi UC002 – Gửi yêu cầu hỗ trợ
+        
+        
+UC003_Tạo Ticket 
+Mô tả use case UC003
+Tiêu chí
+              
+              
+Nội dung
+              
+              
+Mục đích
+Khởi tạo phiếu yêu cầu hỗ trợ đối với các sự cố/yêu cầu phức tạp
+Mô tả
+Ghi nhận và lưu trữ thông tin phản hồi của Khách hàng lên hệ thống dưới dạng Ticket có mã theo dõi riêng
+Tác nhân
+Khách hàng, Agent, Chatbot AI
+Tiền điều kiện 
+              
+              
+              
+              
+Phát sinh yêu cầu chưa thể giải quyết lập tức qua Chatbot
+Luồng sự kiện chính
+1. Tác nhân kích hoạt chức năng "Tạo Ticket". 
+              
+              
+2. Nhập Tiêu đề, Nội dung, Loại dịch vụ; tệp đính kèm thuộc mở rộng.
+              
+              
+3. Hệ thống kiểm tra dữ liệu và khởi tạo mã Ticket ID. 
+              
+              
+4. Hệ thống lưu Ticket ở trạng thái "Mới" và gửi xác nhận cho Khách hàng
+Luồng sự kiện phụ 
+1a. Thiếu thông tin bắt buộc: Hệ thống thông báo đỏ tại các trường thiếu và yêu cầu bổ sung trước khi bấm lưu
+              
+              
+Hậu điều kiện
+              
+              
+- Phiếu Ticket mới được lưu vào CSDL với trạng thái khởi tạo "Mới" (New).
+- Mã Ticket ID duy nhất được cấp cho Khách hàng/Agent để tra cứu.
+- Hiển thị mã ticket và xác nhận trong giao diện sau khi MySQL lưu thành công; email/SMS là mở rộng.
+Biểu đồ
+Luồng hoạt động – UC003: Tạo Ticket
+Luồng và quan hệ phiên bản 1.1: Khách đồng ý tạo ticket → Kiểm tra quyền/dữ liệu → MySQL lưu trạng thái Mới → Hiển thị mã theo dõi.
+Luồng 3.5 Luồng hoạt động UC003 – Tạo Ticket
+        
+        
+        
+        
+        
+        
+Luồng trao đổi – UC003: Tạo Ticket
+        
+        
+Luồng và quan hệ phiên bản 1.1: Khách đồng ý tạo ticket → Kiểm tra quyền/dữ liệu → MySQL lưu trạng thái Mới → Hiển thị mã theo dõi.
+Luồng 3.6 Luồng trao đổi UC003 – Tạo Ticket
+        
+        
+UC004_Phân loại Ticket 
+Mô tả use case UC004
+Tiêu chí
+              
+              
+Nội dung
+              
+              
+Mục đích
+Sử dụng AI để tự động gắn nhãn chủ đề, đánh giá độ khẩn cấp và định tuyến Ticket
+Mô tả
+Hệ thống tự động phân tích ngôn ngữ tự nhiên (NLP) trên nội dung Ticket để gán mức ưu tiên và chuyển về nhóm xử lý tương ứng
+Tác nhân
+AI Engine
+Tiền điều kiện 
+              
+              
+              
+              
+Có Ticket mới được khởi tạo thành công (UC003)
+Luồng sự kiện chính
+1. Hệ thống gửi nội dung Ticket mới đến AI Classifier Engine. 
+2. AI phân tích ý định và trích xuất chủ đề. 
+3. AI đánh giá độ ưu tiên (Thấp, Trung bình, Cao, Khẩn cấp). 
+4. Hệ thống gán Ticket vào Hàng chờ xử lý của Agent phù hợp
+Luồng sự kiện phụ 
+1a. AI không thể phân loại: Gán nhãn "Cần kiểm tra" và định tuyến về Hàng chờ chung của Supervisor
+              
+              
+Hậu điều kiện
+              
+              
+Ticket được lưu vào hệ thống với Mã định danh duy nhất (Ticket ID).
+Biểu đồ
+Luồng hoạt động – UC004: Phân loại Ticket
+        
+        
+Luồng và quan hệ phiên bản 1.1: Ticket mới → AI gợi ý chủ đề/ưu tiên → MySQL → Hàng chờ; không phân loại được → Supervisor.
+Luồng 3.7 Luồng hoạt động UC004 – Phân loại Ticket
+        
+        
+Luồng trao đổi – UC004: Phân loại Ticket
+Luồng và quan hệ phiên bản 1.1: Ticket mới → AI gợi ý chủ đề/ưu tiên → MySQL → Hàng chờ; không phân loại được → Supervisor.
+Luồng 3.8 Luồng hoạt động UC004 – Phân loại Ticket
+        
+        
+        
+        
+        
+        
+UC005_Phân tích cảm xúc 
+Mô tả use case UC005
+Tiêu chí
+              
+              
+Nội dung
+              
+              
+Mục đích
+Đánh giá thái độ/cảm xúc của khách hàng qua nội dung văn bản để hỗ trợ xử lý kịp thời
+Mô tả
+Mô hình Sentiment Analysis phân tích theo thời gian thực văn bản tương tác của Khách hàng
+Tác nhân
+AI Engine.
+Tiền điều kiện 
+              
+              
+              
+              
+Có văn bản hội thoại/Ticket mới gửi lên hệ thống
+Luồng sự kiện chính
+1. AI Engine nhận dữ liệu đầu vào từ tin nhắn chat hoặc Ticket
+2. Mô hình Sentiment NLP trích xuất chỉ số cảm xúc 
+              
+              
+3. Hệ thống hiển thị nhãn/biểu tượng cảm xúc tương ứng trên giao diện làm việc của Agent/Supervisor
+4. Nếu mức ưu tiên là Khẩn cấp, cảnh báo Supervisor; cảm xúc tiêu cực không tự quyết định mức ưu tiên.
+Luồng sự kiện phụ 
+Hậu điều kiện
+              
+              
+- Trạng thái cảm xúc (Tích cực, Trung tính, Tiêu cực) được ghi nhận.
+- Màn hình điều khiển của Agent/Supervisor hiển thị chỉ số cảm xúc tương ứng.
+- Cảnh báo khi mức ưu tiên Khẩn cấp; cảm xúc và mức ưu tiên là hai trường riêng.
+Biểu đồ
+Luồng hoạt động – UC005: Phân tích cảm xúc
+Luồng và quan hệ phiên bản 1.1: Tin nhắn → AI → Tích cực/Trung tính/Tiêu cực → MySQL → Agent xem; ưu tiên là trường riêng.
+Luồng 3.9 Luồng hoạt động UC005 – Phân tích cảm xúc
+        
+        
+Luồng trao đổi – UC005: Phân tích cảm xúc
+        
+        
+        
+        
+Luồng và quan hệ phiên bản 1.1: Tin nhắn → AI → Tích cực/Trung tính/Tiêu cực → MySQL → Agent xem; ưu tiên là trường riêng.
+Luồng 3.10 Luồng trao đổi UC005 – Phân tích cảm xúc
+        
+        
+        
+        
+        
+        
+UC006_Chuyển giao
+        
+        
+Mô tả use case UC006
+Tiêu chí
+              
+              
+Nội dung
+              
+              
+Mục đích
+Chuyển giao mượt mà phiên tư vấn từ Chatbot AI sang Tổng đài viên
+Mô tả
+Chuyển luồng trò chuyện trực tiếp kèm toàn bộ lịch sử tương tác cho Agent khi Chatbot vượt quá khả năng xử lý
+Tác nhân
+Khách hàng, Chatbot AI, Agent
+Tiền điều kiện 
+              
+              
+              
+              
+Khách hàng chọn gặp Agent hoặc Chatbot tự động phát lệnh Handover
+Luồng sự kiện chính
+1. Kích hoạt sự kiện Handover
+2. Hệ thống tìm kiếm Agent đang sẵn sàng (Online) theo tiêu chí phù hợp. 3. Hệ thống đẩy yêu cầu tới màn hình của Agent 
+              
+              
+4. Agent chọn "Tiếp nhận"
+5. Hệ thống hiển thị toàn bộ lịch sử chat và kết nối kênh trò chuyện trực tiếp giữa Agent và Khách hàng
+Luồng sự kiện phụ 
+1a: Không có Agent online/Hàng chờ đầy: Hệ thống hiển thị thông báo phản hồi chậm và gợi ý Khách hàng để lại lời nhắn/tạo Ticket
+Hậu điều kiện
+              
+              
+Agent tiếp nhận thành công phiên chat; toàn bộ lịch sử chat trước đó được chuyển tiếp đầy đủ.
+Biểu đồ
+Luồng hoạt động – UC006: Chuyển giao
+        
+        
+        
+        
+Luồng và quan hệ phiên bản 1.1: Yêu cầu chuyển giao → Hàng chờ MySQL → Agent nhận → Lịch sử chat; không có Agent → đề nghị tạo ticket.
+Luồng 3.11 Luồng hoạt động UC006 – Chuyển giao
+        
+        
+        
+        
+        
+        
+Luồng trao đổi – UC006: Handover
+Luồng và quan hệ phiên bản 1.1: Yêu cầu chuyển giao → Hàng chờ MySQL → Agent nhận → Lịch sử chat; không có Agent → đề nghị tạo ticket.
+Luồng 3.12 Luồng trao đổi UC006 – Chuyển giao
+        
+        
+        
+        
+        
+        
+UC007_Xử lý Ticket 
+Mô tả use case UC007
+Tiêu chí
+              
+              
+Nội dung
+              
+              
+Mục đích
+Cho phép Agent tiếp nhận, làm việc, tương tác và giải quyết Ticket
+Mô tả
+Chức năng cung cấp giao diện quản lý chi tiết phiếu hỗ trợ để Agent phản hồi và đóng Ticket
+Tác nhân
+Agent
+Tiền điều kiện 
+              
+              
+              
+              
+Ticket đã được phân công cho Agent
+Luồng sự kiện chính
+1. Agent chọn Ticket từ danh sách công việc
+2. Agent đọc nội dung, thông tin khách hàng và xem lịch sử
+3. Agent phản hồi cho Khách hàng qua giao diện hỗ trợ
+4. Agent cập nhật trạng thái Ticket sang "Resolved" và lưu thông tin xử lý 
+              
+              
+5. Hệ thống gửi thông báo kết quả giải quyết cho Khách hàng
+Luồng sự kiện phụ 
+1a: Cần chuyển cấp xử lý: Agent chọn "Chuyển tiếp" (Escalate) Ticket sang cho Supervisor/Phòng ban khác
+Hậu điều kiện
+              
+              
+- Trạng thái Ticket được cập nhật thành "Resolved" (Đã giải quyết) hoặc "Closed" (Đã đóng).
+- Phản hồi xử lý và ghi chú công việc được lưu vết trong chi tiết Ticket.
+- Thông báo kết quả xử lý và yêu cầu đánh giá được tự động gửi tới Khách hàng.
+Biểu đồ
+Luồng hoạt động – UC007: Xử lý Ticket 
+        
+        
+        
+        
+Luồng và quan hệ phiên bản 1.1: Ticket Mới → Agent nhận → Đang xử lý → Phản hồi → Đã giải quyết → Đã đóng; mọi bước kiểm tra quyền và ghi lịch sử.
+Luồng 3.13 Luồng hoạt động UC007 – Xử lý Ticket
+        
+        
+        
+        
+        
+        
+Luồng trao đổi – UC007: Xử lý Ticket
+Luồng và quan hệ phiên bản 1.1: Ticket Mới → Agent nhận → Đang xử lý → Phản hồi → Đã giải quyết → Đã đóng; mọi bước kiểm tra quyền và ghi lịch sử.
+Luồng 3.14 Luồng trao đổi UC007 – Xử lý Ticket
+        
+        
+        
+        
+        
+        
+UC008_Trả lời nhanh bằng AI (mở rộng)
+        
+        
+Mô tả use case UC008
+Tiêu chí
+              
+              
+Nội dung
+              
+              
+Mục đích
+Hỗ trợ Agent phản hồi khách hàng nhanh chóng và chuẩn xác thông qua các gợi ý AI
+Mô tả
+AI Copilot tự động gợi ý 1-3 mẫu câu trả lời phù hợp nhất dựa trên ngữ cảnh hội thoại
+Tác nhân
+Agent, AI Copilot
+Tiền điều kiện 
+              
+              
+              
+              
+Agent đang trong phiên tư vấn trực tiếp với Khách hàng
+Luồng sự kiện chính
+1. Khách hàng gửi tin nhắn mới. 2. AI Copilot phân tích tin nhắn và tra cứu thông tin nghiệp vụ
+3. AI Copilot hiển thị các phản hồi gợi ý trên khung làm việc của Agent
+4. Agent nhấp chọn gợi ý thích hợp, tùy chỉnh nội dung và nhấn "Gửi"
+Luồng sự kiện phụ 
+1a: Agent từ chối gợi ý: Agent tự soạn thảo câu trả lời thủ công
+Hậu điều kiện
+              
+              
+Nội dung gợi ý được chọn và điền tự động vào ô nhập liệu của Agent
+Biểu đồ
+Luồng hoạt động – UC008: Trả lời nhanh bằng AI 
+        
+        
+        
+        
+Luồng và quan hệ phiên bản 1.1: Mở rộng: Tin nhắn → AI gợi ý → Agent sửa/duyệt → Gửi → MySQL.
+Luồng 3.15 Luồng hoạt động UC008: Trả lời nhanh bằng AI
+        
+        
+        
+        
+        
+        
+Luồng trao đổi – UC008: Trả lời nhanh bằng AI
+        
+        
+        
+        
+        
+        
+Luồng và quan hệ phiên bản 1.1: Mở rộng: Tin nhắn → AI gợi ý → Agent sửa/duyệt → Gửi → MySQL.
+Luồng 3.16 Luồng xử lý UC008: Trả lời nhanh bằng AI
+        
+        
+        
+        
+        
+        
+UC009_Tóm tắt hội thoại  (mở rộng)
+Mô tả use case UC009
+Tiêu chí
+              
+              
+Nội dung
+              
+              
+Mục đích
+Tự động tạo bản tóm tắt nội dung trò chuyện giúp tiết kiệm thời gian tiếp nhận ca
+Mô tả
+AI trích xuất các thông tin chính (Vấn đề, Nguyên nhân, Hướng xử lý) từ toàn bộ lịch sử chat
+Tác nhân
+AI Engine, Agent
+Tiền điều kiện 
+              
+              
+              
+              
+Phiên chat kết thúc hoặc kích hoạt Handover
+Luồng sự kiện chính
+1. Sự kiện kết thúc phiên chat hoặc Handover được kích hoạt 
+2. AI Engine đọc toàn bộ đoạn thoại và thực hiện tóm tắt
+3. Hệ thống lưu bản tóm tắt và hiển thị lên màn hình quản lý
+              
+              
+Luồng sự kiện phụ 
+Hậu điều kiện
+              
+              
+Bản tóm tắt ngắn gọn được đính kèm vào dữ liệu phiên chat/Ticket
+Biểu đồ
+Luồng hoạt động – UC009: Tóm tắt hội thoại 
+        
+        
+Luồng và quan hệ phiên bản 1.1: Mở rộng: Kết thúc/chuyển giao → Đọc lịch sử MySQL → Tóm tắt → Lưu và hiển thị cho Agent.
+Luồng 3.17 Luồng hoạt động UC009 – Tóm tắt hội thoại
+        
+        
+Luồng trao đổi – UC009: Tóm tắt hội thoại
+Luồng và quan hệ phiên bản 1.1: Mở rộng: Kết thúc/chuyển giao → Đọc lịch sử MySQL → Tóm tắt → Lưu và hiển thị cho Agent.
+Luồng 3.18 Luồng xử lý UC009 – Tóm tắt hội thoại
+        
+        
+ 
+UC010_Đánh giá hỗ trợ 
+Mô tả use case UC010
+Tiêu chí
+              
+              
+Nội dung
+              
+              
+Mục đích
+Thu thập mức hài lòng CSAT sau hỗ trợ; NPS là mở rộng.
+Mô tả
+Hiển thị biểu mẫu thu thập số sao đánh giá và nhận xét ngay khi kết thúc hỗ trợ
+Tác nhân
+Khách hàng
+Tiền điều kiện 
+              
+              
+              
+              
+Phiên hỗ trợ chat hoặc Ticket vừa hoàn thành
+Luồng sự kiện chính
+1. Hệ thống tự động gửi form đánh giá (Thang điểm 1-5 sao và ô bình luận)
+2. Khách hàng lựa chọn mức điểm và nhập nhận xét. 
+3. Khách hàng nhấn "Gửi"
+4. Lưu đánh giá 1–5 sao, kiểm tra chủ sở hữu, trạng thái kết thúc và chống đánh giá lặp; cập nhật CSAT.
+Luồng sự kiện phụ 
+1a. Khách bỏ qua: không tạo đánh giá; có thể quay lại nếu chưa đánh giá mục tiêu này.
+Hậu điều kiện
+              
+              
+Đánh giá của khách hàng được ghi nhận vào cơ sở dữ liệu Báo cáo
+Biểu đồ
+Acttivity Diagram – UC010: Đánh giá hỗ trợ 
+        
+        
+Luồng và quan hệ phiên bản 1.1: Phiên kết thúc hoặc ticket đóng → Chủ sở hữu đánh giá một lần 1–5 sao → MySQL → CSAT.
+Luồng 3.19 Luồng hoạt động UC010 – Đánh giá hỗ trợ
+        
+        
+        
+        
+Luồng trao đổi – UC010: Đánh giá hỗ trợ 
+        
+        
+        
+        
+Luồng và quan hệ phiên bản 1.1: Phiên kết thúc hoặc ticket đóng → Chủ sở hữu đánh giá một lần 1–5 sao → MySQL → CSAT.
+Luồng 3.20 Luồng xử lý UC010 – Đánh giá hỗ trợ
+        
+        
+UC011_Quản lý Knowledge Base 
+Mô tả use case UC011
+Tiêu chí
+              
+              
+Nội dung
+              
+              
+Mục đích
+Quản lý FAQ/văn bản, chia đoạn và tạo embedding cho RAG trong MySQL; không huấn luyện lại mô hình.
+Mô tả
+Admin nhập FAQ/văn bản để backend chia đoạn, tạo embedding và lưu MySQL; tải file là mở rộng.
+Tác nhân
+Admin
+Tiền điều kiện 
+              
+              
+              
+              
+Admin đăng nhập tài khoản có quyền Quản trị
+Luồng sự kiện chính
+1. Admin chọn menu "Quản lý Knowledge Base"
+2. Admin nhập FAQ/văn bản; tải PDF/DOCX thuộc mở rộng.
+3. Backend chia đoạn, tạo embedding và lưu JSON vào KnowledgeChunk trong MySQL.
+4. Admin thực hiện test thử nghiệm câu hỏi
+5. Admin chọn "Xuất bản" để áp dụng dữ liệu chính thức cho AI
+Luồng sự kiện phụ 
+1a: Định dạng file không hỗ trợ: Hệ thống báo lỗi và yêu cầu tải lại đúng định dạng chuẩn
+              
+              
+Hậu điều kiện
+              
+              
+Đoạn tài liệu và embedding được lưu thành công trong MySQL
+Biểu đồ
+Luồng hoạt động – UC011: Quản lý Knowledge Base
+        
+        
+        
+        
+Luồng và quan hệ phiên bản 1.1: Admin → FAQ/văn bản Nháp → Chia đoạn/embedding → MySQL → Thử câu hỏi → Xuất bản.
+Luồng 3.21 Luồng hoạt động UC011 – Quản lý Knowledge Base
+        
+        
+        
+        
+        
+        
+Luồng trao đổi – UC011: Quản lý Knowledge Base
+        
+        
+Luồng và quan hệ phiên bản 1.1: Admin → FAQ/văn bản Nháp → Chia đoạn/embedding → MySQL → Thử câu hỏi → Xuất bản.
+Luồng 3.22 Luồng xử lý UC011 – Quản lý Knowledge Base
+        
+        
+UC012_Quản lý người dùng 
+        
+        
+Mô tả use case UC012
+Tiêu chí
+              
+              
+Nội dung
+              
+              
+Mục đích
+Quản lý danh sách tài khoản, phân quyền sử dụng cho cán bộ nhân viên nội bộ
+Mô tả
+Thực hiện thêm mới, chỉnh sửa, gán vai trò (Role) và vô hiệu hóa tài khoản
+Tác nhân
+Admin
+Tiền điều kiện 
+              
+              
+              
+              
+Admin đăng nhập hệ thống thành công
+Luồng sự kiện chính
+1. Admin truy cập chức năng "Quản lý người dùng
+2. Chọn thao tác: Tạo mới, Chỉnh sửa, Khóa/Mở khóa tài khoản
+3. Nhập thông tin nhân viên và thiết lập vai trò (Agent, Supervisor, Admin
+4. Bấm "Lưu" để hệ thống cập nhật và phân quyền
+Luồng sự kiện phụ 
+1a: Email/Username đã tồn tại: Hệ thống hiển thị thông báo trùng lặp.
+Hậu điều kiện
+              
+              
+Thông tin người dùng được cập nhật chính xác trên hệ thống
+Biểu đồ
+Actvity Diagram – UC012: Quản lý người dùng 
+        
+        
+        
+        
+Luồng và quan hệ phiên bản 1.1: Admin → Kiểm tra quyền → Tạo/sửa/khóa tài khoản và vai trò → MySQL → AuditLog.
+Luồng 3.23 Luồng hoạt động UC012 – Quản lý người dùng
+        
+        
+Luồng trao đổi – UC012: Quản lý người dùng
+Luồng và quan hệ phiên bản 1.1: Admin → Kiểm tra quyền → Tạo/sửa/khóa tài khoản và vai trò → MySQL → AuditLog.
+Luồng 3.24 Luồng xử lý UC012 – Quản lý người dùng
+        
+        
+UC013_Xem Dashboard
+Mô tả use case UC013
+Tiêu chí
+              
+              
+Nội dung
+              
+              
+Mục đích
+Cung cấp thông tin báo cáo, thống kê hiệu suất vận hành CSKH khi tải hoặc làm mới trang
+Mô tả
+Hiển thị số ticket theo trạng thái/chủ đề, số phiên chat và CSAT từ MySQL; NPS/SLA nâng cao là mở rộng.
+Tác nhân
+Supervisor
+Tiền điều kiện 
+              
+              
+              
+              
+Supervisor đăng nhập hệ thống thành công
+Luồng sự kiện chính
+1. Supervisor mở menu "Dashboard & Báo cáo
+2. Lựa chọn tiêu chí lọc (Khoảng thời gian, Kênh, Nhóm Agent)
+3. Hệ thống tải dữ liệu và vẽ các biểu đồ chỉ số tương ứng
+4. Làm mới dữ liệu theo bộ lọc; xuất Excel/PDF là mở rộng.
+Luồng sự kiện phụ 
+Hậu điều kiện
+              
+              
+Giao diện hiển thị các báo cáo thống kê đầy đủ
+Biểu đồ
+Luồng hoạt động – UC013: Xem Dashboard
+Luồng và quan hệ phiên bản 1.1: Supervisor → Bộ lọc → Truy vấn MySQL → Ticket/phiên/CSAT; chưa có đánh giá → Chưa có dữ liệu.
+Luồng 3.25 Luồng hoạt động UC013 – Xem Dashboard
+        
+        
+Luồng trao đổi – UC013: Xem Dashboard
+Luồng và quan hệ phiên bản 1.1: Supervisor → Bộ lọc → Truy vấn MySQL → Ticket/phiên/CSAT; chưa có đánh giá → Chưa có dữ liệu.
+Luồng 3.26 Luồng xử lý UC013 – Xem Dashboard
+        
+        
+UC014_Quản lý Audit Log
+Mô tả use case UC014
+Tiêu chí
+              
+              
+Nội dung
+              
+              
+Mục đích
+Ghi nhận và truy vấn toàn bộ lịch sử thao tác hệ thống phục vụ an toàn thông tin và kiểm toán
+Mô tả
+Tự động lưu vết nhật ký hoạt động (ai thao tác, làm gì, lúc nào, từ IP nào) và cung cấp công cụ tra cứu
+Tác nhân
+Admin, Hê thống
+Tiền điều kiện 
+              
+              
+              
+              
+Các thao tác người dùng phát sinh trên hệ thống
+Luồng sự kiện chính
+1. Hệ thống tự động lưu Log mỗi khi có thao tác quan trọng
+2. Admin truy cập màn hình "Quản lý Audit Log"
+3. Admin thiết lập bộ lọc tìm kiếm log
+4. Hệ thống xuất danh sách Log chi tiết
+Luồng sự kiện phụ 
+Hậu điều kiện
+              
+              
+Nhật ký thao tác được lưu trữ an toàn, phục vụ tra cứu
+Biểu đồ
+Luồng hoạt động – UC014: Quản lý Audit Log
+Luồng và quan hệ phiên bản 1.1: Thao tác nghiệp vụ → Backend ghi AuditLog MySQL → Admin lọc/xem; không cho sửa log qua giao diện.
+Luồng 3.27 Luồng hoạt động UC014 – Quản lý Audit Log
+        
+        
+Luồng trao đổi – UC014: Quản lý Audit Log
+Luồng và quan hệ phiên bản 1.1: Thao tác nghiệp vụ → Backend ghi AuditLog MySQL → Admin lọc/xem; không cho sửa log qua giao diện.
+Luồng 3.28 Luồng xử lý UC014 – Quản lý Audit Log
+        
+        
+UC015_Cấu hình hệ thống
+        
+        
+Mô tả use case UC015
+Tiêu chí
+              
+              
+Nội dung
+              
+              
+Mục đích
+Thiết lập các tham số vận hành, ngưỡng AI và kết nối hệ thống
+Mô tả
+Chức năng cho phép Admin điều chỉnh ngưỡng độ tin cậy AI, cấu hình API tích hợp, thời gian phiên làm việc và tham số bảo mật
+Tác nhân
+Admin
+Tiền điều kiện 
+              
+              
+              
+              
+Admin đăng nhập hệ thống thành công
+Luồng sự kiện chính
+1. Admin truy cập màn hình "Cấu hình hệ thống"
+2. Admin thay đổi ngưỡng truy xuất, thời gian chờ và cấu hình không chứa bí mật; khóa API đặt ngoài mã nguồn.
+3. Admin bấm "Lưu cấu hình"
+4. Hệ thống kiểm tra tính hợp lệ và cập nhật tham số mới vào CSDL
+Luồng sự kiện phụ 
+1a. Dữ liệu không hợp lệ: Hệ thống hiển thị thông báo lỗi và yêu cầu nhập lại
+Hậu điều kiện
+              
+              
+Tham số hệ thống được cập nhật và ghi nhận vào Audit Log
+Biểu đồ
+Luồng hoạt động – UC015: Cấu hình hệ thống
+Luồng và quan hệ phiên bản 1.1: Admin → Cấu hình không chứa bí mật → Kiểm tra giá trị → MySQL → AuditLog.
+Luồng 3.29  Luồng hoạt động UC015 - Cấu hình hệ thống
+        
+        
+Luồng trao đổi – UC015: Cấu hình hệ thống
+Luồng và quan hệ phiên bản 1.1: Admin → Cấu hình không chứa bí mật → Kiểm tra giá trị → MySQL → AuditLog.
+Luồng 3.30 Luồng xử lý UC015 – Cấu hình hệ thống
+        
+        
+        
+        
+CÁC THÔNG TIN HỖ TRỢ KHÁC
+Yêu cầu an toàn thông tin & Bảo mật:
+Dùng dữ liệu giả lập; băm mật khẩu, kiểm tra quyền backend và che dữ liệu nhạy cảm. Không tuyên bố chứng nhận an toàn ngân hàng.
+Dữ liệu nhạy cảm (Số tài khoản, Số CCCD, Mã OTP) phải được che (Data Masking) khi hiển thị trên màn hình
+Độ sẵn sàng hệ thống:
+Không cam kết uptime sản xuất; kiểm tra khả năng phục hồi và thông báo lỗi trong môi trường demo.
+Mục tiêu nghiệm thu: p95 thời gian từ gửi câu hỏi đến nhận đủ câu trả lời không quá 5 giây trên 50 câu hỏi, 5 phiên đồng thời, tối đa 1.000 đoạn tri thức. Ghi cấu hình máy, mô hình, mạng và tỷ lệ lỗi; chưa có kết quả đo.
+Phạm vi thống nhất phiên bản 1.1 ngày 21 tháng 09 năm 2026
+VietinCare AI là đồ án web hỗ trợ khách hàng bằng tiếng Việt và tiếng Anh. Các chức năng dưới đây là yêu cầu cần triển khai; hiện project có frontend demo và script SQL, chưa có backend hoặc AI hoạt động thực tế.
+MySQL Community Server 8.0.46 là hệ quản trị duy nhất; InnoDB, utf8mb4, database QLKHViettin. Dữ liệu nghiệp vụ, phiên, nhật ký, tri thức và embedding đều lưu trong MySQL. Không bổ sung hệ quản trị hoặc kho vector khác. Backend xử lý nghiệp vụ, gọi mô hình AI và tính độ tương đồng; MySQL không tự sinh câu trả lời.
+Phạm vi cốt lõi: đăng ký/đăng nhập/đăng xuất; bốn vai trò Customer, Agent, Supervisor, Admin; chat RAG có nguồn; lưu lịch sử; tạo và xử lý ticket; phân loại và cảm xúc; chuyển giao; đánh giá CSAT; quản lý FAQ/tri thức; dashboard cơ bản; audit log và cấu hình không chứa bí mật.
+Giai đoạn mở rộng: UC008 Copilot và UC009 tóm tắt; tải PDF/DOCX; tệp đính kèm ticket; OTP/SSO, quên mật khẩu qua email; NPS; xuất Excel/PDF; tích hợp SMS/email, Core Banking/CRM, iPay/eFAST, Voicebot, sinh trắc học và định tuyến VIP. Các mục này không là điều kiện nghiệm thu bản cốt lõi.
+Kiến trúc triển khai: một ứng dụng backend chia module và một MySQL. Không yêu cầu microservices, Kubernetes, GPU riêng, 5.000 phiên hay cam kết uptime 99,9%. Dùng dữ liệu giả lập; không tra cứu số dư, thực hiện giao dịch hoặc khóa thẻ thật.
+Khách hàng đăng nhập trước khi chat, tạo ticket hoặc xem lịch sử. FAQ công khai có thể đọc không cần đăng nhập; chat khách vãng lai nằm ngoài bản cốt lõi. Customer chỉ xem dữ liệu của mình; Agent xử lý ca được giao; Supervisor giám sát và phân công; Admin quản lý tài khoản, tri thức và cấu hình.
+Chat không tự tạo ticket cho mọi tin nhắn. Tạo ticket khi khách hàng yêu cầu hoặc đồng ý theo dõi vấn đề chưa giải quyết. Chuỗi trạng thái ticket: Mới → Đang xử lý → Đã giải quyết → Đã đóng. Chỉ người có quyền được chuyển trạng thái; ghi người thực hiện và thời điểm. Mở lại ticket là phần mở rộng.
+Ưu tiên gồm Thấp, Trung bình, Cao, Khẩn cấp. Cảm xúc gồm Tích cực, Trung tính, Tiêu cực; không dùng cảm xúc làm trạng thái ticket. Agent được sửa nhãn AI. Khi AI lỗi hoặc không phân loại được, đưa về hàng chờ chung để Supervisor phân công.
+RAG: Admin nhập FAQ/văn bản, lưu KnowledgeBase ở Nháp; chia đoạn, tạo embedding JSON trong KnowledgeChunk; kiểm tra cùng mô hình và số chiều; thử câu hỏi rồi Xuất bản. Chỉ truy xuất bản đã xuất bản. Lưu và hiển thị nguồn tài liệu/đoạn cùng phản hồi. Không gọi cập nhật tri thức là tự huấn luyện mô hình.
+Điểm tương đồng cosine không phải xác suất câu trả lời đúng. Ngưỡng truy xuất phải được hiệu chỉnh bằng bộ câu hỏi có nhãn và lưu cấu hình. Không đủ nguồn hoặc lỗi mô hình: thông báo chưa có thông tin xác thực, đề nghị gặp Agent hoặc tạo ticket; không tự bịa câu trả lời.
+Handover có các trạng thái Chờ tiếp nhận, Đã tiếp nhận, Đã kết thúc, Đã hủy. Agent nhận được lịch sử; mỗi phiên chỉ có một lượt chuyển giao đang chờ hoặc đang xử lý. Khi không có Agent sẵn sàng, khách được thông báo và có thể tạo ticket.
+Đánh giá: chủ sở hữu gửi một lần cho một phiên chat đã kết thúc hoặc một ticket đã đóng. Mỗi đánh giá chỉ có một mục tiêu; số sao bắt buộc từ 1 đến 5. CSAT = số đánh giá 4–5 sao / tổng đánh giá hợp lệ × 100%; không có đánh giá thì hiển thị Chưa có dữ liệu. NPS chưa thu thập trong bản cốt lõi.
+Mục tiêu nghiệm thu: p95 thời gian từ gửi câu hỏi đến nhận đủ câu trả lời không quá 5 giây trên 50 câu hỏi, 5 phiên đồng thời, tối đa 1.000 đoạn tri thức. Ghi cấu hình máy, mô hình, mạng và tỷ lệ lỗi; chưa có kết quả đo.
+Kiểm thử bắt buộc: đúng/sai mật khẩu; sai vai trò; truy cập dữ liệu khách khác; trạng thái không hợp lệ; gửi lặp; AI lỗi/thiếu nguồn; không có Agent; đánh giá lặp; dữ liệu còn sau tải lại. Dùng ít nhất 50 câu hỏi gán nhãn để báo cáo độ chính xác phân loại; không ghi Pass hay phần trăm khi chưa chạy.
+An toàn bản đồ án: băm mật khẩu, kiểm tra quyền tại backend, truy vấn tham số hóa, giới hạn thử đăng nhập, hết hạn phiên, che dữ liệu nhạy cảm, không lưu khóa API trong mã nguồn. HTTPS khi triển khai qua mạng. Sao lưu và thử khôi phục MySQL trên môi trường thử nghiệm. Không tuyên bố chứng nhận hoặc tuân thủ ngân hàng khi chưa được đánh giá.
+Đồng bộ triển khai: SQLQuery1.sql hiện có 15 bảng. Liên kết Customer–UserAccount, phản hồi ticket, lịch sử trạng thái, định danh người gửi, nguồn trả lời RAG và cấu hình là các thay đổi thiết kế cần migration; chưa tồn tại đầy đủ trong SQL hiện hành. Không chạy lại script khởi tạo trên database có dữ liệu.
+Tham chiếu phạm vi: PROJECT_SCOPE.md. Mốc 27/09/2026 giữ theo kế hoạch ban đầu, không phải cam kết chức năng đã hoàn thành. Kết quả triển khai và kiểm thử theo PROJECT_CHECKLIST.md.

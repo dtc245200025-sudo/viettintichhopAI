@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Support tickets — VietinCare AI</title><link rel="stylesheet" href="../tickets.css"><link rel="stylesheet" href="../workspace.css"></head>
+<body><main>
+<nav><a href="account-en.html">← Account</a><a id="language" href="../VI/tickets-vi.html" lang="vi">Tiếng Việt</a></nav>
+<header><p class="eyebrow">VIETINCARE AI · SUPPORT</p><h1>Support tickets</h1><p id="intro">Checking your session…</p></header>
+<p id="notice" role="status" aria-live="polite"></p>
+<section id="createSection" hidden class="card"><h2>Create a ticket</h2><p>Do not include passwords, OTP codes or full card numbers.</p>
+<form id="createForm"><label for="title">Subject</label><input id="title" name="title" maxlength="200" required placeholder="What do you need help with?">
+<label for="content">Description</label><textarea id="content" name="content" maxlength="3000" rows="4" required placeholder="Describe your issue and the outcome you need"></textarea>
+<button type="submit">Submit ticket</button></form></section>
+<div id="workspace" hidden class="workspace">
+<section class="card list-panel"><div class="section-heading"><h2>Tickets</h2><button id="refresh" type="button" class="secondary">Refresh</button></div>
+<label for="filter">Status</label><select id="filter"><option value="">All</option><option value="Mới">New</option><option value="Đang xử lý">In progress</option><option value="Đã giải quyết">Resolved</option><option value="Đã đóng">Closed</option></select>
+<p id="listStatus" role="status"></p><ul id="ticketList"></ul><button id="more" type="button" class="secondary" hidden>Load more</button></section>
+<section id="detail" class="card" aria-label="Ticket details"><p>Select a ticket to view its details and replies.</p></section></div>
+</main><script src="../workspace.js"></script><script src="../tickets.js"></script></body></html>

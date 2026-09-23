@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Yêu cầu hỗ trợ — VietinCare AI</title><link rel="stylesheet" href="../tickets.css"><link rel="stylesheet" href="../workspace.css"></head>
+<body><main>
+<nav><a href="account-vi.html">← Tài khoản</a><a id="language" href="../EN/tickets-en.html" lang="en">English</a></nav>
+<header><p class="eyebrow">VIETINCARE AI · HỖ TRỢ</p><h1>Yêu cầu hỗ trợ</h1><p id="intro">Đang kiểm tra phiên đăng nhập…</p></header>
+<p id="notice" role="status" aria-live="polite"></p>
+<section id="createSection" hidden class="card"><h2>Tạo yêu cầu mới</h2><p>Không nhập mật khẩu, mã OTP hoặc số thẻ đầy đủ.</p>
+<form id="createForm"><label for="title">Tiêu đề</label><input id="title" name="title" maxlength="200" required placeholder="Bạn cần hỗ trợ vấn đề gì?">
+<label for="content">Nội dung</label><textarea id="content" name="content" maxlength="3000" rows="4" required placeholder="Mô tả vấn đề và kết quả bạn mong muốn"></textarea>
+<button type="submit">Gửi yêu cầu</button></form></section>
+<div id="workspace" hidden class="workspace">
+<section class="card list-panel"><div class="section-heading"><h2>Danh sách yêu cầu</h2><button id="refresh" type="button" class="secondary">Làm mới</button></div>
+<label for="filter">Trạng thái</label><select id="filter"><option value="">Tất cả</option><option>Mới</option><option>Đang xử lý</option><option>Đã giải quyết</option><option>Đã đóng</option></select>
+<p id="listStatus" role="status"></p><ul id="ticketList"></ul><button id="more" type="button" class="secondary" hidden>Xem thêm</button></section>
+<section id="detail" class="card" aria-label="Chi tiết yêu cầu"><p>Chọn một yêu cầu để xem chi tiết và phản hồi.</p></section></div>
+</main><script src="../workspace.js"></script><script src="../tickets.js"></script></body></html>

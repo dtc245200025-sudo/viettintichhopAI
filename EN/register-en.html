@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Create Account - VietinCare AI</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body class="auth-page">
+
+
+<div class="auth-wrapper">
+
+
+    <div class="auth-left">
+
+        <a href="index-en.html" class="auth-logo">
+
+            <div class="logo-icon">
+                V
+            </div>
+
+            <div>
+                <strong>VietinBank</strong>
+                <span>VietinCare AI</span>
+            </div>
+
+        </a>
+
+
+        <div class="auth-intro">
+
+            <span class="badge">
+                ✨ VietinCare AI
+            </span>
+
+            <h1>
+                Create your
+                <span>account today</span>
+            </h1>
+
+            <p>
+                Create an account to use VietinCare AI
+                and receive fast customer support.
+            </p>
+
+
+            <div class="auth-features">
+
+                <div>
+                    <span>✓</span>
+                    24/7 AI support
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Secure information
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Multiple banking services
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="auth-right">
+
+        <div class="auth-card register-card">
+
+            <div class="auth-heading">
+
+                <div class="mobile-auth-logo">
+                    <div class="logo-icon">
+                        V
+                    </div>
+                </div>
+
+                <h2>
+                    Create account
+                </h2>
+
+                <p>
+                    Register your VietinCare AI account
+                </p>
+
+            </div>
+
+
+            <form onsubmit="register(event)">
+
+                <div class="form-group">
+
+                    <label for="fullName">
+                        Full name
+                    </label>
+
+                    <input
+                        id="fullName"
+                        type="text"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="registerEmail">
+                        Email
+                    </label>
+
+                    <input
+                        id="registerEmail"
+                        type="email"
+                        placeholder="example@email.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone number
+                    </label>
+
+                    <input
+                        id="phone"
+                        type="tel"
+                        placeholder="Enter your phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="registerPassword">
+                        Password
+                    </label>
+
+                    <div class="password-input">
+
+                        <input
+                            id="registerPassword"
+                            type="password"
+                            placeholder="Minimum 8 characters"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            onclick="togglePassword('registerPassword', this)"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm password
+                    </label>
+
+                    <div class="password-input">
+
+                        <input
+                            id="confirmPassword"
+                            type="password"
+                            placeholder="Re-enter your password"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            onclick="togglePassword('confirmPassword', this)"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <label class="terms">
+
+                    <input
+                        type="checkbox"
+                        required
+                    >
+
+                    <span>
+                        I agree to the
+                        <a href="#">
+                            Terms of Service
+                        </a>
+                        and
+                        <a href="#">
+                            Privacy Policy
+                        </a>
+                    </span>
+
+                </label>
+
+
+                <button
+                    class="auth-submit"
+                    type="submit"
+                >
+                    Create account
+                </button>
+
+            </form>
+
+
+            <p class="register-link">
+
+                Already have an account?
+
+                <a href="login-en.html">
+                    Sign in
+                </a>
+
+            </p>
+
+
+            <div class="language-switch">
+
+                <strong>
+                    English
+                </strong>
+
+                <span>•</span>
+
+                <a href="../VI/register-vi.html">
+                    Tiếng Việt
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="../script.js"></script><script src="../auth.js"></script>
+
+</body>
+</html>

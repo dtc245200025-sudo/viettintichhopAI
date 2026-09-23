@@ -1,0 +1,4 @@
+-- Published versions are immutable; revisions preserve cited chunks.
+ALTER TABLE KnowledgeBase ADD COLUMN ReplacesId INT NULL, ADD COLUMN ContentVersion INT NOT NULL DEFAULT 1, ADD CONSTRAINT FK_Knowledge_Previous FOREIGN KEY(ReplacesId) REFERENCES KnowledgeBase(MaKB);
+CREATE TABLE KnowledgeRequest (MaUser INT NOT NULL, RequestKey CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL, RequestHash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL, Result JSON NOT NULL, PRIMARY KEY(MaUser,RequestKey), CONSTRAINT FK_KnowledgeRequest_User FOREIGN KEY(MaUser) REFERENCES UserAccount(MaUser)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+ALTER TABLE Message ADD COLUMN ReplyTo INT NULL, ADD COLUMN AnswerStatus VARCHAR(30) NULL, ADD CONSTRAINT UQ_Message_ReplyTo UNIQUE(ReplyTo), ADD CONSTRAINT FK_Message_ReplyTo FOREIGN KEY(ReplyTo) REFERENCES Message(MaMessage);

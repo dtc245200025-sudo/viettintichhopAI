@@ -1,0 +1,167 @@
+Thu thập và làm rõ yêu cầu VietinCare AI
+Nhóm 10 - Thành viên nhóm 
+        
+Hoàng Lưu Thùy Linh (Trưởng nhóm)
+        
+        
+Hà Thúy Nội
+        
+Tên ứng dụng: Hệ thống quản lý hỗ trợ khách hàng có tích hợp AI (VietinBank Customer Support AI System - VietinCare AI)
+        
+        
+Thời gian thực hiện: Từ 27/07/2026 đến 27/09/2026 (9 tuần)
+
+Tài liệu xác định phạm vi đồ án web hỗ trợ khách hàng, làm cơ sở cho đặc tả 03 và thiết kế 04. Áp dụng phạm vi phiên bản 1.1 và chỉ dùng MySQL.
+
+Danh sách các câu hỏi khi thu thập và làm rõ yêu cầu của ứng dụng
+STT
+Câu hỏi (Questions)
+Trả lời (Answers)
+Ghi chú
+
+Mục tiêu chính của hệ thống hỗ trợ khách hàng tích hợp AI tại VietinBank là gì?
+Hỗ trợ giải đáp FAQ trên web, theo dõi yêu cầu bằng ticket và hỗ trợ nhân viên; nghiệm thu trong môi trường demo.
+Mục tiêu chiến lược
+
+Đối tượng người dùng chính của hệ thống gồm những ai?
+Khách hàng cá nhân/doanh nghiệp của VietinBank, Tổng đài viên (Agent), Quản lý chăm sóc khách hàng (Supervisor), và Quản trị hệ thống (Admin).
+Phân quyền người dùng
+
+AI sẽ hỗ trợ khách hàng qua những kênh giao tiếp nào?
+Website VietinCare AI trên desktop/mobile. iPay/eFAST và Voicebot là mở rộng.
+Kênh web
+
+AI có khả năng giải đáp những loại thông tin nào của VietinBank?
+Giải đáp FAQ về thẻ, tiền gửi, vay và iPay từ tài liệu đã xuất bản. Không cung cấp tỷ giá/lãi suất thời gian thực hoặc thực hiện giao dịch thật.
+Nghiệp vụ ngân hàng
+
+Khi AI không giải quyết được vấn đề của khách hàng thì hệ thống xử lý ra sao?
+Tự động chuyển đổi ngữ cảnh (handover) mượt mà sang Tổng đài viên trực tuyến kèm lịch sử trò chuyện để xử lý tiếp.
+Chuyển luồng tư vấn
+
+Hệ thống phân loại và điều hướng yêu cầu (Ticket) như thế nào?
+AI tự động đọc nội dung yêu cầu, phân tích ý định (Intent), gán nhãn ưu tiên và chuyển ticket đến đúng bộ phận chuyên trách (Thẻ, Vay, Khoản thanh toán...).
+Tự động hóa luồng làm việc
+
+Yêu cầu về khả năng phân tích cảm xúc (Sentiment Analysis) của AI là gì?
+AI nhận diện cảm xúc tiêu cực/bức xúc của khách hàng qua từ ngữ để ưu tiên đẩy lên cho Tổng đài viên xử lý gấp
+Phân tích cảm xúc
+
+Hệ thống cần tích hợp với các hệ thống hiện có nào của VietinBank?
+Bản cốt lõi hoạt động độc lập với MySQL; Core Banking, CRM, quản lý thẻ và SMS/email là mở rộng.
+Tích hợp hệ thống
+
+Làm sao để đảm bảo an toàn thông tin tài khoản và bảo mật giao dịch ngân hàng?
+Đăng nhập, băm mật khẩu, kiểm tra vai trò/quyền sở hữu và che dữ liệu nhạy cảm. Chỉ dùng dữ liệu giả lập; sinh trắc học và giao dịch thật ngoài phạm vi.
+An toàn & Bảo mật
+
+Hệ thống gợi ý câu trả lời (Smart Reply) cho Tổng đài viên hoạt động ra sao?
+AI Copilot là mở rộng UC008; Agent đọc, sửa và chủ động gửi gợi ý.
+Hỗ trợ nhân viên
+
+Báo cáo - Thống kê cần cung cấp các chỉ số quan trọng nào?
+Dashboard cơ bản: ticket theo trạng thái/chủ đề, số phiên và CSAT từ dữ liệu thực; hiệu quả AI và chỉ số nâng cao là mở rộng.
+Báo cáo & Dashboard
+              
+              
+
+Quản trị viên cập nhật kiến thức (Knowledge Base) cho AI bằng cách nào?
+Admin nhập FAQ/văn bản, kiểm tra và xuất bản; đoạn tri thức và embedding lưu trong MySQL. Tải PDF/DOCX là mở rộng.
+Quản lý tri thức
+
+Khả năng xử lý đa ngôn ngữ của AI ra sao?
+Hỗ trợ tiếng Việt và tiếng Anh cơ bản
+              
+Ngôn ngữ tự nhiên
+              
+
+Hệ thống xử lý thế nào khi xảy ra sự cố gián đoạn kết nối ngân hàng?
+Thông báo lỗi rõ ràng; chỉ xác nhận lưu khi MySQL ghi thành công. Cho phép thử lại với khóa chống gửi trùng; không hứa tự gửi lại khi chưa có cơ chế.
+Kịch bản ngoại lệ
+
+Quy trình xác nhận phản hồi của khách hàng sau cuộc hỗ trợ như thế nào?
+Đánh giá 1–5 sao sau khi phiên kết thúc hoặc ticket đóng; mỗi khách chỉ đánh giá một lần cho từng mục tiêu.
+Đánh giá chất lượng
+
+Yêu cầu về thời gian phản hồi (Response Time) của Chatbot AI là bao nhiêu?
+Mục tiêu nghiệm thu: p95 thời gian từ gửi câu hỏi đến nhận đủ câu trả lời không quá 5 giây trên 50 câu hỏi, 5 phiên đồng thời, tối đa 1.000 đoạn tri thức. Ghi cấu hình máy, mô hình, mạng và tỷ lệ lỗi; chưa có kết quả đo.
+              
+              
+Hiệu năng hệ thống
+              
+
+Hệ thống có khả năng tự học (Continuous Learning) không?
+Ghi nhận câu hỏi thiếu nguồn để Admin duyệt và cập nhật FAQ, tạo lại embedding. Không tự huấn luyện lại mô hình.
+Cập nhật tri thức RAG
+
+Doanh nghiệp/Khách hàng ưu tiên (Priority/VIP) có được xử lý riêng không?
+Định tuyến VIP/RM là mở rộng; bản cốt lõi phân công theo hàng chờ và mức ưu tiên.
+Phân loại khách hàng
+
+Quy định về lưu trữ lịch sử tương tác của khách hàng là gì?
+Lưu lịch sử chat, ticket và audit log trong MySQL phục vụ nghiệm thu; dùng dữ liệu giả lập. Chính sách lưu giữ khi vận hành thật cần được xác định riêng.
+Lưu trữ & Tra soát
+
+Tiêu chuẩn bàn giao và nghiệm thu dự án gồm những gì?
+Nghiệm thu luồng đăng nhập → chat/ticket → Agent xử lý → đóng → đánh giá; kiểm thử quyền, ngoại lệ và lưu dữ liệu; đo hiệu năng theo mục tiêu chung.
+Nghiệm thu
+
+Yêu cầu chức năng/phi chức năng của ứng dụng
+A. Yêu cầu chức năng (Functional Requirements)
+Quản lý tương tác Khách hàng & Chatbot AI:
+Trò chuyện RAG qua Chat Widget trong môi trường demo sau đăng nhập.
+Hiểu ngôn ngữ tự nhiên chuyên ngành Tài chính - Ngân hàng VietinBank.
+Nhận diện cảm xúc (tích cực, trung tính, tiêu cực) để điều hướng hỗ trợ.
+Xác thực tài khoản để xem dữ liệu hỗ trợ của chính mình; không tra cứu số dư hoặc lịch sử giao dịch thật.
+Quản lý luồng Chăm sóc khách hàng & Ticket:
+Tạo ticket khi khách yêu cầu hoặc đồng ý theo dõi; AI gợi ý chủ đề và ưu tiên, Agent được chỉnh sửa.
+Chuyển giao phiên chat (Handover) từ AI sang Tổng đài viên khi vượt quá khả năng xử lý của AI.
+Mở rộng UC008: gợi ý câu trả lời cho Agent; không thuộc nghiệm thu cốt lõi.
+Quản lý Cơ sở tri thức (Knowledge Base CMS):
+Cho phép Quản trị viên thêm, sửa, xóa các bộ câu hỏi FAQ, chính sách lãi suất, chương trình khuyến mãi.
+Nhập FAQ/văn bản và tạo embedding trong MySQL cho RAG; tải PDF/DOCX là mở rộng, Excel ngoài bản cốt lõi.
+Báo cáo & Phân tích (Analytics & Dashboard):
+Dashboard truy vấn dữ liệu MySQL khi tải/làm mới trang: ticket, phiên chat và CSAT.
+Thống kê các chủ đề khách hàng quan tâm nhiều nhất.
+Thống kê CSAT từ đánh giá 1–5 sao; NPS là mở rộng.
+Quản trị hệ thống & Phân quyền:
+Quản lý tài khoản và phân quyền người dùng (Khách hàng, Tổng đài viên, Quản lý, Admin).
+Nhật ký hệ thống (Audit log) ghi lại toàn bộ thao tác truy cập và chỉnh sửa dữ liệu.
+B. Yêu cầu phi chức năng (Non-Functional Requirements)
+Hiệu năng (Performance):
+Mục tiêu nghiệm thu: p95 thời gian từ gửi câu hỏi đến nhận đủ câu trả lời không quá 5 giây trên 50 câu hỏi, 5 phiên đồng thời, tối đa 1.000 đoạn tri thức. Ghi cấu hình máy, mô hình, mạng và tỷ lệ lỗi; chưa có kết quả đo.
+        
+Kiểm thử 5 phiên đồng thời trong môi trường demo; ghi cấu hình và kết quả thực tế.
+Bảo mật (Security):
+HTTPS khi triển khai qua mạng; mật khẩu được băm và bí mật đặt ngoài mã nguồn. Mã hóa ổ đĩa và vận hành ngân hàng là yêu cầu triển khai mở rộng.
+Đồ án dùng dữ liệu giả lập, không tuyên bố đạt chứng nhận an toàn thông tin hoặc tuân thủ ngân hàng.
+Tự động che/ẩn các thông tin nhạy cảm (Số thẻ, CVV, OTP, Số CMND/CCCD).
+Độ tin cậy & Khả năng sẵn sàng (Reliability & Availability):
+Không cam kết uptime sản xuất; kiểm tra xử lý lỗi và khả năng chạy lại ứng dụng demo.
+Hướng dẫn sao lưu MySQL và kiểm thử khôi phục trên database thử nghiệm; sao lưu tự động là mở rộng.
+Khả năng mở rộng & Giao diện (Scalability & Usability):
+Một backend chia module và MySQL duy nhất; không yêu cầu microservices hoặc Kubernetes.
+Giao diện người dùng thân thiện, chuẩn nhận diện thương hiệu VietinBank (màu xanh - đỏ chủ đạo), tối ưu cho cả máy tính và thiết bị di động.
+
+
+Sơ đồ phân cấp chức năng của ứng dụng
+
+Luồng và quan hệ phiên bản 1.1: Customer → Web VI/EN → Backend nghiệp vụ và AI → MySQL duy nhất. Agent xử lý hỗ trợ; Supervisor giám sát; Admin quản lý. Chat → Ticket khi cần → Xử lý → Đóng → CSAT.
+Phạm vi thống nhất phiên bản 1.1 ngày 21 tháng 09 năm 2026
+VietinCare AI là đồ án web hỗ trợ khách hàng bằng tiếng Việt và tiếng Anh. Các chức năng dưới đây là yêu cầu cần triển khai; hiện project có frontend demo và script SQL, chưa có backend hoặc AI hoạt động thực tế.
+MySQL Community Server 8.0.46 là hệ quản trị duy nhất; InnoDB, utf8mb4, database QLKHViettin. Dữ liệu nghiệp vụ, phiên, nhật ký, tri thức và embedding đều lưu trong MySQL. Không bổ sung hệ quản trị hoặc kho vector khác. Backend xử lý nghiệp vụ, gọi mô hình AI và tính độ tương đồng; MySQL không tự sinh câu trả lời.
+Phạm vi cốt lõi: đăng ký/đăng nhập/đăng xuất; bốn vai trò Customer, Agent, Supervisor, Admin; chat RAG có nguồn; lưu lịch sử; tạo và xử lý ticket; phân loại và cảm xúc; chuyển giao; đánh giá CSAT; quản lý FAQ/tri thức; dashboard cơ bản; audit log và cấu hình không chứa bí mật.
+Giai đoạn mở rộng: UC008 Copilot và UC009 tóm tắt; tải PDF/DOCX; tệp đính kèm ticket; OTP/SSO, quên mật khẩu qua email; NPS; xuất Excel/PDF; tích hợp SMS/email, Core Banking/CRM, iPay/eFAST, Voicebot, sinh trắc học và định tuyến VIP. Các mục này không là điều kiện nghiệm thu bản cốt lõi.
+Kiến trúc triển khai: một ứng dụng backend chia module và một MySQL. Không yêu cầu microservices, Kubernetes, GPU riêng, 5.000 phiên hay cam kết uptime 99,9%. Dùng dữ liệu giả lập; không tra cứu số dư, thực hiện giao dịch hoặc khóa thẻ thật.
+Khách hàng đăng nhập trước khi chat, tạo ticket hoặc xem lịch sử. FAQ công khai có thể đọc không cần đăng nhập; chat khách vãng lai nằm ngoài bản cốt lõi. Customer chỉ xem dữ liệu của mình; Agent xử lý ca được giao; Supervisor giám sát và phân công; Admin quản lý tài khoản, tri thức và cấu hình.
+Chat không tự tạo ticket cho mọi tin nhắn. Tạo ticket khi khách hàng yêu cầu hoặc đồng ý theo dõi vấn đề chưa giải quyết. Chuỗi trạng thái ticket: Mới → Đang xử lý → Đã giải quyết → Đã đóng. Chỉ người có quyền được chuyển trạng thái; ghi người thực hiện và thời điểm. Mở lại ticket là phần mở rộng.
+Ưu tiên gồm Thấp, Trung bình, Cao, Khẩn cấp. Cảm xúc gồm Tích cực, Trung tính, Tiêu cực; không dùng cảm xúc làm trạng thái ticket. Agent được sửa nhãn AI. Khi AI lỗi hoặc không phân loại được, đưa về hàng chờ chung để Supervisor phân công.
+RAG: Admin nhập FAQ/văn bản, lưu KnowledgeBase ở Nháp; chia đoạn, tạo embedding JSON trong KnowledgeChunk; kiểm tra cùng mô hình và số chiều; thử câu hỏi rồi Xuất bản. Chỉ truy xuất bản đã xuất bản. Lưu và hiển thị nguồn tài liệu/đoạn cùng phản hồi. Không gọi cập nhật tri thức là tự huấn luyện mô hình.
+Điểm tương đồng cosine không phải xác suất câu trả lời đúng. Ngưỡng truy xuất phải được hiệu chỉnh bằng bộ câu hỏi có nhãn và lưu cấu hình. Không đủ nguồn hoặc lỗi mô hình: thông báo chưa có thông tin xác thực, đề nghị gặp Agent hoặc tạo ticket; không tự bịa câu trả lời.
+Handover có các trạng thái Chờ tiếp nhận, Đã tiếp nhận, Đã kết thúc, Đã hủy. Agent nhận được lịch sử; mỗi phiên chỉ có một lượt chuyển giao đang chờ hoặc đang xử lý. Khi không có Agent sẵn sàng, khách được thông báo và có thể tạo ticket.
+Đánh giá: chủ sở hữu gửi một lần cho một phiên chat đã kết thúc hoặc một ticket đã đóng. Mỗi đánh giá chỉ có một mục tiêu; số sao bắt buộc từ 1 đến 5. CSAT = số đánh giá 4–5 sao / tổng đánh giá hợp lệ × 100%; không có đánh giá thì hiển thị Chưa có dữ liệu. NPS chưa thu thập trong bản cốt lõi.
+Mục tiêu nghiệm thu: p95 thời gian từ gửi câu hỏi đến nhận đủ câu trả lời không quá 5 giây trên 50 câu hỏi, 5 phiên đồng thời, tối đa 1.000 đoạn tri thức. Ghi cấu hình máy, mô hình, mạng và tỷ lệ lỗi; chưa có kết quả đo.
+Kiểm thử bắt buộc: đúng/sai mật khẩu; sai vai trò; truy cập dữ liệu khách khác; trạng thái không hợp lệ; gửi lặp; AI lỗi/thiếu nguồn; không có Agent; đánh giá lặp; dữ liệu còn sau tải lại. Dùng ít nhất 50 câu hỏi gán nhãn để báo cáo độ chính xác phân loại; không ghi Pass hay phần trăm khi chưa chạy.
+An toàn bản đồ án: băm mật khẩu, kiểm tra quyền tại backend, truy vấn tham số hóa, giới hạn thử đăng nhập, hết hạn phiên, che dữ liệu nhạy cảm, không lưu khóa API trong mã nguồn. HTTPS khi triển khai qua mạng. Sao lưu và thử khôi phục MySQL trên môi trường thử nghiệm. Không tuyên bố chứng nhận hoặc tuân thủ ngân hàng khi chưa được đánh giá.
+Đồng bộ triển khai: SQLQuery1.sql hiện có 15 bảng. Liên kết Customer–UserAccount, phản hồi ticket, lịch sử trạng thái, định danh người gửi, nguồn trả lời RAG và cấu hình là các thay đổi thiết kế cần migration; chưa tồn tại đầy đủ trong SQL hiện hành. Không chạy lại script khởi tạo trên database có dữ liệu.
+Tham chiếu phạm vi: PROJECT_SCOPE.md. Mốc 27/09/2026 giữ theo kế hoạch ban đầu, không phải cam kết chức năng đã hoàn thành. Kết quả triển khai và kiểm thử theo PROJECT_CHECKLIST.md.

@@ -1,0 +1,120 @@
+KIỂM THỬ CHỨC NĂNG ỨNG DỤNG  
+Nhóm 10 - Thành viên nhóm 
+Hoàng Lưu Thùy Linh (Trưởng nhóm)
+Hà Thúy Nội
+Tên ứng dụng: Hệ thống quản lý hỗ trợ khách hàng có tích hợp AI (VietinBank Customer Support AI System - VietinCare AI)
+Thời gian thực hiện: Từ 27/07/2026 đến 27/09/2026 (9 tuần)
+Những yêu cầu về tài nguyên cho kiểm thử ứng dụng
+Phần cứng: Máy tính cá nhân có kết nối mạng LAN.
+CPU
+RAM
+HDD
+Architecture
+Intel Core i5, 2.3 GHz
+8 GB
+360 GB
+64 bit
+Phần mềm
+Tên phần mềm
+Phiên bản
+Loại
+Visual Studio Code / IntelliJ IDEA
+v1.92.0 / 2024.1
+Công cụ phát triển
+Postman / Selenium / JUnit 
+v11.0 / v4.20
+Hỗ trợ kiểm thử chức năng & API
+MySQL Community Server
+8.0.46
+Lưu trữ và quản lý dữ liệu
+Windows 11 Pro / macOS Sonoma
+64-bit
+Môi trường chạy ứng dụng
+Danh sách các tình huống để kiểm tra ứng dụng.
+Test ID
+Chức năng 
+Mô tả
+Điều kiện trước
+Dữ liệu Test
+Kết quả mong muốn
+Ghi chú
+TC01
+dangKy()
+Kiểm tra đăng ký thành công với thông tin hợp lệ 
+Khách hàng chưa có tài khoản 
+Email: test@gmail.com, Pass: 123456Aa@
+Tạo tài khoản thành công, lưu vào CSDL, báo “Thành công”
+Chức năng Khách hàng 
+TC02
+guiYeuCau()
+Kiểm tra gửi ticket và kích hoạt AI xử lý
+Đã đăng nhập tài khoản Khách hàng 
+Nội dung: “ Tôi muốn mở thẻ credit”
+Ticket tạo trạng thái “ Chờ xử lý”, AI nhận phản hồi ngay
+Chức năng Ticket / AI
+TC03
+phanTichCamXuc()
+Kiểm tra AI nhận diện cảm xúc tiêu cực
+Có ticket chứa câu chửi / than phiền
+Nội dung: “ Dịch vụ quá tệ, hệ thống bị lỗi liên tục”
+AI gắn nhãn cảm xúc “Tiêu cực”
+Tính năng AI
+TC04
+chuyenNhanVien()
+Chuyển ticket cho nhân viên khi AI không trả lời được
+AI không đạt độ tin cậy doTinCay <0.7
+Nội dung câu hỏi quá phức tạp / ngoại lệ 
+Ticket chuyển sang nhân viên, đổi trạng thái “Đang xử lý”
+Chuyển giao Handover
+TC05
+traLoiKhachHang
+Nhân viên phản hồi ticket và gửi phản hồi 
+Nhân viên đã chấp nhận ticket thành công
+Nội dung: “dạ ngân hàng đang xử lý  lỗi thẻ cho anh...”
+Khách hàng nhận phản hồi, hệ thống lưu
+Chức năng Nhân viên
+ 
+3. Báo cáo kết quả test (Test report)
+Các kết quả bên dưới thuộc đợt kiểm thử trước khi thống nhất MySQL 8.0.46. Cần chạy lại các ca kiểm thử tích hợp trên MySQL và cập nhật bằng chứng, ngày chạy cùng kết quả thực tế trước khi nghiệm thu; không coi các nhãn Pass cũ là bằng chứng cho phiên bản MySQL.
+Test ID
+Ngày testing 
+Người tham gia Test
+Pass/Fail
+Độ nghiêm trọng
+Tóm tắt lỗi
+Ghi chú
+TC01
+15/09/2026
+Hoàng Lưu Thùy Linh
+Pass
+-
+Không có lỗi phát sinh 
+Đạt yêu cầu
+TC02
+15/09/2026
+Hà Thúy Nội
+Pass
+-
+AI phản hồi dưới 2 giây
+Đạt yêu cầu
+TC03
+16/09/2026
+Hoàng Lưu Thùy Linh
+Fail
+Trung bình (medium)
+AI phân loại nhầm câu than phiền thành “Trung lập”
+Cần fine-tune model AI
+TC04
+16/2026
+Hà Thúy Nội
+Pass
+-
+Chuyển giao mượt mà, lưu bản tóm tắt tốt
+Đạt yêu cầu
+TC05
+17/09/2026
+Hoàng Lưu Thùy Linh
+Pass
+-
+Nội dung hiển thị đúng trên ứng dụng của khách hàng
+Đạt yêu cầu

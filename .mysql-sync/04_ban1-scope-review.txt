@@ -1,0 +1,885 @@
+Thiết kế hướng đối tượng VietinCare AI phiên bản 1.1
+Nhóm 10 - Thành viên nhóm
+        
+Hoàng Lưu Thuỳ Linh (Trưởng nhóm)
+        
+Hà Thuý Nội
+Tên ứng dụng: Hệ thống quản lý hỗ trợ khách hàng có tích hợp AI (VietinBank Customer Support AI System - VietinCare AI)
+        
+        
+
+
+
+Mô hình lớp (Class Diagram)
+Luồng và quan hệ phiên bản 1.1: MySQL: Role 1–n UserAccount; Customer 1–n ChatSession và Ticket; ChatSession 1–n Message, Handover, ConversationSummary; Message 1–n SentimentAnalysis, AISuggestion; KnowledgeBase 1–n KnowledgeChunk; UserAccount 1–n KnowledgeBase, AuditLog. Liên kết tài khoản khách hàng và lịch sử/phản hồi ticket cần migration. AI là dịch vụ backend; Agent/Supervisor/Admin là vai trò UserAccount.
+
+Quan hệ giữa các Class:
+Khách hàng → Ticket: Khách hàng tạo và gửi yêu cầu hỗ trợ
+        
+Ticket → AI: AI tiếp nhận và phân tích yêu cầu
+        
+AI → Tương tác: AI tạo phản hồi và lưu lịch sử tương tác 
+        
+Ticket → Nhân viên hỗ trợ: Những yêu cầu AI không xử lý được sẽ chuyển cho nhân viên
+        
+Nhân viên hỗ trợ → Tương tác: Nhân viên trao đổi và phản hồi khách hàng 
+        
+Admin → Nhân viên: Admin quản lý tài khoản và hoạt động của nhân viên 
+        
+Khách hàng → Tương tác: Khách hàng tham gia trao đổi với AI/nhân viên
+        
+
+Đặc tả Class
+Class Khách hàng (Customer)
+2.1.1   Thuộc tính
+Tên thuộc tính
+Kiểu dữ liệu
+Kích thước
+Mô tả
+maKH
+INT
+20
+Mã khách hàng
+hoTen
+String
+100
+Họ và tên khách hàng
+email
+String
+100
+Địa chỉ email
+soDienThoai
+String
+15
+Số điện thoại
+maUser
+INT
+-
+Tham chiếu UserAccount; cần bổ sung liên kết bằng migration, mật khẩu băm chỉ lưu ở UserAccount.
+ngayTao
+DateTime
+-
+Ngày tạo tài khoản
+trangThai
+String
+20
+Trạng thái tài khoản
+
+2.1.2.   Phương thức: dangKy()
+        
+Nội dung
+Chi tiết
+Tên
+dangKy()
+Mô tả
+Cho phép khách hàng đăng ký tài khoản mới trên hệ thống.
+Tham số đầu vào
+hoTen: String (100), email: String (100), soDienThoai: String (15), matKhau: String (255)
+Kết quả đầu ra
+ketQua: Boolean – đăng ký thành công hoặc thất bại.
+Luồng xử lý
+1. Kiểm tra dữ liệu và email duy nhất → 2. Băm mật khẩu → 3. Tạo UserAccount vai trò Customer và Customer trong một transaction MySQL → 4. Trả kết quả.
+Điều kiện bắt đầu
+Khách hàng chưa có tài khoản và đã nhập đầy đủ thông tin hợp lệ.
+Điều kiện kết thúc
+Tài khoản khách hàng được tạo thành công và lưu vào CSDL.
+
+2.1.3.   Phương thức: dangNhap()
+Nội dung
+Chi tiết
+Tên
+dangNhap()
+Mô tả
+Xác thực thông tin để khách hàng đăng nhập vào hệ thống.
+Tham số đầu vào
+email: String (100), matKhau: String (255)
+Kết quả đầu ra
+session: String hoặc thông báo đăng nhập thất bại.
+Luồng xử lý
+1. Nhận email và mật khẩu → 2. Tìm tài khoản → 3. Kiểm tra trạng thái tài khoản → 4. Kiểm tra mật khẩu → 5. Tạo phiên đăng nhập → 6. Cho phép truy cập hệ thống.
+Điều kiện bắt đầu
+Tài khoản khách hàng đã tồn tại và đang hoạt động.
+Điều kiện kết thúc
+Khách hàng đăng nhập thành công và được cấp quyền truy cập.
+
+
+2.1.4.  Phương thức: guiYeuCau()
+        
+Nội dung
+Chi tiết
+Tên
+guiYeuCau()
+Mô tả
+Cho phép khách hàng gửi câu hỏi hoặc yêu cầu hỗ trợ đến hệ thống.
+Tham số đầu vào
+tieuDe: String (200), noiDung: String (2000), mucDoUuTien: String (20)
+Kết quả đầu ra
+Kết quả chat hoặc maTicket: INT khi có tạo ticket.
+Luồng xử lý
+1. Nhận câu hỏi trong ChatSession → 2. Lưu Message → 3. Truy xuất tri thức MySQL → 4. Trả lời có nguồn → 5. Chỉ tạo Ticket khi khách yêu cầu hoặc đồng ý.
+Điều kiện bắt đầu
+Khách hàng đã đăng nhập và nội dung yêu cầu hợp lệ.
+Điều kiện kết thúc
+Tin nhắn được lưu; nếu tạo ticket thì trạng thái khởi tạo là Mới.
+2.1.5 Phương thức xemLichSu
+Nội dung
+Chi tiết
+Tên
+xemLichSu()
+Mô tả
+Cho phép khách hàng xem lịch sử các yêu cầu và tương tác hỗ trợ.
+Tham số đầu vào
+maKH: INT
+Kết quả đầu ra
+danhSachTicket: List<Ticket>
+Luồng xử lý
+1. Nhận mã khách hàng → 2. Kiểm tra tài khoản → 3. Truy vấn các Ticket → 4. Lấy lịch sử tương tác → 5. Hiển thị kết quả.
+Điều kiện bắt đầu
+Khách hàng đã đăng nhập.
+Điều kiện kết thúc
+Danh sách ticket và lịch sử thuộc khách hàng đăng nhập được trả về.
+
+
+2.2.     Class Ticket / Yêu cầu hỗ trợ 
+        
+2.2.1  Thuộc tính
+Tên thuộc tính
+Kiểu dữ liệu
+Kích thước
+Mô tả
+maTicket
+INT
+20
+Mã yêu cầu hỗ trợ
+tieuDe
+String
+200
+Tiêu đề yêu cầu
+noiDung
+String
+2000
+Nội dung yêu cầu
+trangThai
+String
+30
+Trạng thái xử lý
+mucDoUuTien
+String
+20
+Mức độ ưu tiên
+ngayTao
+DateTime
+-
+Thời gian tạo Ticket
+ngayCapNhat
+DateTime
+-
+Thời gian cập nhật gần nhất
+maKH
+INT
+20
+Mã khách hàng tạo Ticket
+maNV
+INT
+20
+Mã nhân viên được phân công
+
+2.2.2.   Phương thức: taoTicket()
+Nội dung
+Chi tiết
+Tên
+taoTicket()
+Mô tả
+Tạo một yêu cầu hỗ trợ mới cho khách hàng.
+Tham số đầu vào
+maKH: INT, tieuDe: String (200), noiDung: String (2000), mucDoUuTien: String (20)
+Kết quả đầu ra
+ticket: Ticket
+Luồng xử lý
+1. Kiểm tra khách hàng và quyền → 2. Kiểm tra nội dung → 3. Tạo Ticket trạng thái Mới → 4. Lưu MySQL → 5. Phân loại; lỗi AI vẫn giữ ticket ở hàng chờ chung.
+Điều kiện bắt đầu
+Khách hàng tồn tại và thông tin yêu cầu hợp lệ.
+Điều kiện kết thúc
+Ticket được tạo và lưu thành công.
+
+
+2.2.3.   Phương thức: capNhatTrangThai()
+Nội dung
+Chi tiết
+Tên
+capNhatTrangThai()
+Mô tả
+Cập nhật trạng thái của yêu cầu hỗ trợ.
+Tham số đầu vào
+maTicket: INT, trangThaiMoi: String (30)
+Kết quả đầu ra
+ketQua: Boolean
+Luồng xử lý
+1. Tìm Ticket → 2. Kiểm tra Ticket tồn tại → 3. Kiểm tra trạng thái mới → 4. Cập nhật trạng thái → 5. Lưu thay đổi → 6. Thông báo kết quả.
+Điều kiện bắt đầu
+Ticket tồn tại và người thực hiện có quyền cập nhật.
+Điều kiện kết thúc
+Trạng thái Ticket được cập nhật thành công.
+
+
+2.2.4.  Phương thức: xemTicket()
+        
+Nội dung
+Chi tiết
+Tên
+xemTicket()
+Mô tả
+Hiển thị thông tin chi tiết của một yêu cầu hỗ trợ.
+Tham số đầu vào
+maTicket: INT
+Kết quả đầu ra
+ticket: Ticket
+Luồng xử lý
+1. Nhận mã Ticket → 2. Tìm Ticket trong CSDL → 3. Lấy thông tin Ticket → 4. Lấy lịch sử tương tác → 5. Hiển thị thông tin.
+Điều kiện bắt đầu
+Ticket tồn tại trong hệ thống.
+Điều kiện kết thúc
+Thông tin chi tiết Ticket được hiển thị.
+
+
+2.2.5.  Phương thức: dongTicket()
+Nội dung
+Chi tiết
+Tên
+dongTicket()
+Mô tả
+Đóng yêu cầu hỗ trợ sau khi vấn đề của khách hàng đã được giải quyết.
+Tham số đầu vào
+maTicket: INT
+Kết quả đầu ra
+ketQua: Boolean
+Luồng xử lý
+1. Tìm Ticket → 2. Kiểm tra trạng thái → 3. Xác nhận yêu cầu đã được giải quyết → 4. Chuyển trạng thái thành “Đã đóng” → 5. Lưu CSDL.
+Điều kiện bắt đầu
+Ticket đang ở trạng thái “Đang xử lý” hoặc “Đã giải quyết”.
+Điều kiện kết thúc
+Ticket chuyển sang trạng thái “Đã đóng”.
+
+
+2.3.   Class AI
+2.3.1.   Thuộc tính
+Tên thuộc tính
+Kiểu dữ liệu
+Kích thước
+Mô tả
+maAI
+String
+20
+Mã hệ thống AI
+tenMoHinh
+String
+100
+Tên mô hình AI sử dụng
+phienBan
+String
+30
+Phiên bản mô hình
+doTinCay
+Float
+-
+Độ tin cậy của kết quả AI
+trangThai
+String
+20
+Trạng thái hoạt động của AI
+nguongTruyXuat
+Float
+-
+Ngưỡng cosine được hiệu chỉnh trên bộ kiểm thử; không phải xác suất trả lời đúng.
+
+
+Phương thức: phanTichYeuCau()
+Nội dung
+Chi tiết
+Tên
+phanTichYeuCau()
+Mô tả
+Phân tích nội dung yêu cầu của khách hàng bằng AI.
+Tham số đầu vào
+noiDung: String (2000)
+Kết quả đầu ra
+ketQuaPhanTich: String (1000)
+Luồng xử lý
+1. Nhận nội dung Ticket → 2. Tiền xử lý văn bản → 3. Phân tích ngôn ngữ → 4. Xác định vấn đề → 5. Tạo kết quả phân tích → 6. Trả kết quả.
+Điều kiện bắt đầu
+Có Ticket mới và nội dung yêu cầu hợp lệ.
+Điều kiện kết thúc
+AI hoàn thành phân tích và trả về kết quả.
+
+
+ Phương thức: xacDinhYeuCau()
+Nội dung
+Chi tiết
+Tên
+xacDinhYeuCau()
+Mô tả
+Xác định ý định và loại yêu cầu của khách hàng.
+Tham số đầu vào
+noiDung: String (2000)
+Kết quả đầu ra
+loaiYeuCau: String (100)
+Luồng xử lý
+1. Nhận nội dung → 2. Phân tích từ khóa và ngữ cảnh → 3. Xác định ý định → 4. Phân loại yêu cầu → 5. Trả về loại yêu cầu.
+Điều kiện bắt đầu
+Nội dung khách hàng đã được nhận và hợp lệ.
+Điều kiện kết thúc
+AI xác định được loại/ý định yêu cầu.
+
+
+ Phương thức: taoPhanHoi()
+Nội dung
+Chi tiết
+Tên
+taoPhanHoi()
+Mô tả
+Sinh câu trả lời tự động dựa trên yêu cầu của khách hàng.
+Tham số đầu vào
+noiDung: String (2000), loaiYeuCau: String (100)
+Kết quả đầu ra
+phanHoi: String (2000)
+Luồng xử lý
+1. Nhận nội dung và loại yêu cầu → 2. Tìm thông tin phù hợp → 3. Sinh câu trả lời → 4. Kiểm tra nội dung → 5. Trả phản hồi cho khách hàng → 6. Lưu lịch sử.
+Điều kiện bắt đầu
+AI đã xác định được yêu cầu và có đủ thông tin để trả lời.
+Điều kiện kết thúc
+Câu trả lời được tạo và gửi đến khách hàng.
+
+
+ Phương thức: phanTichCamXuc()
+
+Nội dung
+Chi tiết
+Tên
+phanTichCamXuc()
+Mô tả
+Phân tích cảm xúc của khách hàng trong nội dung trao đổi.
+Tham số đầu vào
+noiDung: String (2000)
+Kết quả đầu ra
+camXuc: String (20) – Tích cực/Trung tính/Tiêu cực.
+Luồng xử lý
+1. Nhận nội dung → 2. Phân tích ngữ nghĩa → 3. Nhận diện cảm xúc → 4. Phân loại cảm xúc → 5. Trả kết quả.
+Điều kiện bắt đầu
+Có nội dung trao đổi từ khách hàng.
+Điều kiện kết thúc
+AI xác định và trả về kết quả cảm xúc.
+ 
+
+
+ Phương thức: chuyenNhanVien()
+
+
+      
+Nội dung
+Chi tiết
+Tên
+chuyenNhanVien()
+Mô tả
+Chuyển yêu cầu cho nhân viên hỗ trợ khi AI không thể giải quyết.
+Tham số đầu vào
+maTicket: INT, lyDo: String (500)
+Kết quả đầu ra
+ketQua: Boolean
+Luồng xử lý
+1. Nhận yêu cầu handover cho phiên chat → 2. Lưu hàng chờ MySQL → 3. Agent tiếp nhận → 4. Hiển thị lịch sử; không có Agent thì đề nghị tạo ticket.
+Điều kiện bắt đầu
+AI không thể trả lời chính xác hoặc yêu cầu cần nhân viên xử lý.
+Điều kiện kết thúc
+Ticket được chuyển thành công cho nhân viên hỗ trợ.
+
+  
+
+
+
+Class Nhân viên hỗ trợ (Support Staff) 
+        
+
+2.4.1.   Thuộc tính
+
+Tên thuộc tính
+Kiểu dữ liệu
+Kích thước
+Mô tả
+maNV
+INT
+20
+Mã nhân viên
+hoTen
+String
+100
+Họ tên nhân viên
+email
+String
+100
+Email
+soDienThoai
+String
+15
+Số điện thoại
+trangThai
+String
+20
+Trạng thái làm việc
+chuyenMon
+String
+100
+Lĩnh vực chuyên môn
+
+Phương thức: tiepNhanTicket() 
+        
+
+Nội dung
+Chi tiết
+Tên
+tiepNhanTicket()
+Mô tả
+Nhân viên tiếp nhận Ticket được chuyển từ AI hoặc hệ thống.
+Tham số đầu vào
+maTicket: INT
+Kết quả đầu ra
+ketQua: Boolean
+Luồng xử lý
+1. Nhận Ticket → 2. Kiểm tra nội dung → 3. Kiểm tra nhân viên có phù hợp → 4. Tiếp nhận Ticket → 5. Cập nhật trạng thái “Đang xử lý”.
+Điều kiện bắt đầu
+Ticket cần nhân viên hỗ trợ và nhân viên đang hoạt động.
+Điều kiện kết thúc
+Ticket được gán và tiếp nhận bởi nhân viên.
+
+
+  Phương thức: traLoiKhachHang()
+
+Nội dung
+Chi tiết
+Tên
+traLoiKhachHang()
+Mô tả
+Nhân viên gửi phản hồi trực tiếp cho khách hàng.
+Tham số đầu vào
+maTicket: INT, noiDungTraLoi: String (2000)
+Kết quả đầu ra
+ketQua: Boolean
+Luồng xử lý
+1. Nhập nội dung trả lời → 2. Kiểm tra nội dung → 3. Gửi phản hồi → 4. Lưu tương tác → 5. Cập nhật trạng thái Ticket.
+Điều kiện bắt đầu
+Nhân viên đã tiếp nhận Ticket.
+Điều kiện kết thúc
+Khách hàng nhận được phản hồi và nội dung được lưu lại.
+
+
+ Phương thức: capNhatTicket()
+
+Nội dung
+Chi tiết
+Tên
+capNhatTicket()
+Mô tả
+Cập nhật thông tin và tiến trình xử lý yêu cầu.
+Tham số đầu vào
+maTicket: INT, trangThai: String (30), ghiChu: String (500)
+Kết quả đầu ra
+ketQua: Boolean
+Luồng xử lý
+1. Tìm Ticket → 2. Kiểm tra quyền → 3. Cập nhật trạng thái/ghi chú → 4. Lưu CSDL → 5. Thông báo kết quả.
+Điều kiện bắt đầu
+Nhân viên đã được phân công Ticket.
+Điều kiện kết thúc
+Thông tin xử lý Ticket được cập nhật thành công.
+
+ Phương thức: dongTicket()
+
+
+Nội dung
+Chi tiết
+Tên
+dongTicket()
+Mô tả
+Đóng Ticket sau khi đã giải quyết yêu cầu của khách hàng.
+Tham số đầu vào
+maTicket: INT
+Kết quả đầu ra
+ketQua: Boolean
+Luồng xử lý
+1. Kiểm tra Ticket → 2. Kiểm tra nội dung đã được giải quyết → 3. Xác nhận kết quả → 4. Chuyển trạng thái “Đã đóng” → 5. Lưu CSDL.
+Điều kiện bắt đầu
+Ticket đang do nhân viên xử lý và vấn đề đã được giải quyết.
+Điều kiện kết thúc
+Ticket được đóng thành công.
+
+
+ Class Tương tác (Interaction)
+
+2.5.1.  Phương thức: luuTuongTac()
+
+Tên thuộc tính
+Kiểu dữ liệu
+Kích thước
+Mô tả
+maTuongTac
+INT
+20
+Mã tương tác
+maTicket
+INT
+20
+Mã Ticket liên quan
+noiDung
+String
+2000
+Nội dung trao đổi
+thoiGian
+DateTime
+-
+Thời gian tương tác
+nguoiGui
+String
+20
+Người gửi
+loaiPhanHoi
+String
+30
+AI hoặc nhân viên
+camXuc
+String
+20
+Kết quả phân tích cảm xúc
+
+ Phương thức: luuTuongTac()
+
+Nội dung
+Chi tiết
+Tên
+luuTuongTac()
+Mô tả
+Lưu lại nội dung trao đổi giữa khách hàng với AI hoặc nhân viên.
+Tham số đầu vào
+maTicket: INT, noiDung: String (2000), nguoiGui: String (20), loaiPhanHoi: String (30)
+Kết quả đầu ra
+maTuongTac: INT
+Luồng xử lý
+1. Nhận thông tin tương tác → 2. Kiểm tra Ticket → 3. Tạo mã tương tác → 4. Ghi nhận thời gian → 5. Lưu vào CSDL → 6. Trả mã tương tác.
+Điều kiện bắt đầu
+Có phát sinh trao đổi liên quan đến một Ticket hợp lệ.
+Điều kiện kết thúc
+Nội dung tương tác được lưu thành công.
+
+
+ Phương thức: xemTuongTac()
+
+
+Nội dung
+Chi tiết
+Tên
+xemTuongTac()
+Mô tả
+Hiển thị toàn bộ lịch sử trao đổi của một Ticket.
+Tham số đầu vào
+maTicket: INT
+Kết quả đầu ra
+danhSachTuongTac: List<Interaction>
+Luồng xử lý
+1. Nhận mã Ticket → 2. Kiểm tra Ticket → 3. Truy vấn lịch sử → 4. Sắp xếp theo thời gian → 5. Hiển thị danh sách.
+Điều kiện bắt đầu
+Ticket tồn tại trong hệ thống.
+Điều kiện kết thúc
+Lịch sử tương tác được trả về và hiển thị.
+
+
+ Phương thức: capNhatTuongTac()
+
+Nội dung
+Chi tiết
+Tên
+capNhatTuongTac()
+Mô tả
+Cập nhật thông tin của một tương tác khi cần thiết.
+Tham số đầu vào
+maTuongTac: INT, noiDungMoi: String (2000)
+Kết quả đầu ra
+ketQua: Boolean
+Luồng xử lý
+1. Tìm tương tác → 2. Kiểm tra quyền → 3. Cập nhật nội dung → 4. Lưu thay đổi → 5. Trả kết quả.
+Điều kiện bắt đầu
+Tương tác tồn tại và người thực hiện có quyền chỉnh sửa.
+Điều kiện kết thúc
+Thông tin tương tác được cập nhật thành công.
+
+
+ Class Admin
+
+2.6.1.  Thuộc tính
+
+Tên thuộc tính
+Kiểu dữ liệu
+Kích thước
+Mô tả
+maAdmin
+INT
+20
+Mã quản trị viên
+hoTen
+String
+100
+Họ tên quản trị viên
+email
+String
+100
+Email
+passwordHash
+String
+255
+Mật khẩu
+Bản băm mật khẩu tại UserAccount; Admin là vai trò, không có bảng mật khẩu riêng.
+String
+20
+Trạng thái tài khoản
+
+
+ Phương thức: dangNhap()
+Nội dung
+Chi tiết
+Tên
+dangNhap()
+Mô tả
+Xác thực quản trị viên để truy cập khu vực quản trị.
+Tham số đầu vào
+email: String (100), matKhau: String (255)
+Kết quả đầu ra
+session: String hoặc thông báo lỗi.
+Luồng xử lý
+1. Nhận thông tin → 2. Kiểm tra tài khoản → 3. Kiểm tra mật khẩu → 4. Kiểm tra quyền Admin → 5. Tạo phiên đăng nhập → 6. Truy cập trang quản trị.
+Điều kiện bắt đầu
+Admin có tài khoản hợp lệ và tài khoản đang hoạt động.
+Điều kiện kết thúc
+Admin đăng nhập thành công và có quyền quản trị
+
+
+
+ Phương thức: quanLyNhanVien()
+
+
+Nội dung
+Chi tiết
+Tên
+quanLyNhanVien()
+Mô tả
+Thêm, sửa, xóa hoặc cập nhật thông tin nhân viên hỗ trợ.
+Tham số đầu vào
+maNV: INT, thongTinNV: Object
+Kết quả đầu ra
+ketQua: Boolean
+Luồng xử lý
+1. Admin chọn chức năng → 2. Nhập thông tin → 3. Kiểm tra dữ liệu → 4. Thêm/sửa/xóa nhân viên → 5. Lưu CSDL → 6. Thông báo kết quả.
+Điều kiện bắt đầu
+Admin đã đăng nhập và có quyền quản lý nhân viên.
+Điều kiện kết thúc
+Thông tin nhân viên được cập nhật thành công.
+
+
+  Phương thức: quanLyTaiKhoan()
+
+
+     
+Nội dung
+Chi tiết
+Tên
+quanLyTaiKhoan()
+Mô tả
+Quản lý tài khoản khách hàng trong hệ thống.
+Tham số đầu vào
+maKH: INT, trangThai: String (20)
+Kết quả đầu ra
+ketQua: Boolean
+Luồng xử lý
+1. Tìm tài khoản → 2. Kiểm tra thông tin → 3. Thay đổi trạng thái hoặc thông tin → 4. Lưu CSDL → 5. Thông báo kết quả.
+Điều kiện bắt đầu
+Admin đã đăng nhập và có quyền quản lý tài khoản.
+Điều kiện kết thúc
+Tài khoản khách hàng được cập nhật thành công.
+
+
+ Phương thức: xemBaoCao()
+
+
+Nội dung
+Chi tiết
+Tên
+xemBaoCao()
+Mô tả
+Thống kê và hiển thị tình hình hoạt động của hệ thống hỗ trợ.
+Tham số đầu vào
+tuNgay: Date, denNgay: Date
+Kết quả đầu ra
+baoCao: Report
+Luồng xử lý
+1. Chọn khoảng thời gian → 2. Truy vấn dữ liệu Ticket → 3. Thống kê số lượng yêu cầu → 4. Thống kê yêu cầu AI xử lý → 5. Thống kê yêu cầu chuyển nhân viên → 6. Tạo báo cáo → 7. Hiển thị kết quả.
+Điều kiện bắt đầu
+Admin đã đăng nhập và khoảng thời gian hợp lệ.
+Điều kiện kết thúc
+Báo cáo thống kê được tạo và hiển thị thành công.
+
+
+
+ Tổng hợp các Class
+
+
+
+STT
+Class
+Vai trò
+1
+Khách hàng (Customer)
+Đăng ký, đăng nhập, gửi yêu cầu và xem lịch sử
+2
+Ticket
+Quản lý yêu cầu hỗ trợ của khách hàng
+3
+AI
+Phân tích yêu cầu, xác định ý định, phân tích cảm xúc và tạo phản hồi
+4
+Nhân viên hỗ trợ (Support Staff)
+Tiếp nhận và xử lý những yêu cầu AI không giải quyết được
+5
+Tương tác (Interaction)
+Lưu trữ toàn bộ lịch sử trao đổi
+6
+Admin
+Quản lý nhân viên, tài khoản và báo cáo hệ thống
+
+
+Luồng hoạt động tổng quát
+        
+   
+Khách hàng đăng nhập → ChatSession → Message → RAG dùng MySQL → Phản hồi có nguồn
+        Nếu AI xử lý được:
+        AI → Phản hồi → Khách hàng
+        Nếu AI không xử lý được:
+Thiếu nguồn hoặc cần hỗ trợ → Handover hoặc Ticket theo lựa chọn khách hàng → Agent xử lý → Đóng → Đánh giá
+        Admin quản lý toàn bộ:
+Admin quản lý tài khoản, tri thức, cấu hình và log; Supervisor giám sát, phân công và xem báo cáo.
+
+
+
+
+
+
+
+
+
+
+
+
+  Thiết kế Cơ sở dữ liệu
+        
+3.1.   Sơ đồ thực thể liên kết – ERD (Entity Relationship Diagram) 
+        
+        
+        
+        
+
+Luồng và quan hệ phiên bản 1.1: MySQL: Role 1–n UserAccount; Customer 1–n ChatSession và Ticket; ChatSession 1–n Message, Handover, ConversationSummary; Message 1–n SentimentAnalysis, AISuggestion; KnowledgeBase 1–n KnowledgeChunk; UserAccount 1–n KnowledgeBase, AuditLog. Liên kết tài khoản khách hàng và lịch sử/phản hồi ticket cần migration. AI là dịch vụ backend; Agent/Supervisor/Admin là vai trò UserAccount.
+
+3.2.  Thiết kế Cơ sở dữ liệu
+        
+Hệ quản trị duy nhất là MySQL Community Server 8.0.46, dùng InnoDB và utf8mb4. Script khởi tạo: SQLQuery1.sql; database: QLKHViettin. Khóa số dùng INT AUTO_INCREMENT, văn bản dùng VARCHAR/LONGTEXT, thời gian dùng DATETIME(3) theo UTC.
+KnowledgeBase – KnowledgeChunk có quan hệ 1 – n. KnowledgeChunk lưu MaChunk, MaKB, ThuTu, NoiDung, Embedding (JSON), TenMoHinh, SoChieu và NgayTao. Backend kiểm tra vector số, cùng mô hình và số chiều, chỉ truy xuất tài liệu đã xuất bản, rồi tính độ tương đồng cosine; toàn bộ dữ liệu RAG được lưu trong MySQL.
+Quan hệ
+Bội số
+Mô tả
+Role – UserAccount
+1 – n
+Một vai trò có thể được gán cho nhiều tài khoản người dùng
+Customer – ChatSession
+1 – n
+Một khách hàng có thể có nhiều phiên hội thoại
+UserAccount – ChatSession
+1 – n
+Một nhân viên có thể phụ trách nhiều phiên hội thoại
+ChatSession – Message
+1 – n
+Một phiên hội thoại có thể chứa nhiều tin nhắn
+Customer – Ticket
+1 – n
+Một khách hàng có thể tạo nhiều Ticket hỗ trợ
+ChatSession – Ticket
+1 – n
+Một phiên hội thoại có thể phát sinh nhiều Ticket hỗ trợ
+TicketCategory – Ticket
+1 – n
+Một loại Ticket có thể được sử dụng cho nhiều Ticket
+UserAccount – Ticket
+1 – n
+Một nhân viên có thể được phân công xử lý nhiều Ticket
+ChatSession – Handover
+1 – n
+Một phiên hội thoại có thể phát sinh nhiều lần chuyển giao
+UserAccount – Handover
+1 – n
+Một nhân viên có thể tiếp nhận nhiều lần chuyển giao
+Message – SentimentAnalysis
+1 – n
+Một tin nhắn có thể có nhiều kết quả phân tích cảm xúc
+Message – AISuggestion
+1 – n
+Một tin nhắn có thể sinh ra nhiều gợi ý trả lời từ AI
+ChatSession – ConversationSummary
+1 – n
+Một phiên hội thoại có thể có nhiều bản tóm tắt
+Customer – Evaluation
+1 – n
+Một khách hàng có thể thực hiện nhiều lượt đánh giá
+ChatSession – Evaluation
+1 – n
+Một phiên hội thoại có thể nhận nhiều lượt đánh giá
+Ticket – Evaluation
+1 – n
+Một Ticket có thể nhận nhiều lượt đánh giá
+UserAccount – KnowledgeBase
+1 – n
+Một người dùng có thể tạo hoặc quản lý nhiều tài liệu Knowledge Base
+UserAccount – AuditLog
+1 – n
+Một người dùng có thể phát sinh nhiều bản ghi nhật ký thao tác
+
+
+Biểu đồ use case phân rã
+Luồng và quan hệ phiên bản 1.1: MySQL: Role 1–n UserAccount; Customer 1–n ChatSession và Ticket; ChatSession 1–n Message, Handover, ConversationSummary; Message 1–n SentimentAnalysis, AISuggestion; KnowledgeBase 1–n KnowledgeChunk; UserAccount 1–n KnowledgeBase, AuditLog. Liên kết tài khoản khách hàng và lịch sử/phản hồi ticket cần migration. AI là dịch vụ backend; Agent/Supervisor/Admin là vai trò UserAccount.
+Phân rã Actor Khách hàng
+        
+Luồng và quan hệ phiên bản 1.1: MySQL: Role 1–n UserAccount; Customer 1–n ChatSession và Ticket; ChatSession 1–n Message, Handover, ConversationSummary; Message 1–n SentimentAnalysis, AISuggestion; KnowledgeBase 1–n KnowledgeChunk; UserAccount 1–n KnowledgeBase, AuditLog. Liên kết tài khoản khách hàng và lịch sử/phản hồi ticket cần migration. AI là dịch vụ backend; Agent/Supervisor/Admin là vai trò UserAccount.
+
+Phân rã Actor Tổng đài viên
+Luồng và quan hệ phiên bản 1.1: MySQL: Role 1–n UserAccount; Customer 1–n ChatSession và Ticket; ChatSession 1–n Message, Handover, ConversationSummary; Message 1–n SentimentAnalysis, AISuggestion; KnowledgeBase 1–n KnowledgeChunk; UserAccount 1–n KnowledgeBase, AuditLog. Liên kết tài khoản khách hàng và lịch sử/phản hồi ticket cần migration. AI là dịch vụ backend; Agent/Supervisor/Admin là vai trò UserAccount.
+
+
+Phân rã Actor Quản lý CSKH
+Luồng và quan hệ phiên bản 1.1: MySQL: Role 1–n UserAccount; Customer 1–n ChatSession và Ticket; ChatSession 1–n Message, Handover, ConversationSummary; Message 1–n SentimentAnalysis, AISuggestion; KnowledgeBase 1–n KnowledgeChunk; UserAccount 1–n KnowledgeBase, AuditLog. Liên kết tài khoản khách hàng và lịch sử/phản hồi ticket cần migration. AI là dịch vụ backend; Agent/Supervisor/Admin là vai trò UserAccount.
+
+Phân rã Actor Quản trị hệ thống
+Luồng và quan hệ phiên bản 1.1: MySQL: Role 1–n UserAccount; Customer 1–n ChatSession và Ticket; ChatSession 1–n Message, Handover, ConversationSummary; Message 1–n SentimentAnalysis, AISuggestion; KnowledgeBase 1–n KnowledgeChunk; UserAccount 1–n KnowledgeBase, AuditLog. Liên kết tài khoản khách hàng và lịch sử/phản hồi ticket cần migration. AI là dịch vụ backend; Agent/Supervisor/Admin là vai trò UserAccount.
+
+Phân rã AI Engine / Chatbot AI
+        
+Luồng và quan hệ phiên bản 1.1: MySQL: Role 1–n UserAccount; Customer 1–n ChatSession và Ticket; ChatSession 1–n Message, Handover, ConversationSummary; Message 1–n SentimentAnalysis, AISuggestion; KnowledgeBase 1–n KnowledgeChunk; UserAccount 1–n KnowledgeBase, AuditLog. Liên kết tài khoản khách hàng và lịch sử/phản hồi ticket cần migration. AI là dịch vụ backend; Agent/Supervisor/Admin là vai trò UserAccount.
+Phạm vi thống nhất phiên bản 1.1 ngày 21 tháng 09 năm 2026
+VietinCare AI là đồ án web hỗ trợ khách hàng bằng tiếng Việt và tiếng Anh. Các chức năng dưới đây là yêu cầu cần triển khai; hiện project có frontend demo và script SQL, chưa có backend hoặc AI hoạt động thực tế.
+MySQL Community Server 8.0.46 là hệ quản trị duy nhất; InnoDB, utf8mb4, database QLKHViettin. Dữ liệu nghiệp vụ, phiên, nhật ký, tri thức và embedding đều lưu trong MySQL. Không bổ sung hệ quản trị hoặc kho vector khác. Backend xử lý nghiệp vụ, gọi mô hình AI và tính độ tương đồng; MySQL không tự sinh câu trả lời.
+Phạm vi cốt lõi: đăng ký/đăng nhập/đăng xuất; bốn vai trò Customer, Agent, Supervisor, Admin; chat RAG có nguồn; lưu lịch sử; tạo và xử lý ticket; phân loại và cảm xúc; chuyển giao; đánh giá CSAT; quản lý FAQ/tri thức; dashboard cơ bản; audit log và cấu hình không chứa bí mật.
+Giai đoạn mở rộng: UC008 Copilot và UC009 tóm tắt; tải PDF/DOCX; tệp đính kèm ticket; OTP/SSO, quên mật khẩu qua email; NPS; xuất Excel/PDF; tích hợp SMS/email, Core Banking/CRM, iPay/eFAST, Voicebot, sinh trắc học và định tuyến VIP. Các mục này không là điều kiện nghiệm thu bản cốt lõi.
+Kiến trúc triển khai: một ứng dụng backend chia module và một MySQL. Không yêu cầu microservices, Kubernetes, GPU riêng, 5.000 phiên hay cam kết uptime 99,9%. Dùng dữ liệu giả lập; không tra cứu số dư, thực hiện giao dịch hoặc khóa thẻ thật.
+Khách hàng đăng nhập trước khi chat, tạo ticket hoặc xem lịch sử. FAQ công khai có thể đọc không cần đăng nhập; chat khách vãng lai nằm ngoài bản cốt lõi. Customer chỉ xem dữ liệu của mình; Agent xử lý ca được giao; Supervisor giám sát và phân công; Admin quản lý tài khoản, tri thức và cấu hình.
+Chat không tự tạo ticket cho mọi tin nhắn. Tạo ticket khi khách hàng yêu cầu hoặc đồng ý theo dõi vấn đề chưa giải quyết. Chuỗi trạng thái ticket: Mới → Đang xử lý → Đã giải quyết → Đã đóng. Chỉ người có quyền được chuyển trạng thái; ghi người thực hiện và thời điểm. Mở lại ticket là phần mở rộng.
+Ưu tiên gồm Thấp, Trung bình, Cao, Khẩn cấp. Cảm xúc gồm Tích cực, Trung tính, Tiêu cực; không dùng cảm xúc làm trạng thái ticket. Agent được sửa nhãn AI. Khi AI lỗi hoặc không phân loại được, đưa về hàng chờ chung để Supervisor phân công.
+RAG: Admin nhập FAQ/văn bản, lưu KnowledgeBase ở Nháp; chia đoạn, tạo embedding JSON trong KnowledgeChunk; kiểm tra cùng mô hình và số chiều; thử câu hỏi rồi Xuất bản. Chỉ truy xuất bản đã xuất bản. Lưu và hiển thị nguồn tài liệu/đoạn cùng phản hồi. Không gọi cập nhật tri thức là tự huấn luyện mô hình.
+Điểm tương đồng cosine không phải xác suất câu trả lời đúng. Ngưỡng truy xuất phải được hiệu chỉnh bằng bộ câu hỏi có nhãn và lưu cấu hình. Không đủ nguồn hoặc lỗi mô hình: thông báo chưa có thông tin xác thực, đề nghị gặp Agent hoặc tạo ticket; không tự bịa câu trả lời.
+Handover có các trạng thái Chờ tiếp nhận, Đã tiếp nhận, Đã kết thúc, Đã hủy. Agent nhận được lịch sử; mỗi phiên chỉ có một lượt chuyển giao đang chờ hoặc đang xử lý. Khi không có Agent sẵn sàng, khách được thông báo và có thể tạo ticket.
+Đánh giá: chủ sở hữu gửi một lần cho một phiên chat đã kết thúc hoặc một ticket đã đóng. Mỗi đánh giá chỉ có một mục tiêu; số sao bắt buộc từ 1 đến 5. CSAT = số đánh giá 4–5 sao / tổng đánh giá hợp lệ × 100%; không có đánh giá thì hiển thị Chưa có dữ liệu. NPS chưa thu thập trong bản cốt lõi.
+Mục tiêu nghiệm thu: p95 thời gian từ gửi câu hỏi đến nhận đủ câu trả lời không quá 5 giây trên 50 câu hỏi, 5 phiên đồng thời, tối đa 1.000 đoạn tri thức. Ghi cấu hình máy, mô hình, mạng và tỷ lệ lỗi; chưa có kết quả đo.
+Kiểm thử bắt buộc: đúng/sai mật khẩu; sai vai trò; truy cập dữ liệu khách khác; trạng thái không hợp lệ; gửi lặp; AI lỗi/thiếu nguồn; không có Agent; đánh giá lặp; dữ liệu còn sau tải lại. Dùng ít nhất 50 câu hỏi gán nhãn để báo cáo độ chính xác phân loại; không ghi Pass hay phần trăm khi chưa chạy.
+An toàn bản đồ án: băm mật khẩu, kiểm tra quyền tại backend, truy vấn tham số hóa, giới hạn thử đăng nhập, hết hạn phiên, che dữ liệu nhạy cảm, không lưu khóa API trong mã nguồn. HTTPS khi triển khai qua mạng. Sao lưu và thử khôi phục MySQL trên môi trường thử nghiệm. Không tuyên bố chứng nhận hoặc tuân thủ ngân hàng khi chưa được đánh giá.
+Đồng bộ triển khai: SQLQuery1.sql hiện có 15 bảng. Liên kết Customer–UserAccount, phản hồi ticket, lịch sử trạng thái, định danh người gửi, nguồn trả lời RAG và cấu hình là các thay đổi thiết kế cần migration; chưa tồn tại đầy đủ trong SQL hiện hành. Không chạy lại script khởi tạo trên database có dữ liệu.
+Tham chiếu phạm vi: PROJECT_SCOPE.md. Mốc 27/09/2026 giữ theo kế hoạch ban đầu, không phải cam kết chức năng đã hoàn thành. Kết quả triển khai và kiểm thử theo PROJECT_CHECKLIST.md.

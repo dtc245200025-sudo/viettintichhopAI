@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VietinCare AI - VietinBank Customer Support</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="container nav">
+
+        <a href="index-en.html" class="logo">
+
+            <div class="logo-icon">V</div>
+
+            <div>
+                <strong>VietinBank</strong>
+                <span>VietinCare AI</span>
+            </div>
+
+        </a>
+
+
+        <nav class="menu">
+
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#support">AI Support</a>
+            <a href="#contact">Contact</a>
+
+        </nav>
+
+
+        <div class="nav-actions">
+
+            <a href="../VI/index-vi.html" class="language">
+                VI
+            </a>
+
+            <a href="login-en.html" class="login-btn">
+                Login
+            </a>
+
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                ☰
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main>
+
+<section class="hero" id="home">
+
+    <div class="container hero-content">
+
+        <div class="hero-text">
+
+            <span class="badge">
+                ✨ VietinCare AI
+            </span>
+
+            <h1>
+                Smarter
+                <span>customer support</span>
+            </h1>
+
+            <p>
+                VietinBank's AI assistant provides 24/7 support,
+                helping customers with cards, loans, deposits,
+                iPay and common banking services.
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <button class="primary-btn" onclick="openChat()">
+                    💬 Chat with VietinCare AI
+                </button>
+
+                <a href="#services" class="secondary-btn">
+                    Explore services
+                </a>
+
+            </div>
+
+
+            <div class="hero-features">
+
+                <div>
+                    <strong>24/7</strong>
+                    <span>Always available</span>
+                </div>
+
+                <div>
+                    <strong>&lt; 5s</strong>
+                    <span>AI response</span>
+                </div>
+
+                <div>
+                    <strong>2</strong>
+                    <span>Languages</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-ai">
+
+            <div class="ai-card">
+
+                <div class="ai-card-header">
+
+                    <div class="ai-avatar">
+                        AI
+                    </div>
+
+                    <div>
+                        <strong>VietinCare AI</strong>
+
+                        <span>
+                            <i></i> Online
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="chat-preview">
+
+                    <div class="message bot">
+                        Hello! How can I help you today?
+                    </div>
+
+                    <div class="message user">
+                        What is the current deposit interest rate?
+                    </div>
+
+                    <div class="message bot">
+                        I can help you find VietinBank's
+                        latest deposit interest rates.
+                    </div>
+
+                </div>
+
+
+                <div class="chat-input-preview">
+
+                    <input
+                        type="text"
+                        class="chat-question-input" id="chatInputPreview"
+                        placeholder="Type your question..."
+                    >
+
+                    <button type="button" onclick="sendChatPreview()">
+                        ➤
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="services" id="services">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <span>BANKING SERVICES</span>
+
+            <h2>
+                How can we help you?
+            </h2>
+
+            <p>
+                VietinCare AI helps you quickly find information
+                and resolve common banking issues.
+            </p>
+
+        </div>
+
+
+        <div class="service-grid">
+
+            <div class="service-card">
+
+                <div class="service-icon">💳</div>
+
+                <h3>Cards</h3>
+
+                <p>
+                    Get support for card opening,
+                    card locking and card transactions.
+                </p>
+
+                <a href="#" onclick="openChat()">
+                    Learn more →
+                </a>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">💰</div>
+
+                <h3>Deposits</h3>
+
+                <p>
+                    Check deposit interest rates
+                    and available deposit products.
+                </p>
+
+                <a href="#" onclick="openChat()">
+                    Learn more →
+                </a>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">🏠</div>
+
+                <h3>Loans</h3>
+
+                <p>
+                    Learn about loan procedures
+                    and available support.
+                </p>
+
+                <a href="#" onclick="openChat()">
+                    Learn more →
+                </a>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">📱</div>
+
+                <h3>VietinBank iPay</h3>
+
+                <p>
+                    Learn how to use iPay and
+                    troubleshoot common issues.
+                </p>
+
+                <a href="#" onclick="openChat()">
+                    Learn more →
+                </a>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">🔄</div>
+
+                <h3>Money Transfer</h3>
+
+                <p>
+                    Get assistance with money
+                    transfer transactions.
+                </p>
+
+                <a href="#" onclick="openChat()">
+                    Learn more →
+                </a>
+
+            </div>
+
+
+            <div class="service-card">
+
+                <div class="service-icon">📍</div>
+
+                <h3>ATM & Branches</h3>
+
+                <p>
+                    Find VietinBank ATMs and
+                    branches near you.
+                </p>
+
+                <a href="#" onclick="openChat()">
+                    Learn more →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="ai-support" id="support">
+
+    <div class="container ai-support-content">
+
+        <div class="ai-support-text">
+
+            <span class="section-label">
+                INTELLIGENT AI ASSISTANT
+            </span>
+
+            <h2>
+                Fast answers.
+                <span>Better support.</span>
+            </h2>
+
+            <p>
+                VietinCare AI uses artificial intelligence
+                to understand customer questions, identify
+                intent and provide relevant answers.
+            </p>
+
+
+            <div class="ai-list">
+
+                <div>
+                    <b>✓</b>
+                    24/7 customer support
+                </div>
+
+                <div>
+                    <b>✓</b>
+                    Natural language understanding
+                </div>
+
+                <div>
+                    <b>✓</b>
+                    Customer sentiment analysis
+                </div>
+
+                <div>
+                    <b>✓</b>
+                    Handover to human agents
+                </div>
+
+            </div>
+
+
+            <button class="primary-btn" onclick="openChat()">
+                Start chatting
+            </button>
+
+        </div>
+
+
+        <div class="ai-stat-card">
+
+            <div class="stat-circle">
+                <strong>24/7</strong>
+            </div>
+
+            <h3>Always ready to help</h3>
+
+            <p>
+                Our AI assistant is available around the clock
+                to support customers whenever they need help.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="quick-info">
+
+    <div class="container">
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <span>💱</span>
+                <div>
+                    <strong>Exchange Rates</strong>
+                    <p>Check foreign exchange rates</p>
+                </div>
+            </div>
+
+
+            <div class="info-card">
+                <span>📈</span>
+                <div>
+                    <strong>Interest Rates</strong>
+                    <p>Latest interest rate information</p>
+                </div>
+            </div>
+
+
+            <div class="info-card">
+                <span>📍</span>
+                <div>
+                    <strong>ATM / Branch</strong>
+                    <p>Find a location near you</p>
+                </div>
+            </div>
+
+
+            <div class="info-card">
+                <span>☎</span>
+                <div>
+                    <strong>Call Center</strong>
+                    <p>Get direct support</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer id="contact">
+
+    <div class="container footer-content">
+
+        <div>
+
+            <div class="logo footer-logo">
+
+                <div class="logo-icon">
+                    V
+                </div>
+
+                <div>
+                    <strong>VietinBank</strong>
+                    <span>VietinCare AI</span>
+                </div>
+
+            </div>
+
+            <p>
+                AI-powered customer support management
+                system for VietinBank.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h4>Support</h4>
+
+            <a href="#">Help Center</a>
+            <a href="#">FAQ</a>
+            <a href="#">Contact</a>
+
+        </div>
+
+
+        <div>
+
+            <h4>Services</h4>
+
+            <a href="#">Cards</a>
+            <a href="#">Deposits</a>
+            <a href="#">Loans</a>
+            <a href="#">iPay</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 VietinCare AI - VietinBank Customer Support AI System
+
+    </div>
+
+</footer>
+
+
+<button class="floating-ai" onclick="openChat()">
+
+    <span>AI</span>
+    <small>Chat</small>
+
+</button>
+
+
+<div class="chat-window" id="chatWindow">
+
+    <div class="chat-header">
+
+        <div class="chat-title">
+
+            <div class="ai-avatar">
+                AI
+            </div>
+
+            <div>
+
+                <strong>VietinCare AI</strong>
+
+                <span>
+                    <i></i> Online
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button onclick="closeChat()">
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="chat-body" id="chatBody">
+
+        <div class="message bot">
+            Hello 👋<br>
+            I'm VietinCare AI. How can I help you?
+        </div>
+
+    </div>
+
+
+    <div class="quick-question">
+
+        <button onclick="sendQuestion('I want to know the deposit interest rate')">
+            Interest rate
+        </button>
+
+        <button onclick="sendQuestion('I want to find a nearby ATM')">
+            Find ATM
+        </button>
+
+        <button onclick="sendQuestion('I need help with my card')">
+            Card support
+        </button>
+
+    </div>
+
+
+    <div class="chat-input">
+        <input
+            id="chatInput" onkeydown="handleEnter(event)"
+            type="text"
+            placeholder="Type your question..."
+            autocomplete="off"
+        >
+
+        <button type="button" onclick="sendMessage()">
+            ➤
+        </button>
+    </div>
+
+</div>
+
+
+<script src="../script.js"></script>
+
+</body>
+</html>

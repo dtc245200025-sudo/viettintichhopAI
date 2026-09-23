@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VietinCare AI - Hỗ trợ khách hàng VietinBank</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../landing-vi.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container nav">
+
+        <a href="index-vi.html" class="logo">
+            <div class="logo-icon">V</div>
+            <div>
+                <strong>VietinBank</strong>
+                <span>VietinCare AI</span>
+            </div>
+        </a>
+
+        <nav class="menu">
+            <a href="#home">Trang chủ</a>
+            <a href="#services">Dịch vụ</a>
+            <a href="#support">Hỗ trợ AI</a>
+            <a href="#contact">Liên hệ</a>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="../EN/index-en.html" class="language">EN</a>
+            <a href="login-vi.html" class="login-btn">Đăng nhập</a>
+
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+        </div>
+
+    </div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+    <div class="container hero-content">
+
+        <div class="hero-text">
+            <span class="badge">✨ VietinCare AI</span>
+
+            <h1>
+                Hỗ trợ khách hàng
+                <span>thông minh hơn</span>
+            </h1>
+
+            <p>
+                Trợ lý AI của VietinBank hỗ trợ khách hàng 24/7,
+                giải đáp nhanh chóng các câu hỏi về thẻ, khoản vay,
+                tiền gửi, iPay và các dịch vụ ngân hàng.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="primary-btn" onclick="openChat()">
+                    💬 Chat với VietinCare AI
+                </button>
+
+                <a href="#services" class="secondary-btn">
+                    Khám phá dịch vụ
+                </a>
+            </div>
+
+            <div class="hero-features">
+                <div>
+                    <strong>24/7</strong>
+                    <span>Hỗ trợ liên tục</span>
+                </div>
+
+                <div>
+                    <strong>&lt; 5s</strong>
+                    <span>Phản hồi AI</span>
+                </div>
+
+                <div>
+                    <strong>2</strong>
+                    <span>Ngôn ngữ</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-ai">
+            <div class="ai-card">
+
+                <div class="ai-card-header">
+                    <div class="ai-avatar">AI</div>
+
+                    <div>
+                        <strong>VietinCare AI</strong>
+                        <span><i></i> Đang trực tuyến</span>
+                    </div>
+                </div>
+
+                <div class="chat-preview">
+                    <div class="message bot">
+                        Xin chào! Tôi có thể hỗ trợ gì cho bạn hôm nay?
+                    </div>
+
+                    <div class="message user">
+                        Tôi muốn biết lãi suất tiền gửi hiện tại.
+                    </div>
+
+                    <div class="message bot">
+                        Tôi có thể giúp bạn tra cứu thông tin
+                        lãi suất tiền gửi của VietinBank.
+                    </div>
+                </div>
+
+                <div class="chat-input-preview">
+                    <input
+                        id="chatInputPreview"
+                        type="text"
+                        placeholder="Nhập câu hỏi của bạn..."
+                        autocomplete="off"
+                    >
+
+                    <button type="button" onclick="sendChatPreview()">
+                        ➤
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="services" id="services">
+    <div class="container">
+
+        <div class="section-heading">
+            <span>DỊCH VỤ NGÂN HÀNG</span>
+
+            <h2>Bạn cần hỗ trợ điều gì?</h2>
+
+            <p>
+                VietinCare AI giúp bạn nhanh chóng tìm kiếm
+                thông tin và giải quyết các vấn đề thường gặp.
+            </p>
+        </div>
+
+        <div class="service-grid">
+
+            <div class="service-card">
+                <div class="service-icon">💳</div>
+                <h3>Thẻ</h3>
+                <p>
+                    Tư vấn mở thẻ, khóa thẻ, các vấn đề liên quan
+                    đến thẻ và giao dịch.
+                </p>
+                <a href="#" onclick="openChat()">Tìm hiểu →</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">💰</div>
+                <h3>Tiền gửi</h3>
+                <p>
+                    Tra cứu lãi suất và thông tin các sản phẩm
+                    tiền gửi.
+                </p>
+                <a href="#" onclick="openChat()">Tìm hiểu →</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h3>Khoản vay</h3>
+                <p>
+                    Tìm hiểu quy trình vay và các thông tin
+                    hỗ trợ khoản vay.
+                </p>
+                <a href="#" onclick="openChat()">Tìm hiểu →</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>VietinBank iPay</h3>
+                <p>
+                    Hướng dẫn sử dụng iPay và hỗ trợ xử lý
+                    các sự cố cơ bản.
+                </p>
+                <a href="#" onclick="openChat()">Tìm hiểu →</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔄</div>
+                <h3>Chuyển tiền</h3>
+                <p>
+                    Hỗ trợ các vấn đề liên quan đến giao dịch
+                    chuyển tiền.
+                </p>
+                <a href="#" onclick="openChat()">Tìm hiểu →</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📍</div>
+                <h3>ATM & Chi nhánh</h3>
+                <p>
+                    Tìm kiếm vị trí ATM và chi nhánh VietinBank
+                    gần bạn.
+                </p>
+                <a href="#" onclick="openChat()">Tìm hiểu →</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="ai-support" id="support">
+    <div class="container ai-support-content">
+
+        <div class="ai-support-text">
+
+            <span class="section-label">
+                TRỢ LÝ AI THÔNG MINH
+            </span>
+
+            <h2>
+                Giải đáp nhanh chóng.
+                <span>Hỗ trợ tận tâm.</span>
+            </h2>
+
+            <p>
+                VietinCare AI sử dụng công nghệ AI để hiểu câu hỏi
+                của khách hàng, phân tích ý định và đưa ra câu trả lời
+                phù hợp.
+            </p>
+
+            <div class="ai-list">
+                <div><b>✓</b> Hỗ trợ khách hàng 24/7</div>
+                <div><b>✓</b> Hiểu ngôn ngữ tự nhiên</div>
+                <div><b>✓</b> Phân tích cảm xúc khách hàng</div>
+                <div><b>✓</b> Chuyển sang tổng đài viên khi cần</div>
+            </div>
+
+            <button class="primary-btn" onclick="openChat()">
+                Bắt đầu trò chuyện
+            </button>
+
+        </div>
+
+        <div class="ai-stat-card">
+            <div class="stat-circle">
+                <strong>24/7</strong>
+            </div>
+
+            <h3>Luôn sẵn sàng hỗ trợ</h3>
+
+            <p>
+                Trợ lý AI hoạt động liên tục để hỗ trợ
+                khách hàng mọi lúc.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section class="quick-info">
+    <div class="container">
+
+        <div class="info-grid">
+
+            <div class="info-card">
+                <span>💱</span>
+                <div>
+                    <strong>Tỷ giá</strong>
+                    <p>Tra cứu tỷ giá ngoại tệ</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <span>📈</span>
+                <div>
+                    <strong>Lãi suất</strong>
+                    <p>Thông tin lãi suất mới nhất</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <span>📍</span>
+                <div>
+                    <strong>ATM / Chi nhánh</strong>
+                    <p>Tìm địa điểm gần bạn</p>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <span>☎</span>
+                <div>
+                    <strong>Tổng đài</strong>
+                    <p>Hỗ trợ trực tiếp</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer id="contact">
+
+    <div class="container footer-content">
+
+        <div>
+            <div class="logo footer-logo">
+                <div class="logo-icon">V</div>
+                <div>
+                    <strong>VietinBank</strong>
+                    <span>VietinCare AI</span>
+                </div>
+            </div>
+
+            <p>
+                Hệ thống quản lý hỗ trợ khách hàng
+                tích hợp trí tuệ nhân tạo.
+            </p>
+        </div>
+
+        <div>
+            <h4>Hỗ trợ</h4>
+            <a href="#">Trung tâm trợ giúp</a>
+            <a href="#">Câu hỏi thường gặp</a>
+            <a href="#">Liên hệ</a>
+        </div>
+
+        <div>
+            <h4>Dịch vụ</h4>
+            <a href="#">Thẻ</a>
+            <a href="#">Tiền gửi</a>
+            <a href="#">Khoản vay</a>
+            <a href="#">iPay</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 VietinCare AI - VietinBank Customer Support AI System
+    </div>
+
+</footer>
+
+<button class="floating-ai" onclick="openChat()">
+    <span>AI</span>
+    <small>Chat</small>
+</button>
+
+<div class="chat-window" id="chatWindow">
+
+    <div class="chat-header">
+
+        <div class="chat-title">
+            <div class="ai-avatar">AI</div>
+
+            <div>
+                <strong>VietinCare AI</strong>
+                <span><i></i> Đang trực tuyến</span>
+            </div>
+        </div>
+
+        <button onclick="closeChat()">×</button>
+    </div>
+
+    <div class="chat-body" id="chatBody">
+
+        <div class="message bot">
+            Xin chào 👋<br>
+            Tôi là VietinCare AI. Tôi có thể giúp gì cho bạn?
+        </div>
+
+    </div>
+
+    <div class="quick-question">
+
+        <button onclick="sendQuestion('Tôi muốn biết lãi suất tiền gửi')">
+            Lãi suất
+        </button>
+
+        <button onclick="sendQuestion('Tôi muốn tìm ATM gần đây')">
+            Tìm ATM
+        </button>
+
+        <button onclick="sendQuestion('Tôi cần hỗ trợ về thẻ')">
+            Hỗ trợ thẻ
+        </button>
+
+    </div>
+
+    <div class="chat-input">
+
+        <input
+            id="chatInput"
+            type="text"
+            placeholder="Nhập câu hỏi..."
+            onkeydown="handleEnter(event)"
+        >
+
+        <button onclick="sendMessage()">➤</button>
+
+    </div>
+
+</div>
+
+<script src="../script.js"></script>
+
+</body>
+</html>
