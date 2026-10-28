@@ -1,0 +1,10 @@
+{
+  "provider": "SIMULATION, not live Gemini",
+  "questions": 50,
+  "concurrent_sessions": 5,
+  "knowledge_chunks": 1000,
+  "p95_seconds": 5.8259,
+  "errors": 0,
+  "target_seconds": 5,
+  "live_provider_acceptance": "NOT_VERIFIED"
+}

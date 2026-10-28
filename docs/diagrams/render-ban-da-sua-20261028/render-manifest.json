@@ -1,0 +1,28 @@
+{
+  "source": "C:\\Users\\PV\\Downloads\\vietincare-ai-usecase.mdj",
+  "source_sha256": "36252019f7669e55ba6ecf5560b630fa2403c1acef674310ea8ea79e690303a2",
+  "method": "SVG rendering from saved MDJ view coordinates and labels; not native StarUML export",
+  "diagrams": [
+    {
+      "role": "agent",
+      "file": "usecase-phan-ra-agent.svg",
+      "width": 1398,
+      "height": 1494,
+      "views": 39
+    },
+    {
+      "role": "supervisor",
+      "file": "usecase-phan-ra-supervisor.svg",
+      "width": 1366,
+      "height": 962,
+      "views": 22
+    },
+    {
+      "role": "admin",
+      "file": "usecase-phan-ra-admin.svg",
+      "width": 1419,
+      "height": 1451,
+      "views": 36
+    }
+  ]
+}

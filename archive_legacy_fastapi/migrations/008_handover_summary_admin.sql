@@ -1,0 +1,4 @@
+-- Migration 001 already created handover timing/active-session fields and SystemSetting. Extend them without recreating objects.
+ALTER TABLE Handover ADD COLUMN TomTat LONGTEXT NULL, ADD COLUMN TomTatProvider VARCHAR(30) NULL, ADD COLUMN TomTatModel VARCHAR(100) NULL, ADD COLUMN ThoiGianTomTat DATETIME(3) NULL, ADD INDEX IX_Handover_StatusTime(TrangThai,ThoiGian);
+ALTER TABLE SystemSetting ADD COLUMN ValueType VARCHAR(20) NOT NULL DEFAULT 'text' AFTER SettingValue, ADD COLUMN UpdatedBy INT NULL AFTER MaUser, ADD CONSTRAINT FK_SystemSetting_UpdatedBy FOREIGN KEY(UpdatedBy) REFERENCES UserAccount(MaUser), ADD CONSTRAINT CK_SystemSetting_Type CHECK (ValueType IN ('decimal','integer','text'));
+INSERT INTO SystemSetting(SettingKey,SettingValue,ValueType) VALUES ('rag.threshold','0.35','decimal'),('ai.timeout_seconds','30','integer') ON DUPLICATE KEY UPDATE SettingValue=VALUES(SettingValue),ValueType=VALUES(ValueType);

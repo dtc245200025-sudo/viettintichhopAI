@@ -1,6 +1,6 @@
-param([ValidateSet('migrate','create-agent','create-admin')][string]$Action = 'migrate')
+param([ValidateSet('migrate','create-agent','create-supervisor','create-admin')][string]$Action = 'migrate')
 $ErrorActionPreference = 'Stop'
-$taskNames = @('DB_HOST','DB_PORT','DB_NAME','DB_USER','DB_PASSWORD','VC_AGENT_EMAIL','VC_AGENT_NAME','VC_AGENT_PASSWORD','VC_ADMIN_EMAIL','VC_ADMIN_NAME','VC_ADMIN_PASSWORD')
+$taskNames = @('DB_HOST','DB_PORT','DB_NAME','DB_USER','DB_PASSWORD','VC_AGENT_EMAIL','VC_AGENT_NAME','VC_AGENT_PASSWORD','VC_SUPERVISOR_EMAIL','VC_SUPERVISOR_NAME','VC_SUPERVISOR_PASSWORD','VC_ADMIN_EMAIL','VC_ADMIN_NAME','VC_ADMIN_PASSWORD')
 $taskPrevious = @{}
 foreach ($taskName in $taskNames) { $taskPrevious[$taskName] = [Environment]::GetEnvironmentVariable($taskName,'Process') }
 $taskSecret = $null
@@ -8,6 +8,9 @@ $taskAgentSecret = $null
 $taskConfirm = $null
 Push-Location (Split-Path -Parent $PSScriptRoot)
 try {
+    $taskPython = Join-Path (Get-Location) '.venv-1\Scripts\python.exe'
+    if (-not (Test-Path $taskPython)) { $taskPython = Join-Path (Get-Location) '.venv\Scripts\python.exe' }
+    if (-not (Test-Path $taskPython)) { throw 'Create the project environment first: py -3 -m venv .venv; .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt' }
     $taskSecret = Read-Host 'Mat khau MySQL root / MySQL root password' -AsSecureString
     $env:DB_HOST='127.0.0.1'
     $env:DB_PORT='3306'
@@ -15,9 +18,9 @@ try {
     $env:DB_USER='root'
     $env:DB_PASSWORD=[System.Net.NetworkCredential]::new('', $taskSecret).Password
     if ($Action -eq 'migrate') {
-        & node server/migrate.js --check
+        & $taskPython -m backend.migrations --check
         if ($LASTEXITCODE -ne 0) { throw 'Kiem tra that bai / Preflight failed. No migration applied.' }
-        & node server/migrate.js
+        & $taskPython -m backend.migrations
         if ($LASTEXITCODE -ne 0) { throw 'Migration failed. Do not rerun without inspecting the error.' }
     } else {
         $env:VC_AGENT_NAME=Read-Host 'Ho ten tai khoan / Account name'
@@ -30,9 +33,14 @@ try {
             $env:VC_ADMIN_NAME=$env:VC_AGENT_NAME
             $env:VC_ADMIN_EMAIL=$env:VC_AGENT_EMAIL
             $env:VC_ADMIN_PASSWORD=$env:VC_AGENT_PASSWORD
-            & node server/provision-admin.js
-        } else { & node server/provision-agent.js }
-        if ($LASTEXITCODE -ne 0) { throw 'Tao nhan vien that bai / Agent creation failed. See code above.' }
+            & $taskPython -m backend.provision --role Admin
+        } elseif ($Action -eq 'create-supervisor') {
+            $env:VC_SUPERVISOR_NAME=$env:VC_AGENT_NAME
+            $env:VC_SUPERVISOR_EMAIL=$env:VC_AGENT_EMAIL
+            $env:VC_SUPERVISOR_PASSWORD=$env:VC_AGENT_PASSWORD
+            & $taskPython -m backend.provision --role Supervisor
+        } else { & $taskPython -m backend.provision --role Agent }
+        if ($LASTEXITCODE -ne 0) { throw 'Tao tai khoan that bai / Account creation failed. See code above.' }
     }
 } finally {
     foreach ($taskName in $taskNames) { [Environment]::SetEnvironmentVariable($taskName,$taskPrevious[$taskName],'Process') }

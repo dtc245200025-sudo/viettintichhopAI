@@ -1,0 +1,73 @@
+{
+  "origin": "http://localhost:3001",
+  "provider": "SIMULATION",
+  "results": [
+    {
+      "language": "vi",
+      "role": "Customer",
+      "desktop": "PASS",
+      "mobile": "PASS",
+      "page_errors": [],
+      "workflow": "PASS"
+    },
+    {
+      "language": "vi",
+      "role": "Agent",
+      "desktop": "PASS",
+      "mobile": "PASS",
+      "page_errors": [],
+      "workflow": "PASS"
+    },
+    {
+      "language": "vi",
+      "role": "Supervisor",
+      "desktop": "PASS",
+      "mobile": "PASS",
+      "page_errors": [],
+      "workflow": "PASS"
+    },
+    {
+      "language": "vi",
+      "role": "Admin",
+      "desktop": "PASS",
+      "mobile": "PASS",
+      "page_errors": [],
+      "workflow": "PASS"
+    },
+    {
+      "language": "en",
+      "role": "Customer",
+      "desktop": "PASS",
+      "mobile": "PASS",
+      "page_errors": [],
+      "workflow": "PASS"
+    },
+    {
+      "language": "en",
+      "role": "Agent",
+      "desktop": "PASS",
+      "mobile": "PASS",
+      "page_errors": [],
+      "workflow": "PASS"
+    },
+    {
+      "language": "en",
+      "role": "Supervisor",
+      "desktop": "PASS",
+      "mobile": "PASS",
+      "page_errors": [],
+      "workflow": "PASS"
+    },
+    {
+      "language": "en",
+      "role": "Admin",
+      "desktop": "PASS",
+      "mobile": "PASS",
+      "page_errors": [],
+      "workflow": "PASS"
+    }
+  ],
+  "completed": true,
+  "csat_auto_hide": "PASS: virtual clock advanced 61 seconds in both Customer language runs",
+  "mobile_navigation": "PASS: open, Escape close, sidebar outside viewport; fresh mobile reload"
+}

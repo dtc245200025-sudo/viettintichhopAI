@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login - VietinCare AI</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body class="auth-page">
+
+<div class="auth-wrapper">
+
+
+    <div class="auth-left">
+
+        <a href="index-en.html" class="auth-logo">
+
+            <div class="logo-icon">
+                V
+            </div>
+
+            <div>
+                <strong>VietinBank</strong>
+                <span>VietinCare AI</span>
+            </div>
+
+        </a>
+
+
+        <div class="auth-intro">
+
+            <span class="badge">
+                ✨ VietinCare AI
+            </span>
+
+            <h1>
+                Smarter
+                <span>digital banking</span>
+            </h1>
+
+            <p>
+                Sign in to access customer support services
+                and experience VietinCare AI.
+            </p>
+
+
+            <div class="auth-features">
+
+                <div>
+                    <span>✓</span>
+                    24/7 customer support
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Secure information
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Intelligent AI assistant
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="auth-right">
+
+        <div class="auth-card">
+
+            <div class="auth-heading">
+
+                <div class="mobile-auth-logo">
+                    <div class="logo-icon">V</div>
+                </div>
+
+                <h2>
+                    Welcome back
+                </h2>
+
+                <p>
+                    Sign in to your VietinCare AI account
+                </p>
+
+            </div>
+
+
+            <form onsubmit="login(event)">
+
+                <div class="form-group">
+
+                    <label for="loginEmail">
+                        Email
+                    </label>
+
+                    <input
+                        id="loginEmail"
+                        type="email"
+                        placeholder="Enter your email or phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <div class="label-row">
+
+                        <label for="loginPassword">
+                            Password
+                        </label>
+
+                        
+
+                    </div>
+
+
+                    <div class="password-input">
+
+                        <input
+                            id="loginPassword"
+                            type="password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            onclick="togglePassword('loginPassword', this)"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                
+
+
+                <button
+                    class="auth-submit"
+                    type="submit"
+                >
+                    Sign in
+                </button>
+
+            </form>
+
+
+            <div class="auth-divider">
+                <span>or</span>
+            </div>
+
+
+            <button
+                class="otp-button"
+                onclick="loginWithOTP()"
+            >
+                🔐 Sign in with OTP
+            </button>
+
+
+            <p class="register-link">
+
+                Don't have an account?
+
+                <a href="register-en.html">
+                    Create account
+                </a>
+
+            </p>
+
+
+            <div class="language-switch">
+
+                <strong>
+                    English
+                </strong>
+
+                <span>•</span>
+
+                <a href="../VI/login-vi.html">
+                    Tiếng Việt
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="../script.js"></script><script src="../auth.js"></script>
+
+</body>
+</html>

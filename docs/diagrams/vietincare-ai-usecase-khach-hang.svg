@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="1190" viewBox="0 0 1320 1190">
+<defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1 L10 6 L1 11" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="1320" height="1190" fill="white"/>
+<g font-family="Arial, sans-serif" fill="#0f172a">
+<text x="660" y="34" text-anchor="middle" font-size="24" font-weight="bold">Biểu đồ Use Case phân rã — Khách hàng</text>
+<rect x="275" y="65" width="1000" height="1035" rx="8" fill="#fbfdff" stroke="#334155" stroke-width="2"/>
+<text x="775" y="101" text-anchor="middle" font-size="19" font-weight="bold">VIETINCARE AI — HỖ TRỢ KHÁCH HÀNG</text>
+<polyline points="175,540 345,170" fill="none" stroke="#64748b" stroke-width="1.6"/>
+<polyline points="175,540 345,380" fill="none" stroke="#64748b" stroke-width="1.6"/>
+<polyline points="175,540 345,610" fill="none" stroke="#64748b" stroke-width="1.6"/>
+<polyline points="175,540 345,750" fill="none" stroke="#64748b" stroke-width="1.6"/>
+<polyline points="175,540 345,875" fill="none" stroke="#64748b" stroke-width="1.6"/>
+<polyline points="175,540 345,995" fill="none" stroke="#64748b" stroke-width="1.6"/>
+<polyline points="175,540 245,540 245,675 1030,675 1030,650" fill="none" stroke="#64748b" stroke-width="1.6"/>
+<polyline points="655,380 875,260" fill="none" stroke="#64748b" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<rect x="718.0" y="292.0" width="94" height="22" fill="#fbfdff"/><text x="765.0" y="308.0" text-anchor="middle" font-size="15">«include»</text>
+<polyline points="655,380 875,420" fill="none" stroke="#64748b" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<rect x="718.0" y="372.0" width="94" height="22" fill="#fbfdff"/><text x="765.0" y="388.0" text-anchor="middle" font-size="15">«include»</text>
+<polyline points="500,570 500,420" fill="none" stroke="#64748b" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<rect x="496" y="482" width="94" height="22" fill="#fbfdff"/><text x="543" y="498" text-anchor="middle" font-size="15">«extend»</text>
+<polyline points="875,610 750,610 750,405 655,405" fill="none" stroke="#64748b" stroke-width="1.6" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<rect x="753" y="509" width="94" height="22" fill="#fbfdff"/><text x="800" y="525" text-anchor="middle" font-size="15">«extend»</text>
+<g fill="none" stroke="#334155" stroke-width="3"><circle cx="130" cy="492" r="18"/><path d="M130 510V563 M99 531H161 M130 563L106 597 M130 563L154 597"/></g>
+<text x="130" y="627" font-size="19" font-weight="bold" text-anchor="middle">Khách hàng</text>
+<ellipse cx="500" cy="170" rx="155" ry="40" fill="#eff6ff" stroke="#2563a6" stroke-width="1.7"/>
+<text x="500" y="165" text-anchor="middle" font-size="16" font-weight="bold">UC001</text>
+<text x="500" y="185" text-anchor="middle" font-size="16">Đăng nhập</text>
+<ellipse cx="500" cy="380" rx="155" ry="40" fill="#eff6ff" stroke="#2563a6" stroke-width="1.7"/>
+<text x="500" y="375" text-anchor="middle" font-size="16" font-weight="bold">UC002</text>
+<text x="500" y="395" text-anchor="middle" font-size="16">Trao đổi với Chatbot</text>
+<ellipse cx="500" cy="610" rx="155" ry="40" fill="#eff6ff" stroke="#2563a6" stroke-width="1.7"/>
+<text x="500" y="605" text-anchor="middle" font-size="16" font-weight="bold">UC003</text>
+<text x="500" y="625" text-anchor="middle" font-size="16">Tạo Ticket</text>
+<ellipse cx="1030" cy="610" rx="155" ry="40" fill="#eff6ff" stroke="#2563a6" stroke-width="1.7"/>
+<text x="1030" y="595" text-anchor="middle" font-size="16" font-weight="bold">UC006</text>
+<text x="1030" y="615" text-anchor="middle" font-size="16">Yêu cầu chuyển giao</text>
+<text x="1030" y="635" text-anchor="middle" font-size="16">sang Agent</text>
+<ellipse cx="500" cy="995" rx="155" ry="40" fill="#eff6ff" stroke="#2563a6" stroke-width="1.7"/>
+<text x="500" y="990" text-anchor="middle" font-size="16" font-weight="bold">UC010</text>
+<text x="500" y="1010" text-anchor="middle" font-size="16">Đánh giá hỗ trợ</text>
+<ellipse cx="1030" cy="260" rx="155" ry="40" fill="#eff6ff" stroke="#2563a6" stroke-width="1.7"/>
+<text x="1030" y="255" text-anchor="middle" font-size="16" font-weight="bold">UC002.1</text>
+<text x="1030" y="275" text-anchor="middle" font-size="16">Gửi câu hỏi</text>
+<ellipse cx="1030" cy="420" rx="155" ry="40" fill="#eff6ff" stroke="#2563a6" stroke-width="1.7"/>
+<text x="1030" y="415" text-anchor="middle" font-size="16" font-weight="bold">UC002.2</text>
+<text x="1030" y="435" text-anchor="middle" font-size="16">Nhận phản hồi Chatbot</text>
+<ellipse cx="500" cy="750" rx="155" ry="40" fill="#eff6ff" stroke="#2563a6" stroke-width="1.7"/>
+<text x="500" y="745" text-anchor="middle" font-size="16" font-weight="bold">UC003.1</text>
+<text x="500" y="765" text-anchor="middle" font-size="16">Theo dõi tiến độ Ticket</text>
+<ellipse cx="500" cy="875" rx="155" ry="40" fill="#eff6ff" stroke="#2563a6" stroke-width="1.7"/>
+<text x="500" y="870" text-anchor="middle" font-size="16" font-weight="bold">UC003.2</text>
+<text x="500" y="890" text-anchor="middle" font-size="16">Trao đổi phản hồi Ticket</text>
+<text x="295" y="1132" font-size="15">Điều kiện extend: khách hàng chọn tạo Ticket hoặc chuyển giao khi cần hỗ trợ thêm.</text>
+<text x="295" y="1156" font-size="15">Đánh giá sau khi kết thúc hỗ trợ. Đăng nhập là điều kiện trước của chức năng cần xác thực.</text>
+</g></svg>

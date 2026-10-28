@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - ViettinCare Support</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="login-body">
+    <div class="login-card">
+        <div class="login-header">
+            <div class="brand-logo">
+                <i class="fa-solid fa-headset"></i>
+            </div>
+            <h2>ViettinCare Support</h2>
+            <p>Hệ thống Quản lý Ticket & Trợ lý Hỗ trợ Khách hàng AI</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span>{{ message }}</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('auth.login') }}" method="POST" class="login-form">
+            <div class="form-group">
+                <label for="username"><i class="fa-solid fa-user"></i> Tên đăng nhập hoặc Email</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="admin, agent_lan, tuan.lead..." required autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="password"><i class="fa-solid fa-lock"></i> Mật khẩu</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+                <i class="fa-solid fa-right-to-bracket"></i> Đăng nhập vào Hệ thống
+            </button>
+        </form>
+
+        <div class="demo-accounts">
+            <h4><i class="fa-solid fa-key"></i> Tài khoản trải nghiệm SDLC:</h4>
+            <ul>
+                <li><strong>Admin:</strong> <code>admin</code> / <code>Admin@123</code></li>
+                <li><strong>Team Lead:</strong> <code>lead_tuan</code> / <code>Lead@123</code></li>
+                <li><strong>Support Agent:</strong> <code>agent_lan</code> / <code>Agent@123</code></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+

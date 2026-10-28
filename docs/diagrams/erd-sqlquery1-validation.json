@@ -1,0 +1,25 @@
+{
+  "source_sql": "D:\\OneDrive\\Documents\\3 - 1\\Tri tue nhan tao\\viettintichhopAI\\SQLQuery1.sql",
+  "source_mdj": "C:\\Users\\PV\\Downloads\\vietincare-ai-usecase.mdj",
+  "sql_sha256": "a8f0893cd8673ffd3349dee2f91ffeae29a0ab5e2c9bf0aefc1723523a3a691a",
+  "mdj_source_sha256": "36252019f7669e55ba6ecf5560b630fa2403c1acef674310ea8ea79e690303a2",
+  "tables": 15,
+  "columns": 100,
+  "primary_keys": 15,
+  "foreign_keys": 19,
+  "checks": [
+    "JSON round trip",
+    "unique IDs",
+    "resolved references",
+    "all SQL columns retained",
+    "FK references match SQL",
+    "original five Use Case models unchanged",
+    "no overlapping entity boxes",
+    "source files unchanged"
+  ],
+  "not_verified": [
+    "Native StarUML open/layout",
+    "Live MySQL schema"
+  ],
+  "format_reference": "https://github.com/staruml/staruml-samples/blob/main/ERDExample.mdj"
+}

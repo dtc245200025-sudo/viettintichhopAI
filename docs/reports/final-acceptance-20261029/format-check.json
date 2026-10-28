@@ -1,0 +1,5 @@
+{
+  "tool": "black 26.10.1",
+  "files": 21,
+  "ast_equivalent": true
+}

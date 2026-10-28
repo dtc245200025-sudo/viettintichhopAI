@@ -1,0 +1,33 @@
+.ai-suggestion {
+  margin-top: 20px;
+  padding: 18px;
+  border: 1px solid #8ab8a9;
+  border-left: 4px solid #167354;
+  border-radius: 8px;
+  background: #f5fbf8;
+}
+
+.ai-suggestion h3 {
+  margin-top: 0;
+  border: 0 !important;
+  padding-top: 0 !important;
+}
+
+.ai-suggestion p {
+  overflow-wrap: anywhere;
+}
+
+.ai-draft {
+  min-height: 110px;
+}
+
+.evaluation {
+  margin-top: 20px;
+  padding-top: 4px;
+  border-top: 1px solid #d9e4ee;
+}
+
+.evaluation-note {
+  color: #167354;
+  font-weight: 600;
+}

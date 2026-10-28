@@ -1,0 +1,44 @@
+{
+  "domain_classes": 19,
+  "implementation_classes": 4,
+  "module_classifiers": 9,
+  "domain_associations": 35,
+  "implementation_dependencies": 17,
+  "total_diagrams": 8,
+  "checks": [
+    "JSON round-trip",
+    "unique IDs",
+    "resolved references",
+    "existing Use Case and ERD models unchanged",
+    "module functions and actual class methods extracted/checked against Python AST",
+    "no overlapping class boxes",
+    "relationship directions match models"
+  ],
+  "limitations": [
+    "Domain classes and their operations are conceptual design, not existing ORM/domain Python classes",
+    "Native StarUML opening and visual layout not verified",
+    "No render requested; no database execution"
+  ],
+  "source_mapping": {
+    "Role": "SQLQuery1.sql; backend/auth.py",
+    "UserAccount": "SQLQuery1.sql; migrations/001_auth_and_support.sql; backend/admin.py",
+    "Customer": "backend/customers.py; migrations/001_auth_and_support.sql",
+    "AuthSession": "migrations/001_auth_and_support.sql; backend/auth.py",
+    "AuditLog": "SQLQuery1.sql; backend/system_admin.py",
+    "TicketCategory": "SQLQuery1.sql; backend/tickets.py",
+    "Ticket": "backend/tickets.py; migrations/009_ticket_requirements.sql",
+    "TicketReply": "migrations/001_auth_and_support.sql; backend/tickets.py",
+    "TicketStatusHistory": "migrations/001_auth_and_support.sql; migrations/009_ticket_requirements.sql",
+    "TicketAssignmentHistory": "migrations/007_ticket_assignment.sql; backend/tickets.py",
+    "TicketAIAnalysis": "migrations/005_ticket_ai.sql; backend/tickets.py",
+    "ChatSession": "SQLQuery1.sql; migrations/003_chat_history.sql; backend/chats.py",
+    "Message": "SQLQuery1.sql; migrations/004_knowledge_rag.sql; backend/chats.py",
+    "Handover": "backend/support.py; migrations/008_handover_summary_admin.sql",
+    "KnowledgeBase": "backend/knowledge.py; migrations/004_knowledge_rag.sql",
+    "KnowledgeChunk": "SQLQuery1.sql; backend/knowledge.py",
+    "MessageSource": "migrations/001_auth_and_support.sql; backend/chats.py",
+    "Evaluation": "SQLQuery1.sql; migrations/001_auth_and_support.sql; backend/tickets.py",
+    "SystemSetting": "backend/system_admin.py; migrations/008_handover_summary_admin.sql"
+  },
+  "format_reference": "https://github.com/staruml/staruml-dev-docs/blob/master/samples/Book.mdj"
+}

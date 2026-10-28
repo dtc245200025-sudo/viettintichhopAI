@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+
+{% block page_title %}Xử lý Ticket {{ ticket.ticket_number }}{% endblock %}
+
+{% block content %}
+<div class="ticket-workspace">
+    <!-- LEFT COLUMN: Ticket details and conversation -->
+    <div class="workspace-left">
+        <!-- Ticket Header Card -->
+        <div class="card ticket-main-card">
+            <div class="card-header flex-between">
+                <div>
+                    <span class="ticket-code">{{ ticket.ticket_number }}</span>
+                    <span class="badge badge-priority badge-{{ ticket.priority|lower }} ml-2">{{ ticket.priority }}</span>
+                    <span class="badge badge-status badge-{{ ticket.status|lower|replace(' ', '-') }} ml-1">{{ ticket.status }}</span>
+                    <span class="badge badge-category ml-1">{{ ticket.category }}</span>
+                </div>
+                <div class="text-sm text-muted">
+                    Tiếp nhận lúc: {{ ticket.created_at }}
+                </div>
+            </div>
+
+            <div class="card-body">
+                <h2 class="ticket-title-large">{{ ticket.title }}</h2>
+                <div class="ticket-desc-box">
+                    <p>{{ ticket.description }}</p>
+                </div>
+
+                <div class="customer-info-bar">
+                    <div class="info-item">
+                        <i class="fa-solid fa-user"></i>
+                        <span>{{ ticket.customer_name }}</span>
+                        {% if ticket.customer_tier == 'VIP' %}
+                            <span class="badge badge-vip">VIP</span>
+                        {% endif %}
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>{{ ticket.customer_email }}</span>
+                    </div>
+                    {% if ticket.customer_phone %}
+                    <div class="info-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>{{ ticket.customer_phone }}</span>
+                    </div>
+                    {% endif %}
+                    {% if ticket.customer_company %}
+                    <div class="info-item">
+                        <i class="fa-solid fa-building"></i>
+                        <span>{{ ticket.customer_company }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Actions: Update Status & Assignee -->
+                <div class="ticket-control-row">
+                    <!-- Status Form -->
+                    <form action="{{ url_for('tickets.update_status', ticket_id=ticket.id) }}" method="POST" class="inline-form">
+                        <label class="text-sm font-medium">Trạng thái:</label>
+                        <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
+                            <option value="New" {% if ticket.status == 'New' %}selected{% endif %}>Mới (New)</option>
+                            <option value="In Progress" {% if ticket.status == 'In Progress' %}selected{% endif %}>Đang xử lý (In Progress)</option>
+                            <option value="Waiting Customer" {% if ticket.status == 'Waiting Customer' %}selected{% endif %}>Chờ khách hàng (Waiting)</option>
+                            <option value="Closed" {% if ticket.status == 'Closed' %}selected{% endif %}>Đã giải quyết / Đóng (Closed)</option>
+                        </select>
+                    </form>
+
+                    <!-- Assignee Form -->
+                    <form action="{{ url_for('tickets.assign_agent', ticket_id=ticket.id) }}" method="POST" class="inline-form">
+                        <label class="text-sm font-medium">Người phụ trách:</label>
+                        <select name="assigned_to" class="form-select form-select-sm" onchange="this.form.submit()">
+                            <option value="">-- Chưa gán --</option>
+                            {% for a in agents %}
+                                <option value="{{ a.id }}" {% if ticket.assigned_to == a.id %}selected{% endif %}>{{ a.full_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conversation History -->
+        <div class="card mt-3">
+            <div class="card-header flex-between">
+                <h3><i class="fa-solid fa-comments"></i> Lịch sử Trao đổi & Phản hồi</h3>
+                <span class="badge badge-light">{{ comments|length }} tin nhắn</span>
+            </div>
+            <div class="card-body">
+                <div class="comments-thread" id="commentsThread">
+                    {% for c in comments %}
+                    <div class="comment-bubble comment-{{ c.author_role }}">
+                        <div class="comment-header">
+                            <span class="author-name">
+                                <i class="fa-solid {% if c.author_role == 'customer' %}fa-user{% elif c.author_role == 'admin' %}fa-user-shield{% else %}fa-headset{% endif %}"></i>
+                                {{ c.author_name }}
+                            </span>
+                            <span class="comment-time">{{ (c.created_at|string)[:16] }}</span>
+                        </div>
+                        <div class="comment-text">
+                            {{ c.content|replace('\n', '<br>')|safe }}
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="empty-text text-center py-3">
+                        <i class="fa-regular fa-message fa-2x mb-1"></i>
+                        <p>Chưa có trao đổi nào. Hãy sử dụng Trợ lý AI ở khung bên phải để tạo câu trả lời nháp!</p>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Manual Reply Form -->
+                <form action="{{ url_for('tickets.add_comment', ticket_id=ticket.id) }}" method="POST" class="mt-4">
+                    <div class="form-group">
+                        <label class="font-medium"><i class="fa-solid fa-reply"></i> Gửi phản hồi thủ công:</label>
+                        <textarea name="content" rows="3" class="form-control" placeholder="Nhập nội dung phản hồi cho khách hàng..." required></textarea>
+                    </div>
+                    <div class="flex-between">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="is_internal" value="1"> Ghi chú nội bộ (Khách không nhìn thấy)
+                        </label>
+                        <button type="submit" class="btn btn-secondary">
+                            <i class="fa-solid fa-paper-plane"></i> Gửi phản hồi
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT COLUMN: AI Support Assistant & Human Gate -->
+    <div class="workspace-right">
+        <div class="card ai-assistant-card">
+            <div class="ai-header">
+                <div class="ai-badge-header">
+                    <i class="fa-solid fa-robot"></i>
+                    <span>Trợ lý Hỗ trợ AI (ViettinCare AI)</span>
+                </div>
+                <div class="ai-guardrail-tag" title="AI được kiểm duyệt an toàn">
+                    <i class="fa-solid fa-shield-halved"></i> Human Gate Active
+                </div>
+            </div>
+
+            <!-- AI Action Tabs -->
+            <div class="ai-tab-nav">
+                <button class="ai-tab-btn active" onclick="switchAITab('tab-suggest')">
+                    <i class="fa-solid fa-pen-nib"></i> Gợi ý Trả lời (RAG)
+                </button>
+                <button class="ai-tab-btn" onclick="switchAITab('tab-summary')">
+                    <i class="fa-solid fa-list-check"></i> Tóm tắt Lịch sử
+                </button>
+                <button class="ai-tab-btn" onclick="switchAITab('tab-classify')">
+                    <i class="fa-solid fa-tags"></i> Phân loại Sự cố
+                </button>
+            </div>
+
+            <div class="ai-card-body">
+                <!-- TAB 1: Gợi ý trả lời -->
+                <div id="tab-suggest" class="ai-tab-content active">
+                    <div class="ai-control-box">
+                        <button class="btn btn-ai btn-block" id="btnGenerateDraft" onclick="generateAIDraft({{ ticket.id }})">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> AI Soạn thảo Câu trả lời Nháp
+                        </button>
+                    </div>
+
+                    <div id="aiDraftContainer" style="display: none;" class="mt-3">
+                        <div class="human-gate-banner">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            <div>
+                                <strong>HUMAN GATE: Kiểm tra & Phê duyệt</strong>
+                                <p class="text-xs">Nhân viên hỗ trợ bắt buộc kiểm tra lại nội dung, sửa đổi nếu cần trước khi gửi chính thức.</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-2">
+                            <label class="text-sm font-medium">Bản nháp phản hồi (Có thể chỉnh sửa trực tiếp):</label>
+                            <textarea id="aiDraftText" rows="9" class="form-control ai-editor"></textarea>
+                        </div>
+
+                        <div class="ai-metrics text-xs text-muted mb-2 flex-between">
+                            <span id="aiDraftLatency"><i class="fa-solid fa-bolt"></i> Thời gian: 0ms</span>
+                            <span id="aiDraftMatched"><i class="fa-solid fa-book"></i> FAQ khớp: 0</span>
+                        </div>
+
+                        <div class="action-buttons-row">
+                            <button class="btn btn-success btn-block" id="btnApproveDraft" onclick="approveAndSendDraft({{ ticket.id }})">
+                                <i class="fa-solid fa-check-double"></i> Phê duyệt & Gửi cho Khách hàng
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: Tóm tắt lịch sử -->
+                <div id="tab-summary" class="ai-tab-content">
+                    <p class="text-sm text-muted mb-2">Trích xuất nhanh tiến trình và nút thắt khi chuyển giao ca trực:</p>
+                    <button class="btn btn-secondary btn-block" id="btnSummarize" onclick="summarizeTicketHistory({{ ticket.id }})">
+                        <i class="fa-solid fa-bolt"></i> Tạo Tóm tắt bằng AI
+                    </button>
+
+                    <div id="summaryResultBox" class="summary-result-box mt-3" style="display: none;">
+                        <h4><i class="fa-solid fa-clipboard-list"></i> Tóm tắt Nội dung Trao đổi:</h4>
+                        <div id="summaryText" class="summary-text-content"></div>
+                        <div class="text-xs text-muted mt-2" id="summaryLatency"></div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: Phân loại sự cố -->
+                <div id="tab-classify" class="ai-tab-content">
+                    <p class="text-sm text-muted mb-2">Đánh giá danh mục nghiệp vụ và mức độ khẩn cấp đề xuất:</p>
+                    <button class="btn btn-secondary btn-block" id="btnClassifyTab" onclick="classifyTicketTab({{ ticket.id }}, '{{ ticket.title }}', '{{ ticket.description }}')">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i> Phân tích lại với AI
+                    </button>
+
+                    <div id="classifyResultBox" class="classify-result-box mt-3" style="display: none;">
+                        <div class="result-row">
+                            <span>Danh mục đề xuất:</span>
+                            <strong id="aiSuggestedCategory" class="badge badge-category"></strong>
+                        </div>
+                        <div class="result-row mt-2">
+                            <span>Mức ưu tiên đề xuất:</span>
+                            <strong id="aiSuggestedPriority" class="badge badge-priority"></strong>
+                        </div>
+                        <div class="result-row mt-2">
+                            <span>Từ khóa nhận diện:</span>
+                            <span id="aiSuggestedKeywords" class="text-xs text-muted"></span>
+                        </div>
+                        <button class="btn btn-outline btn-sm btn-block mt-3" onclick="applySuggestedClassification({{ ticket.id }})">
+                            <i class="fa-solid fa-check"></i> Áp dụng Phân loại này cho Ticket
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

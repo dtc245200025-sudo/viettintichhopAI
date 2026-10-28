@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1398" height="1494" viewBox="47 35 1398 1494">
+<rect x="47" y="35" width="1398" height="1494" fill="white"/>
+<defs><marker id="open-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L10 6 L1 11" fill="none" stroke="black" stroke-width="1"/></marker></defs>
+<rect x="285" y="65" width="1130" height="1434" fill="#FFFFFF" stroke="#334155"/>
+<polyline points="238,572 504,242" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="280,572 568,388" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="822,328 984,314" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="934,388 822,372" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="312,600 430,573" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="801,535 984,538" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="984,610 801,571" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="1078,711 726,574" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="1089,832 683,574" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="311,683 451,750" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="238,683 393,880 520,947" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="238,683 577,1117" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="948,1213 796,1189" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="992,1129 796,1144" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="1043,1348 708,1202" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="212,683 396,1241 516,1374" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="697,750 765,732 647,574" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="662,947 714,912 800,732 655,574" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="723,1117 835,1075 835,732 662,574" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="761,1417 874,1417 870,732 670,574" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="1149,1348 1163,1292" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<g fill="white" stroke="#000000" stroke-width="1.5"><circle cx="194.5" cy="582.48" r="9.48"/><path d="M194.5 591.96 V623.56 M176.32999999999998 601.44 H212.67000000000002 M194.5 623.56 L176.32999999999998 652 M194.5 623.56 L212.67000000000002 652"/></g>
+<ellipse cx="540.0" cy="200.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="636.0" cy="346.0" rx="186.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1189.5" cy="297.0" rx="204.5" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1160.5" cy="422.0" rx="225.5" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="616.0" cy="532.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1189.0" cy="543.0" rx="204.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1170.0" cy="651.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1187.0" cy="754.0" rx="190.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1156.0" cy="875.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="540.0" cy="793.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="601.0" cy="990.0" rx="193.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="611.0" cy="1160.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1175.0" cy="1250.0" rx="226.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1187.5" cy="1115.0" rx="194.5" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1140.0" cy="1391.0" rx="213.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="554.5" cy="1417.0" rx="206.5" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<text x="850.0" y="87.48" text-anchor="middle" font-family="Arial" font-size="18.0" font-weight="bold" font-style="normal" fill="#000000">VIETINCARE AI — TỔNG ĐÀI VIÊN (AGENT)</text>
+<text x="194.5" y="675.04" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">Tổng đài viên (Agent)</text>
+<text x="540.0" y="205.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC001 — Đăng nhập</text>
+<text x="636.0" y="351.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC006 — Tiếp nhận chuyển giao từ AI</text>
+<text x="1189.5" y="302.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC006.A1 — Tiếp nhận phiên chuyển giao</text>
+<rect x="823" y="273" width="94" height="15" fill="white"/>
+<text x="870.0" y="285.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«include»</text>
+<text x="1160.5" y="427.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC006.A2 — Trao đổi trực tiếp với khách hàng</text>
+<rect x="833" y="385" width="94" height="15" fill="white"/>
+<text x="880.0" y="397.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="616.0" y="537.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC007 — Xử lý Ticket</text>
+<text x="1189.0" y="548.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC007.A1 — Xem chi tiết và lịch sử Ticket</text>
+<rect x="817" y="484" width="94" height="15" fill="white"/>
+<text x="864.0" y="496.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«include»</text>
+<text x="1170.0" y="656.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC007.A2 — Trao đổi phản hồi Ticket</text>
+<rect x="846" y="595" width="94" height="15" fill="white"/>
+<text x="893.0" y="607.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="1187.0" y="759.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC007.A3 — Cập nhật trạng thái Ticket</text>
+<rect x="854" y="648" width="94" height="15" fill="white"/>
+<text x="901.0" y="660.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="1156.0" y="880.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC007.A4 — Đóng Ticket</text>
+<rect x="836" y="708" width="94" height="15" fill="white"/>
+<text x="883.0" y="720.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="540.0" y="798.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC004 — Yêu cầu AI phân loại Ticket</text>
+<text x="601.0" y="995.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC005 — Yêu cầu AI phân tích cảm xúc</text>
+<text x="611.0" y="1165.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC008 — Yêu cầu AI gợi ý câu trả lời</text>
+<text x="1175.0" y="1255.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC008.A1 — Xem xét và duyệt câu trả lời nháp</text>
+<rect x="827" y="1206" width="94" height="15" fill="white"/>
+<text x="874.0" y="1218.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="1187.5" y="1120.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC008.A2 — Chỉnh sửa câu trả lời nháp</text>
+<rect x="852" y="1140" width="94" height="15" fill="white"/>
+<text x="899.0" y="1152.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="1140.0" y="1396.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC008.A3 — Gửi phản hồi từ nháp đã duyệt</text>
+<rect x="827" y="1281" width="94" height="15" fill="white"/>
+<text x="874.0" y="1293.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="554.5" y="1422.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC009 — Yêu cầu AI tóm tắt lịch sử hỗ trợ</text>
+<rect x="710" y="735" width="94" height="15" fill="white"/>
+<text x="757.0" y="747.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<rect x="697" y="813" width="94" height="15" fill="white"/>
+<text x="744.0" y="825.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<rect x="775" y="900" width="94" height="15" fill="white"/>
+<text x="822.0" y="912.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<rect x="812" y="1071" width="94" height="15" fill="white"/>
+<text x="859.0" y="1083.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<rect x="1059" y="1330" width="94" height="15" fill="white"/>
+<text x="1106.0" y="1342.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«include»</text>
+</svg>

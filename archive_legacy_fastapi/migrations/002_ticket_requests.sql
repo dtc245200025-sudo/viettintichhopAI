@@ -1,0 +1,2 @@
+-- Persistent retry keys: scoped to the authenticated user, committed with the ticket change.
+CREATE TABLE TicketRequest (MaUser INT NOT NULL, RequestKey CHAR(36) CHARACTER SET ascii COLLATE ascii_bin NOT NULL, RequestHash CHAR(64) CHARACTER SET ascii COLLATE ascii_bin NOT NULL, Result JSON NOT NULL, CreatedAt DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3), PRIMARY KEY(MaUser,RequestKey), CONSTRAINT FK_TicketRequest_User FOREIGN KEY(MaUser) REFERENCES UserAccount(MaUser)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
