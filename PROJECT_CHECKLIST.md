@@ -1,6 +1,6 @@
 # Checklist tiến độ VietinCare AI
 
-Cập nhật gần nhất: 2026-09-23 (Asia/Saigon).
+Cập nhật gần nhất: 2026-10-28 (Asia/Bangkok).
 
 Đây là nơi theo dõi công việc chung của project. Mỗi lần sửa mã nguồn, SQL hoặc tài liệu, trợ lý đọc và cập nhật file này theo `AGENTS.md`, rồi nhắc người dùng việc tiếp theo trong câu trả lời cuối.
 
@@ -186,3 +186,9 @@ Ngày 2026-09-23 · AI-05, AI-01, FE-04, QA-02, RELEASE-01 · Tích hợp Google
 - Chưa gọi Google thật, chưa kiểm tra quota/model/key hoặc chất lượng/ngưỡng/độ trễ thực. Không kiểm tra lại giao diện bằng trình duyệt ở đợt đổi nhãn này; không dùng bằng chứng UI đợt trước thay thế. AI-05/AI-01 giữ mở đến kiểm chứng thật.
 - Đã xác minh @@port/@@datadir trước SHUTDOWN MySQL tạm, xác nhận cổng không còn nghe rồi xóa đúng .mysql-test/gemini-20260923. Giữ .mysql-test/data cũ và database thật 3306; không lưu khóa thật.
 - Tiếp theo: khởi động -EnableAI -AIProvider gemini, nhập khóa cục bộ; tạo lại dữ liệu tìm kiếm/xuất bản bằng Gemini rồi thử câu hỏi có nguồn và thiếu nguồn; sau đó HAND-01 khi tiếp tục nghiệp vụ.
+
+## 2026-10-28 · UI-COMMENT-01 · P2
+
+- [x] Thêm ba dòng chú thích trong style.css về biến giao diện, reset CSS và kiểu chữ dùng chung VI/EN trên nhánh ui.
+- Kiểm tra: đối chiếu nội dung CSS sau khi bỏ phần chú thích mới với bản gốc, giống nhau hoàn toàn; git diff --check. Không chạy ứng dụng hoặc kiểm thử trình duyệt vì chỉ bổ sung comment.
+- Việc tiếp theo: xem commit update comments; đẩy nhánh ui khi người dùng yêu cầu.

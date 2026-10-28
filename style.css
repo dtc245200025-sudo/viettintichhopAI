@@ -1,3 +1,6 @@
+/* Shared theme variables keep colors and spacing consistent across pages. */
+/* The reset below removes browser defaults for predictable layout sizing. */
+/* Base typography is inherited by the Vietnamese and English interfaces. */
 :root {
     --background: #b4deeb;
     --primary: #005baa;
