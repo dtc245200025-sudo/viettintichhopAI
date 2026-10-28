@@ -5,3 +5,4 @@
 .sidebar nav{justify-content:stretch;align-items:stretch}.overview-grid:has(#recentSection[hidden]){grid-template-columns:1fr}
 
 .nav-backdrop{left:236px}
+.badge[data-status="Chờ khách hàng"]{background:#e3f5ec;color:#197048}

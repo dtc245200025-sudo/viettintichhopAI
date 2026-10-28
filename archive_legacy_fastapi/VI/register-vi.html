@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Đăng ký - VietinCare AI</title>
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body class="auth-page">
+
+
+<div class="auth-wrapper">
+
+
+    <div class="auth-left">
+
+        <a href="index-vi.html" class="auth-logo">
+
+            <div class="logo-icon">
+                V
+            </div>
+
+            <div>
+                <strong>VietinBank</strong>
+                <span>VietinCare AI</span>
+            </div>
+
+        </a>
+
+
+        <div class="auth-intro">
+
+            <span class="badge">
+                ✨ VietinCare AI
+            </span>
+
+            <h1>
+                Tạo tài khoản
+                <span>VietinCare AI</span>
+            </h1>
+
+            <p>
+                Đăng ký để trải nghiệm dịch vụ hỗ trợ khách hàng VietinCare AI.
+            </p>
+
+
+            <div class="auth-features">
+
+                <div>
+                    <span>✓</span>
+                    Hỗ trợ AI 24/7
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Bảo mật thông tin
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    Đa dạng dịch vụ ngân hàng
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="auth-right">
+
+        <div class="auth-card register-card">
+
+            <div class="auth-heading">
+
+                <div class="mobile-auth-logo">
+                    <div class="logo-icon">
+                        V
+                    </div>
+                </div>
+
+                <h2>
+                    Tạo tài khoản
+                </h2>
+
+                <p>
+                    Đăng ký tài khoản VietinCare AI
+                </p>
+
+            </div>
+
+
+            <form onsubmit="register(event)">
+
+                <div class="form-group">
+
+                    <label for="fullName">
+                        Họ và tên
+                    </label>
+
+                    <input
+                        id="fullName"
+                        type="text"
+                        placeholder="Nhập họ và tên"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="registerEmail">
+                        Email
+                    </label>
+
+                    <input
+                        id="registerEmail"
+                        type="email"
+                        placeholder="example@email.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Số điện thoại
+                    </label>
+
+                    <input
+                        id="phone"
+                        type="tel"
+                        placeholder="Nhập số điện thoại"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="registerPassword">
+                        Mật khẩu
+                    </label>
+
+                    <div class="password-input">
+
+                        <input
+                            id="registerPassword"
+                            type="password"
+                            placeholder="Tối thiểu 8 ký tự"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            onclick="togglePassword('registerPassword', this)"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Xác nhận mật khẩu
+                    </label>
+
+                    <div class="password-input">
+
+                        <input
+                            id="confirmPassword"
+                            type="password"
+                            placeholder="Nhập lại mật khẩu"
+                            minlength="8"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            onclick="togglePassword('confirmPassword', this)"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <label class="terms">
+
+                    <input
+                        type="checkbox"
+                        required
+                    >
+
+                    <span>
+                        Tôi đồng ý với
+                        <a href="#">
+                            Điều khoản sử dụng
+                        </a>
+                        và
+                        <a href="#">
+                            Chính sách bảo mật
+                        </a>
+                    </span>
+
+                </label>
+
+
+                <button
+                    class="auth-submit"
+                    type="submit"
+                >
+                    Tạo tài khoản
+                </button>
+
+            </form>
+
+
+            <p class="register-link">
+
+                Đã có tài khoản?
+
+                <a href="login-vi.html">
+                    Đăng nhập
+                </a>
+
+            </p>
+
+
+            <div class="language-switch"><a href="../EN/register-en.html">English</a><span>•</span><strong>Tiếng Việt</strong></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="../script.js"></script><script src="../auth.js"></script>
+
+</body>
+</html>

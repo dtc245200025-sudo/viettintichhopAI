@@ -1,0 +1,195 @@
+{
+  "started_utc": "2026-10-28T21:04:02.669419+00:00",
+  "runtime": {
+    "python": "3.13.1",
+    "os": "Windows-11-10.0.26200-SP0",
+    "cpu": "Intel64 Family 6 Model 154 Stepping 4, GenuineIntel",
+    "logical_cpus": 12
+  },
+  "provider": "deterministic SIMULATION; transport tests exercise real provider adapters without Internet",
+  "limitations": [
+    "Live Gemini quality/latency/quota not verified without a supplied provider key",
+    "Production HTTPS, uptime and compliance certification not asserted"
+  ],
+  "status": "PASS_AUTOMATED_DEMO",
+  "mysql": {
+    "version": "8.0.46",
+    "port": 33316,
+    "datadir": "D:\\OneDrive\\Documents\\3 - 1\\Tri tue nhan tao\\viettintichhopAI\\.mysql-test\\acceptance_20261028_210358_f29c3c\\data\\"
+  },
+  "migration": {
+    "status": "applied",
+    "steps": 43
+  },
+  "seed": {
+    "status": "seeded",
+    "marker": "VC-DEMO-20261029",
+    "users": 9,
+    "customers": 5,
+    "tickets": 48,
+    "chats": 8,
+    "documents": 4,
+    "chunks": 1000,
+    "ai_analyses": 3,
+    "supervisor_alerts": 3
+  },
+  "demo_database": "vietincare_demo_20261028_210358_f29c3c",
+  "pytest": {
+    "tests": 157,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit_code": 0
+  },
+  "backup_restore": {
+    "status": "PASS",
+    "tables": 32,
+    "rows": 1367,
+    "every_table_count_and_content_sha256_match": true,
+    "migration_check": {
+      "status": "current",
+      "steps": 43
+    }
+  },
+  "data_counts": {
+    "agentpresence": {
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "aisuggestion": {
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "auditlog": {
+      "count": 1,
+      "sha256": "bcf96ce2ea5336e5c2670c20f6903d2409d68d542e9c92f1ce720e93484ca984"
+    },
+    "authotpchallenge": {
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "authsession": {
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "auththrottle": {
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chatrequest": {
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "chatsession": {
+      "count": 8,
+      "sha256": "96111e47a56280bdb4f5d28dddd6e91c5900e7f442116d4f3cf8417572d315bd"
+    },
+    "conversationsummary": {
+      "count": 4,
+      "sha256": "6bf68c81198d0bc3099c53f3a4e10deec47aa022c1b88759759453466986d19e"
+    },
+    "customer": {
+      "count": 5,
+      "sha256": "839bf02ccbb0e2030ec53ad5e1e6de9419d822c1b1ad30a8115922dcab94c836"
+    },
+    "evaluation": {
+      "count": 16,
+      "sha256": "a8fe6b40b95db702116623da24e35ebecac4ed49fac737f0bfca78a0cd7792d4"
+    },
+    "handover": {
+      "count": 3,
+      "sha256": "518e534d49b964d748760fb5f17ac57cc32ca9ca88c5d29f3b4ff71beab38adf"
+    },
+    "knowledgebase": {
+      "count": 4,
+      "sha256": "35f9dcdaa3aa91f1ff53509e4fd178a5e18ce662684ea52e0f4155197ae44e53"
+    },
+    "knowledgechunk": {
+      "count": 1000,
+      "sha256": "27d3f26ce12e7618c48c59904c652cb04797e8a3e46646c297420de04ea03f7a"
+    },
+    "knowledgerequest": {
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "message": {
+      "count": 16,
+      "sha256": "477932e02c64134e3d62101d8ca1f2e95f658acd5646d01472c0dcea02dd3555"
+    },
+    "messageautomation": {
+      "count": 8,
+      "sha256": "651b156151a58385a6037db3cca56d80ef80c38929465246a189145e5d7f6853"
+    },
+    "messagesource": {
+      "count": 8,
+      "sha256": "0b570195ca20b59b8daaca7c3b20d6ffdfc4a9480d4e56eac833b5b22fb2824d"
+    },
+    "role": {
+      "count": 4,
+      "sha256": "5ef2f1932b863179b5b98f7ec6508544f288ba43ef6d4c0c8f9c865f264e2644"
+    },
+    "schemamigration": {
+      "count": 43,
+      "sha256": "0f1b442d367dfb9ef776caf867c19778928e9f9d3a148da519c05e4252ca2696"
+    },
+    "sentimentanalysis": {
+      "count": 8,
+      "sha256": "2ea9f4360b786a3417b156fc235584cf0eaaca4f9f64b589693fda8566b7adc3"
+    },
+    "supervisoralert": {
+      "count": 3,
+      "sha256": "dae73c38378a598df6e8b6f2017672f23f2927c27fadec7d8d1a12b8a80c3a2b"
+    },
+    "systemsetting": {
+      "count": 3,
+      "sha256": "85f8994d182e34919a47aedb46ec9479b3e9012ee869df5b8e862413843bf360"
+    },
+    "ticket": {
+      "count": 48,
+      "sha256": "25f49a073ff9143f00cc9d75394a1139c9e86676e3a99cb73a3d3efbd353a975"
+    },
+    "ticketaianalysis": {
+      "count": 3,
+      "sha256": "5bf098adcfba7460902784739274fab01963a3b54ed12dece72689a85ed82dcb"
+    },
+    "ticketassignmenthistory": {
+      "count": 36,
+      "sha256": "571ac6cc3b7090686677c4101f8d300d5636acce6fd4c363fcbfced8cede08df"
+    },
+    "ticketautomation": {
+      "count": 48,
+      "sha256": "a70db631de668b300e34b883f8733af1174b63ce77f6b5783499802218ebad80"
+    },
+    "ticketcategory": {
+      "count": 5,
+      "sha256": "30c74ab8bc58758081e7e2cb0869e5982b508016ecbf576009f80ac8e62e08cb"
+    },
+    "ticketreply": {
+      "count": 36,
+      "sha256": "057eba90ab063a1b35933ac9408cf9a59e3cbc180b5df0d4ea512a34e914f4ac"
+    },
+    "ticketrequest": {
+      "count": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "ticketstatushistory": {
+      "count": 48,
+      "sha256": "242765712e8267a219410b82dfaea80077cc1c076a0193eda45326c39872abc9"
+    },
+    "useraccount": {
+      "count": 9,
+      "sha256": "aec76bf42876918a2b8bdad447e0e5eab1d4f494255d7c61cbc1a2a0cda75214"
+    }
+  },
+  "performance_simulation": {
+    "provider": "SIMULATION, not live Gemini",
+    "questions": 50,
+    "concurrent_sessions": 5,
+    "knowledge_chunks": 1000,
+    "p95_seconds": 5.8259,
+    "errors": 0,
+    "target_seconds": 5,
+    "live_provider_acceptance": "NOT_VERIFIED"
+  },
+  "finished_utc": "2026-10-28T21:05:34.335442+00:00"
+}

@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block page_title %}Bảng điều khiển Tổng quan (SLA & Ticket Analytics){% endblock %}
+
+{% block content %}
+<div class="dashboard-grid">
+    <!-- Stat Cards -->
+    <div class="stat-card stat-total">
+        <div class="stat-icon"><i class="fa-solid fa-folder-open"></i></div>
+        <div class="stat-data">
+            <span class="stat-number">{{ stats.total_tickets }}</span>
+            <span class="stat-label">Tổng số Ticket</span>
+        </div>
+    </div>
+
+    <div class="stat-card stat-new">
+        <div class="stat-icon"><i class="fa-solid fa-bell"></i></div>
+        <div class="stat-data">
+            <span class="stat-number">{{ stats.status_counts.get('New', 0) }}</span>
+            <span class="stat-label">Ticket Mới tiếp nhận</span>
+        </div>
+    </div>
+
+    <div class="stat-card stat-inprogress">
+        <div class="stat-icon"><i class="fa-solid fa-spinner"></i></div>
+        <div class="stat-data">
+            <span class="stat-number">{{ stats.status_counts.get('In Progress', 0) }}</span>
+            <span class="stat-label">Đang xử lý</span>
+        </div>
+    </div>
+
+    <div class="stat-card stat-closed">
+        <div class="stat-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <div class="stat-data">
+            <span class="stat-number">{{ stats.status_counts.get('Closed', 0) }}</span>
+            <span class="stat-label">Đã giải quyết / Đóng</span>
+        </div>
+    </div>
+</div>
+
+<div class="analytics-row">
+    <!-- Priority Distribution -->
+    <div class="card analytics-card">
+        <div class="card-header">
+            <h3><i class="fa-solid fa-triangle-exclamation"></i> Phân bố Mức độ Ưu tiên</h3>
+        </div>
+        <div class="card-body">
+            <div class="bar-stat">
+                <div class="bar-label"><span>Khẩn cấp (Urgent)</span> <strong>{{ stats.priority_counts.get('Urgent', 0) }}</strong></div>
+                <div class="progress-bar"><div class="progress-fill bg-urgent" style="width: {{ (stats.priority_counts.get('Urgent', 0) / (stats.total_tickets or 1)) * 100 }}%"></div></div>
+            </div>
+            <div class="bar-stat">
+                <div class="bar-label"><span>Cao (High)</span> <strong>{{ stats.priority_counts.get('High', 0) }}</strong></div>
+                <div class="progress-bar"><div class="progress-fill bg-high" style="width: {{ (stats.priority_counts.get('High', 0) / (stats.total_tickets or 1)) * 100 }}%"></div></div>
+            </div>
+            <div class="bar-stat">
+                <div class="bar-label"><span>Trung bình (Medium)</span> <strong>{{ stats.priority_counts.get('Medium', 0) }}</strong></div>
+                <div class="progress-bar"><div class="progress-fill bg-medium" style="width: {{ (stats.priority_counts.get('Medium', 0) / (stats.total_tickets or 1)) * 100 }}%"></div></div>
+            </div>
+            <div class="bar-stat">
+                <div class="bar-label"><span>Thấp (Low)</span> <strong>{{ stats.priority_counts.get('Low', 0) }}</strong></div>
+                <div class="progress-bar"><div class="progress-fill bg-low" style="width: {{ (stats.priority_counts.get('Low', 0) / (stats.total_tickets or 1)) * 100 }}%"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Distribution -->
+    <div class="card analytics-card">
+        <div class="card-header">
+            <h3><i class="fa-solid fa-tags"></i> Nhóm Vấn đề Thường gặp</h3>
+        </div>
+        <div class="card-body">
+            <ul class="category-list">
+                {% for cat, count in stats.category_counts.items() %}
+                <li class="category-item">
+                    <span class="cat-name"><i class="fa-solid fa-layer-group"></i> {{ cat }}</span>
+                    <span class="badge badge-counter">{{ count }} ticket</span>
+                </li>
+                {% else %}
+                <li class="empty-text">Chưa có dữ liệu phân loại.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Tickets -->
+<div class="card mt-4">
+    <div class="card-header flex-between">
+        <h3><i class="fa-solid fa-clock-rotate-left"></i> Ticket Gần đây Cần Xử lý</h3>
+        <a href="{{ url_for('tickets.list_tickets') }}" class="btn btn-secondary btn-sm">Xem toàn bộ</a>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Mã Ticket</th>
+                        <th>Khách hàng</th>
+                        <th>Tiêu đề sự cố</th>
+                        <th>Danh mục</th>
+                        <th>Mức ưu tiên</th>
+                        <th>Trạng thái</th>
+                        <th>Phụ trách</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in recent_tickets %}
+                    <tr>
+                        <td><strong>{{ t.ticket_number }}</strong></td>
+                        <td>{{ t.customer_name }}</td>
+                        <td><a href="{{ url_for('tickets.ticket_detail', ticket_id=t.id) }}" class="ticket-link">{{ t.title }}</a></td>
+                        <td><span class="badge badge-light">{{ t.category }}</span></td>
+                        <td>
+                            <span class="badge badge-priority badge-{{ t.priority|lower }}">{{ t.priority }}</span>
+                        </td>
+                        <td>
+                            <span class="badge badge-status badge-{{ t.status|lower|replace(' ', '-') }}">{{ t.status }}</span>
+                        </td>
+                        <td>{{ t.assigned_name or 'Chưa phân công' }}</td>
+                        <td>
+                            <a href="{{ url_for('tickets.ticket_detail', ticket_id=t.id) }}" class="btn btn-sm btn-outline">
+                                <i class="fa-solid fa-arrow-right"></i> Mở
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

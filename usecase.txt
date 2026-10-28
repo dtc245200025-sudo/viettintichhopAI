@@ -1,0 +1,36 @@
+Luồng hoạt động tổng quát:
+Khách hàng đăng nhập → ChatSession → Message → RAG dùng MySQL → Phản hồi có nguồn
+Nếu AI xử lý được:
+AI → Phản hồi → Khách hàng
+Nếu AI không xử lý được:
+Thiếu nguồn hoặc cần hỗ trợ → Handover hoặc Ticket theo lựa chọn khách hàng → Agent xử lý → Đóng → Đánh giá
+Admin quản lý toàn bộ:
+Admin quản lý tài khoản, tri thức, cấu hình và log; Supervisor giám sát, phân công và xem báo cáo.
+
+Bảng xác định Actor
+Tác nhân	Mô tả tác nhân	Ghi chú
+Khách hàng	Khách hàng cá nhân/doanh nghiệp sử dụng các kênh hỗ trợ để đặt câu hỏi, tra cứu và gửi yêu cầu.	Người dùng chính
+Tổng đài viên (Agent)	Tiếp nhận các phiên được Handover, xử lý ticket và sử dụng AI Copilot để hỗ trợ trả lời.	Nhân viên CSKH
+Quản lý CSKH (Supervisor)	Theo dõi hoạt động, báo cáo, chất lượng hỗ trợ và các chỉ số CSAT (NPS là mở rộng).	Quản lý
+Quản trị hệ thống (Admin)	Quản lý tài khoản, phân quyền, Knowledge Base, tài liệu RAG và Audit log.	Quản trị
+
+Bảng xác định Use Case
+ID	Tên Use case	Mô tả ngắn gọn Use case	Chức năng
+UC001	Đăng nhập	Người dùng đăng nhập hệ thống	Quản lý tài khoản
+UC002	Gửi yêu cầu hỗ trợ	Khách hàng trao đổi với Chatbot	Chatbot AI
+UC003	Tạo Ticket	Khách hàng gửi yêu cầu hỗ trợ	Quản lý Ticket
+UC004	Phân loại Ticket	AI xác định chủ đề và ý định	AI
+UC005	Phân tích cảm xúc	AI phân tích cảm xúc khách hàng	AI
+UC006	Chuyển giao	Chuyển phiên từ AI sang Agent	CSKH
+UC007	Xử lý Ticket	Agent tiếp nhận và xử lý yêu cầu	CSKH
+UC008	AI gợi ý câu trả lời	AI hiển thị gợi ý câu trả lời liên quan. Nội dung AI chỉ là gợi ý và không được tự động gửi cho khách hàng.	AI
+UC009	Tóm tắt lịch sử hỗ trợ	Vấn đề của khách hàng, Các trao đổi chính, Các bước đã xử lý, Kết quả hiện tại, Việc cần tiếp tục xử lý	AI
+UC010	Đánh giá hỗ trợ	Khách hàng đánh giá phiên hỗ trợ	CSKH
+UC011	Quản lý Knowledge Base	Admin quản lý FAQ/tài liệu	Knowledge Base
+UC012	Quản lý người dùng	Admin quản lý tài khoản/phân quyền	Quản trị
+UC013	Xem Dashboard	Supervisor xem thống kê	Báo cáo
+UC014	Quản lý Audit Log	Theo dõi thao tác hệ thống	Bảo mật
+UC015	Cấu hình hệ thống	Quản lý tham số vận hành không chứa bí mật	Bảo mật
+UC016	Quản lý khách hàng	Admin xem danh sách khách hàng, thông tin liên hệ, cập nhật thông tin và xem lịch sử Ticket	Quản lý khách hàng
+
+

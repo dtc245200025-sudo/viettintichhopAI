@@ -1,6 +1,3 @@
-/* Shared theme variables keep colors and spacing consistent across pages. */
-/* The reset below removes browser defaults for predictable layout sizing. */
-/* Base typography is inherited by the Vietnamese and English interfaces. */
 :root {
     --background: #b4deeb;
     --primary: #005baa;
@@ -498,6 +495,23 @@ button {
     color: white;
 
     border-bottom-right-radius: 5px;
+}
+
+.message details {
+    margin-top: 9px;
+    font-size: 11px;
+}
+
+.message details p {
+    margin: 6px 0 0;
+}
+
+.message > a {
+    display: block;
+    margin-top: 9px;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 700;
 }
 
 
@@ -1780,6 +1794,58 @@ footer {
     background: #f1f9fc;
 
     border-color: var(--primary);
+}
+
+.otp-panel {
+    margin-top: 14px;
+    padding: 16px;
+    border: 1px solid #d6e3e8;
+    border-radius: 10px;
+    background: #f8fbfc;
+}
+
+.otp-panel h3 {
+    margin: 0 0 6px;
+    color: var(--primary-dark);
+    font-size: 15px;
+}
+
+.otp-panel > p {
+    margin: 0 0 14px;
+    color: #53666f;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.otp-panel .form-group {
+    margin-bottom: 12px;
+}
+
+.otp-panel input {
+    width: 100%;
+    min-height: 44px;
+}
+
+.otp-action {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid #b8d4df;
+    border-radius: 8px;
+    background: white;
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.otp-verify {
+    margin-top: 10px;
+}
+
+.otp-status {
+    margin: 10px 0 0;
+    color: #53666f;
+    font-size: 12px;
+    line-height: 1.5;
 }
 
 

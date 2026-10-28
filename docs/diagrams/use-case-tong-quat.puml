@@ -1,0 +1,80 @@
+@startuml use-case-tong-quat
+' VietinCare AI – Biểu đồ Use Case tổng quát
+
+left to right direction
+skinparam dpi 150
+skinparam defaultFontName "Segoe UI"
+skinparam defaultFontSize 12
+skinparam usecaseBorderThickness 1.2
+skinparam usecaseBackgroundColor #White
+skinparam usecaseBorderColor #333333
+skinparam arrowColor #555555
+skinparam rectangleBorderColor #222222
+skinparam rectangleFontSize 14
+
+' ── Actor trái ───────────────────
+actor "Khách hàng" as KH
+actor "Agent"       as AG
+
+' ── Actor phải ───────────────────
+actor "Supervisor"  as SV
+actor "Admin"       as AD
+
+SV --|> AG
+
+' ── Hệ thống ────────────────────
+rectangle "Hệ thống VietinCare AI" {
+
+  (UC001 - Đăng nhập)            as UC01
+  (UC002 - Gửi yêu cầu hỗ trợ)  as UC02
+  (UC003 - Tạo Ticket)           as UC03
+  (UC004 - Phân loại Ticket)     as UC04
+  (UC005 - Phân tích cảm xúc)    as UC05
+  (UC006 - Chuyển giao)          as UC06
+  (UC007 - Xử lý Ticket)         as UC07
+  (UC008 - AI gợi ý trả lời)     as UC08
+  (UC009 - Tóm tắt lịch sử)     as UC09
+  (UC010 - Đánh giá hỗ trợ)     as UC10
+  (UC011 - Quản lý Knowledge Base) as UC11
+  (UC012 - Quản lý người dùng)   as UC12
+  (UC013 - Xem Dashboard)        as UC13
+  (UC014 - Quản lý Audit Log)    as UC14
+  (UC015 - Cấu hình hệ thống)   as UC15
+  (UC016 - Quản lý khách hàng)   as UC16
+}
+
+' ── Actor trái ───────────────────
+KH -- UC01
+KH -- UC02
+KH -- UC03
+KH -- UC10
+
+AG -- UC01
+AG -- UC06
+AG -- UC07
+
+' ── Actor phải ───────────────────
+SV -- UC13
+
+AD -- UC01
+AD -- UC11
+AD -- UC12
+AD -- UC14
+AD -- UC15
+AD -- UC16
+
+' ── include / extend ─────────────
+UC02 .> UC01 : <<include>>
+UC02 .> UC06 : <<extend>>
+UC02 .> UC03 : <<extend>>
+
+UC03 .> UC04 : <<include>>
+UC03 .> UC05 : <<include>>
+
+UC06 .> UC07 : <<include>>
+
+UC07 .> UC08 : <<extend>>
+UC07 .> UC09 : <<extend>>
+UC07 .> UC10 : <<extend>>
+
+@enduml

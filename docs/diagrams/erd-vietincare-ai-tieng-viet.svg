@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="1500" viewBox="0 0 2000 1500">
+  <defs>
+    <style>
+      .title,.sub,.label,.legend{display:none}
+      .tbl{fill:#f4f4f4;stroke:#8a8a8a;stroke-width:1;rx:0}.head{fill:#e5e5e5;stroke:#8a8a8a;stroke-width:1}
+      .tname{font:700 19px Arial,sans-serif;fill:#111}.field{font:15px Arial,sans-serif;fill:#222}
+      .pk{font:700 15px Consolas,monospace;fill:#ad6800}.fk{font:700 15px Consolas,monospace;fill:#1565c0}
+      .rel{fill:none;stroke:#777;stroke-width:1.5}.label{font:14px Arial,sans-serif;fill:#455a64;paint-order:stroke;stroke:#fff;stroke-width:5}
+      .card{font:700 14px Arial,sans-serif;fill:#263238;paint-order:stroke;stroke:#fff;stroke-width:5}
+      .legend{font:14px Arial,sans-serif;fill:#455a64}.line{stroke:#b0bec5;stroke-width:1}
+    </style>
+    <marker id="one" viewBox="0 0 12 12" refX="6" refY="6" markerWidth="8" markerHeight="8" orient="auto"><path d="M6 0V12" stroke="#455a64" stroke-width="2"/></marker>
+    <marker id="many" viewBox="0 0 12 12" refX="7" refY="6" markerWidth="9" markerHeight="9" orient="auto"><path d="M11 1L2 6L11 11M2 0V12" fill="none" stroke="#455a64" stroke-width="1.7"/></marker>
+  </defs>
+  <rect width="2000" height="1500" fill="#fff"/>
+  <text x="1000" y="44" text-anchor="middle" class="title">SƠ ĐỒ THỰC THỂ – LIÊN KẾT HỆ THỐNG VIETINCARE AI</text>
+  <text x="1000" y="72" text-anchor="middle" class="sub">Cơ sở dữ liệu MySQL • PK: khóa chính • FK: khóa ngoại • 1 — 0..n: quan hệ một–nhiều</text>
+
+  <!-- Các đường liên kết nằm sau bảng -->
+  <path class="rel" d="M330 190H420" marker-start="url(#one)" marker-end="url(#many)"/><text x="358" y="179" class="label">phân quyền</text>
+  <path class="rel" d="M690 155H780" marker-start="url(#one)" marker-end="url(#many)"/><text x="710" y="144" class="label">biên soạn</text>
+  <path class="rel" d="M690 215H1180" marker-start="url(#one)" marker-end="url(#many)"/><text x="900" y="204" class="label">ghi nhật ký</text>
+  <path style="display:none" class="rel" d="M920 350V420" marker-start="url(#one)" marker-end="url(#many)"/><text x="934" y="390" class="label">chia đoạn</text>
+  <path class="rel" d="M330 625H420" marker-start="url(#one)" marker-end="url(#many)"/><text x="347" y="614" class="label">trò chuyện</text>
+  <path class="rel" d="M690 625H780" marker-start="url(#one)" marker-end="url(#many)"/><text x="711" y="614" class="label">gồm</text>
+  <path class="rel" d="M1050 580H1180" marker-start="url(#one)" marker-end="url(#many)"/><text x="1084" y="569" class="label">gợi ý AI</text>
+  <path class="rel" d="M1050 680H1580" marker-start="url(#one)" marker-end="url(#many)"/><text x="1302" y="669" class="label">phân tích cảm xúc</text>
+  <path class="rel" d="M150 780V1030" marker-start="url(#one)" marker-end="url(#many)"/><text x="163" y="910" class="label">gửi yêu cầu</text>
+  <path class="rel" d="M555 780V1030" marker-start="url(#one)" marker-end="url(#many)"/><text x="568" y="910" class="label">phát sinh ticket</text>
+  <path class="rel" d="M555 780V950H920V1030" marker-start="url(#one)" marker-end="url(#many)"/><text x="700" y="938" class="label">chuyển nhân viên</text>
+  <path class="rel" d="M600 1160H420" marker-start="url(#many)" marker-end="url(#one)"/><text x="475" y="1149" class="label">thuộc nhóm</text>
+  <path class="rel" d="M690 665H1350V1030" marker-start="url(#one)" marker-end="url(#many)"/><text x="1000" y="654" class="label">được tóm tắt</text>
+  <path class="rel" d="M330 720H370V1350H1580" marker-start="url(#one)" marker-end="url(#many)"/><text x="385" y="1329" class="label">thực hiện đánh giá</text>
+  <path class="rel" d="M870 1290H1580" marker-start="url(#one)" marker-end="url(#many)"/><text x="1170" y="1279" class="label">được đánh giá</text>
+
+  <!-- Vai trò -->
+  <g transform="translate(60 110)"><rect class="tbl" width="270" height="160"/><path class="head" d="M9 0H261Q270 0 270 9V42H0V9Q0 0 9 0Z"/><text x="16" y="28" class="tname">VAI TRÒ</text>
+    <text x="14" y="68" class="pk">PK  Mã vai trò</text><text x="14" y="94" class="field">Tên vai trò</text><text x="14" y="120" class="field">Mô tả</text></g>
+  <!-- Tài khoản -->
+  <g transform="translate(420 110)"><rect class="tbl" width="270" height="240"/><path class="head" d="M9 0H261Q270 0 270 9V42H0V9Q0 0 9 0Z"/><text x="16" y="28" class="tname">TÀI KHOẢN</text>
+    <text x="14" y="68" class="pk">PK  Mã người dùng</text><text x="14" y="94" class="fk">FK  Mã vai trò</text><text x="14" y="120" class="field">Họ tên</text><text x="14" y="146" class="field">Tên đăng nhập</text><text x="14" y="172" class="field">Mật khẩu mã hóa</text><text x="14" y="198" class="field">Email, số điện thoại</text><text x="14" y="224" class="field">Trạng thái, ngày tạo</text></g>
+  <!-- Kho tri thức -->
+  <g transform="translate(780 110)"><rect class="tbl" width="280" height="240"/><path class="head" d="M9 0H271Q280 0 280 9V42H0V9Q0 0 9 0Z"/><text x="16" y="28" class="tname">KHO TRI THỨC</text>
+    <text x="14" y="68" class="pk">PK  Mã tri thức</text><text x="14" y="94" class="fk">FK  Mã người dùng</text><text x="14" y="120" class="field">Tiêu đề</text><text x="14" y="146" class="field">Nội dung</text><text x="14" y="172" class="field">Loại tài liệu</text><text x="14" y="198" class="field">Trạng thái</text><text x="14" y="224" class="field">Ngày tạo, ngày cập nhật</text></g>
+  <!-- Nhật ký -->
+  <g transform="translate(1180 110)"><rect class="tbl" width="300" height="240"/><path class="head" d="M9 0H291Q300 0 300 9V42H0V9Q0 0 9 0Z"/><text x="16" y="28" class="tname">NHẬT KÝ HỆ THỐNG</text>
+    <text x="14" y="68" class="pk">PK  Mã nhật ký</text><text x="14" y="94" class="fk">FK  Mã người dùng</text><text x="14" y="120" class="field">Hành động, đối tượng</text><text x="14" y="146" class="field">Mã đối tượng</text><text x="14" y="172" class="field">Địa chỉ IP</text><text x="14" y="198" class="field">Thời gian</text><text x="14" y="224" class="field">Chi tiết</text></g>
+  <!-- Đoạn tri thức -->
+  <g style="display:none" transform="translate(780 420)"><rect class="tbl" width="280" height="210"/><path class="head" d="M9 0H271Q280 0 280 9V42H0V9Q0 0 9 0Z"/><text x="16" y="28" class="tname">ĐOẠN TRI THỨC</text>
+    <text x="14" y="68" class="pk">PK  Mã đoạn</text><text x="14" y="94" class="fk">FK  Mã tri thức</text><text x="14" y="120" class="field">Thứ tự, nội dung</text><text x="14" y="146" class="field">Vector biểu diễn</text><text x="14" y="172" class="field">Tên mô hình, số chiều</text><text x="14" y="198" class="field">Ngày tạo</text></g>
+
+  <!-- Khách hàng -->
+  <g transform="translate(60 540)"><rect class="tbl" width="270" height="240"/><path class="head" d="M9 0H261Q270 0 270 9V42H0V9Q0 0 9 0Z"/><text x="16" y="28" class="tname">KHÁCH HÀNG</text>
+    <text x="14" y="68" class="pk">PK  Mã khách hàng</text><text x="14" y="94" class="field">Họ tên</text><text x="14" y="120" class="field">Email</text><text x="14" y="146" class="field">Số điện thoại</text><text x="14" y="172" class="field">Loại khách hàng</text><text x="14" y="198" class="field">Ngày tạo</text><text x="14" y="224" class="field">Trạng thái</text></g>
+  <!-- Phiên trò chuyện -->
+  <g transform="translate(420 540)"><rect class="tbl" width="270" height="240"/><path class="head" d="M9 0H261Q270 0 270 9V42H0V9Q0 0 9 0Z"/><text x="16" y="28" class="tname">PHIÊN TRÒ CHUYỆN</text>
+    <text x="14" y="68" class="pk">PK  Mã phiên</text><text x="14" y="94" class="fk">FK  Mã khách hàng</text><text x="14" y="120" class="fk">FK  Mã nhân viên</text><text x="14" y="146" class="field">Thời gian bắt đầu</text><text x="14" y="172" class="field">Thời gian kết thúc</text><text x="14" y="198" class="field">Kênh trò chuyện</text><text x="14" y="224" class="field">Trạng thái</text></g>
+  <!-- Tin nhắn -->
+  <g transform="translate(780 540)"><rect class="tbl" width="270" height="240"/><path class="head" d="M9 0H261Q270 0 270 9V42H0V9Q0 0 9 0Z"/><text x="16" y="28" class="tname">TIN NHẮN</text>
+    <text x="14" y="68" class="pk">PK  Mã tin nhắn</text><text x="14" y="94" class="fk">FK  Mã phiên</text><text x="14" y="120" class="field">Người gửi</text><text x="14" y="146" class="field">Nội dung</text><text x="14" y="172" class="field">Thời gian</text><text x="14" y="198" class="field">Độ tin cậy AI</text></g>
+  <!-- Gợi ý AI -->
+  <g transform="translate(1180 500)"><rect class="tbl" width="300" height="230"/><path class="head" d="M9 0H291Q300 0 300 9V42H0V9Q0 0 9 0Z"/><text x="16" y="28" class="tname">GỢI Ý CỦA AI</text>
+    <text x="14" y="68" class="pk">PK  Mã gợi ý</text><text x="14" y="94" class="fk">FK  Mã tin nhắn</text><text x="14" y="120" class="field">Nội dung gợi ý</text><text x="14" y="146" class="field">Độ tin cậy</text><text x="14" y="172" class="field">Được chọn</text><text x="14" y="198" class="field">Thời gian</text></g>
+  <!-- Cảm xúc -->
+  <g transform="translate(1580 540)"><rect class="tbl" width="320" height="200"/><path class="head" d="M9 0H311Q320 0 320 9V42H0V9Q0 0 9 0Z"/><text x="16" y="28" class="tname">PHÂN TÍCH CẢM XÚC</text>
+    <text x="14" y="68" class="pk">PK  Mã phân tích</text><text x="14" y="94" class="fk">FK  Mã tin nhắn</text><text x="14" y="120" class="field">Cảm xúc</text><text x="14" y="146" class="field">Điểm cảm xúc</text><text x="14" y="172" class="field">Thời gian</text></g>
+
+  <!-- Ticket -->
+  <g transform="translate(60 1030)"><rect class="tbl" width="310" height="350"/><path class="head" d="M9 0H301Q310 0 310 9V42H0V9Q0 0 9 0Z"/><text x="16" y="28" class="tname">YÊU CẦU HỖ TRỢ</text>
+    <text x="14" y="68" class="pk">PK  Mã yêu cầu</text><text x="14" y="94" class="fk">FK  Mã khách hàng</text><text x="14" y="120" class="fk">FK  Mã phiên</text><text x="14" y="146" class="fk">FK  Mã nhóm yêu cầu</text><text x="14" y="172" class="fk">FK  Mã nhân viên</text><text x="14" y="198" class="field">Tiêu đề, nội dung</text><text x="14" y="224" class="field">Mức độ ưu tiên</text><text x="14" y="250" class="field">Trạng thái</text><text x="14" y="276" class="field">Ngày tạo</text><text x="14" y="302" class="field">Ngày cập nhật</text><text x="14" y="328" class="field">Ngày đóng</text></g>
+  <!-- Nhóm ticket -->
+  <g transform="translate(420 1030)"><rect class="tbl" width="260" height="160"/><path class="head" d="M9 0H251Q260 0 260 9V42H0V9Q0 0 9 0Z"/><text x="16" y="28" class="tname">NHÓM YÊU CẦU</text>
+    <text x="14" y="68" class="pk">PK  Mã nhóm</text><text x="14" y="94" class="field">Tên nhóm</text><text x="14" y="120" class="field">Mô tả</text></g>
+  <!-- Chuyển giao -->
+  <g transform="translate(760 1030)"><rect class="tbl" width="300" height="240"/><path class="head" d="M9 0H291Q300 0 300 9V42H0V9Q0 0 9 0Z"/><text x="16" y="28" class="tname">CHUYỂN GIAO</text>
+    <text x="14" y="68" class="pk">PK  Mã chuyển giao</text><text x="14" y="94" class="fk">FK  Mã phiên</text><text x="14" y="120" class="fk">FK  Mã nhân viên</text><text x="14" y="146" class="field">Lý do</text><text x="14" y="172" class="field">Thời gian</text><text x="14" y="198" class="field">Trạng thái</text></g>
+  <!-- Tóm tắt -->
+  <g transform="translate(1200 1030)"><rect class="tbl" width="300" height="180"/><path class="head" d="M9 0H291Q300 0 300 9V42H0V9Q0 0 9 0Z"/><text x="16" y="28" class="tname">TÓM TẮT HỘI THOẠI</text>
+    <text x="14" y="68" class="pk">PK  Mã tóm tắt</text><text x="14" y="94" class="fk">FK  Mã phiên</text><text x="14" y="120" class="field">Nội dung tóm tắt</text><text x="14" y="146" class="field">Thời gian tạo</text></g>
+  <!-- Đánh giá -->
+  <g transform="translate(1580 1030)"><rect class="tbl" width="320" height="270"/><path class="head" d="M9 0H311Q320 0 320 9V42H0V9Q0 0 9 0Z"/><text x="16" y="28" class="tname">ĐÁNH GIÁ</text>
+    <text x="14" y="68" class="pk">PK  Mã đánh giá</text><text x="14" y="94" class="fk">FK  Mã khách hàng</text><text x="14" y="120" class="fk">FK  Mã phiên</text><text x="14" y="146" class="fk">FK  Mã yêu cầu</text><text x="14" y="172" class="field">Số sao</text><text x="14" y="198" class="field">Nhận xét</text><text x="14" y="224" class="field">Điểm NPS</text><text x="14" y="250" class="field">Ngày đánh giá</text></g>
+
+  <rect style="display:none" x="60" y="1430" width="16" height="16" fill="#ad6800"/><text x="84" y="1444" class="legend">PK: khóa chính</text>
+  <rect style="display:none" x="220" y="1430" width="16" height="16" fill="#1565c0"/><text x="244" y="1444" class="legend">FK: khóa ngoại</text>
+  <text x="1880" y="1444" text-anchor="end" class="legend">Nguồn: cấu trúc MySQL hiện hành của VietinCare AI</text>
+</svg>

@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+  <defs>
+    <style>
+      .title { font: 700 30px Arial, sans-serif; fill: #17324d; }
+      .subtitle { font: 16px Arial, sans-serif; fill: #5b7083; }
+      .box { fill: #f7f9fb; stroke: #607d8b; stroke-width: 2; rx: 10; }
+      .head { fill: #dcebf3; stroke: #607d8b; stroke-width: 2; }
+      .class-name { font: 700 20px Arial, sans-serif; fill: #15364a; }
+      .field { font: 16px Consolas, monospace; fill: #263238; }
+      .method { font: 16px Consolas, monospace; fill: #1b5e20; }
+      .section { stroke: #90a4ae; stroke-width: 1.5; }
+      .relation { fill: none; stroke: #455a64; stroke-width: 2; }
+      .relation-label { font: 15px Arial, sans-serif; fill: #37474f; paint-order: stroke; stroke: white; stroke-width: 5; }
+      .multiplicity { font: 700 15px Arial, sans-serif; fill: #263238; paint-order: stroke; stroke: white; stroke-width: 5; }
+      .badge { fill: #56b870; stroke: #2e7d32; stroke-width: 1.5; }
+      .badge-text { font: 700 15px Arial, sans-serif; fill: white; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#455a64"/>
+    </marker>
+    <marker id="diamond" viewBox="0 0 14 10" refX="13" refY="5" markerWidth="12" markerHeight="9" orient="auto">
+      <path d="M 0 5 L 6 0 L 12 5 L 6 10 z" fill="#455a64"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="1200" fill="#ffffff"/>
+  <text x="800" y="45" text-anchor="middle" class="title">BIỂU ĐỒ LỚP HỆ THỐNG VIETINCARE AI</text>
+  <text x="800" y="72" text-anchor="middle" class="subtitle">Quản lý yêu cầu hỗ trợ và tương tác có tích hợp AI</text>
+
+  <!-- Quan hệ nằm phía sau các lớp -->
+  <path class="relation" d="M 1320 280 L 1320 345"/>
+  <text x="1336" y="313" class="relation-label">quản lý</text>
+  <text x="1301" y="299" class="multiplicity">1</text>
+  <text x="1290" y="342" class="multiplicity">0..*</text>
+
+  <path class="relation" d="M 400 505 L 570 505"/>
+  <text x="465" y="493" class="relation-label">tạo</text>
+  <text x="408" y="495" class="multiplicity">1</text>
+  <text x="525" y="495" class="multiplicity">0..*</text>
+
+  <path class="relation" d="M 1030 505 L 1170 505"/>
+  <text x="1054" y="493" class="relation-label">tiếp nhận</text>
+  <text x="1039" y="526" class="multiplicity">0..*</text>
+  <text x="1132" y="526" class="multiplicity">0..1</text>
+
+  <path class="relation" d="M 800 730 L 800 790" marker-end="url(#arrow)"/>
+  <text x="815" y="765" class="relation-label">được phân tích bởi</text>
+  <text x="780" y="750" class="multiplicity">0..*</text>
+  <text x="780" y="787" class="multiplicity">1</text>
+
+  <path class="relation" d="M 1030 620 L 1110 620 L 1110 790" marker-start="url(#diamond)"/>
+  <text x="1126" y="700" class="relation-label">ghi nhận</text>
+  <text x="1040" y="610" class="multiplicity">1</text>
+  <text x="1080" y="786" class="multiplicity">0..*</text>
+
+  <path class="relation" d="M 1030 580 L 1450 580 L 1450 790"/>
+  <text x="1370" y="568" class="relation-label">phản hồi</text>
+  <text x="1038" y="570" class="multiplicity">1</text>
+  <text x="1420" y="786" class="multiplicity">0..*</text>
+
+  <path class="relation" d="M 1030 925 L 1050 925"/>
+  <text x="920" y="913" class="relation-label">tạo phản hồi</text>
+  <text x="1000" y="946" class="multiplicity">1</text>
+  <text x="1052" y="946" class="multiplicity">0..*</text>
+
+  <path class="relation" d="M 230 665 L 230 1090 L 1050 1090"/>
+  <text x="245" y="900" class="relation-label">tham gia trao đổi</text>
+  <text x="210" y="686" class="multiplicity">1</text>
+  <text x="1005" y="1080" class="multiplicity">0..*</text>
+
+  <!-- Khách hàng -->
+  <g transform="translate(70,345)">
+    <rect class="box" width="330" height="320"/>
+    <path class="head" d="M 10 0 H 320 Q 330 0 330 10 V 52 H 0 V 10 Q 0 0 10 0 Z"/>
+    <circle class="badge" cx="28" cy="26" r="15"/><text class="badge-text" x="28" y="31" text-anchor="middle">C</text>
+    <text class="class-name" x="52" y="33">Khách hàng</text>
+    <line class="section" x1="0" y1="52" x2="330" y2="52"/>
+    <text class="field" x="16" y="80">maKH : INT</text><text class="field" x="16" y="105">hoTen : String</text>
+    <text class="field" x="16" y="130">email : String</text><text class="field" x="16" y="155">soDienThoai : String</text>
+    <text class="field" x="16" y="180">trangThai : String</text><line class="section" x1="0" y1="198" x2="330" y2="198"/>
+    <text class="method" x="16" y="226">dangKy()</text><text class="method" x="16" y="251">dangNhap()</text>
+    <text class="method" x="16" y="276">guiYeuCau()</text><text class="method" x="16" y="301">xemLichSu()</text>
+  </g>
+
+  <!-- Ticket -->
+  <g transform="translate(570,300)">
+    <rect class="box" width="460" height="430"/>
+    <path class="head" d="M 10 0 H 450 Q 460 0 460 10 V 52 H 0 V 10 Q 0 0 10 0 Z"/>
+    <circle class="badge" cx="28" cy="26" r="15"/><text class="badge-text" x="28" y="31" text-anchor="middle">C</text>
+    <text class="class-name" x="52" y="33">Ticket / Yêu cầu hỗ trợ</text>
+    <line class="section" x1="0" y1="52" x2="460" y2="52"/>
+    <text class="field" x="16" y="80">maTicket : INT</text><text class="field" x="16" y="105">tieuDe : String</text>
+    <text class="field" x="16" y="130">noiDung : Text</text><text class="field" x="16" y="155">mucDoUuTien : String</text>
+    <text class="field" x="16" y="180">trangThai : String</text><text class="field" x="16" y="205">ngayTao : DateTime</text>
+    <text class="field" x="16" y="230">maKH : INT</text><text class="field" x="16" y="255">maAgent : INT</text>
+    <line class="section" x1="0" y1="275" x2="460" y2="275"/>
+    <text class="method" x="16" y="307">taoTicket()</text><text class="method" x="16" y="337">capNhatTrangThai()</text>
+    <text class="method" x="16" y="367">xemTicket()</text><text class="method" x="16" y="397">dongTicket()</text>
+  </g>
+
+  <!-- Nhân viên hỗ trợ -->
+  <g transform="translate(1170,345)">
+    <rect class="box" width="360" height="320"/>
+    <path class="head" d="M 10 0 H 350 Q 360 0 360 10 V 52 H 0 V 10 Q 0 0 10 0 Z"/>
+    <circle class="badge" cx="28" cy="26" r="15"/><text class="badge-text" x="28" y="31" text-anchor="middle">C</text>
+    <text class="class-name" x="52" y="33">Nhân viên hỗ trợ</text>
+    <line class="section" x1="0" y1="52" x2="360" y2="52"/>
+    <text class="field" x="16" y="80">maNV : INT</text><text class="field" x="16" y="105">hoTen : String</text>
+    <text class="field" x="16" y="130">email : String</text><text class="field" x="16" y="155">chuyenMon : String</text>
+    <text class="field" x="16" y="180">trangThai : String</text><line class="section" x1="0" y1="198" x2="360" y2="198"/>
+    <text class="method" x="16" y="226">tiepNhanTicket()</text><text class="method" x="16" y="251">traLoiKhachHang()</text>
+    <text class="method" x="16" y="276">capNhatTicket()</text><text class="method" x="16" y="301">dongTicket()</text>
+  </g>
+
+  <!-- Quản trị viên -->
+  <g transform="translate(1170,90)">
+    <rect class="box" width="360" height="190"/>
+    <path class="head" d="M 10 0 H 350 Q 360 0 360 10 V 52 H 0 V 10 Q 0 0 10 0 Z"/>
+    <circle class="badge" cx="28" cy="26" r="15"/><text class="badge-text" x="28" y="31" text-anchor="middle">C</text>
+    <text class="class-name" x="52" y="33">Quản trị viên</text>
+    <text class="field" x="16" y="80">maAdmin : INT</text><text class="field" x="16" y="105">hoTen, email : String</text>
+    <text class="method" x="16" y="140">dangNhap()</text><text class="method" x="16" y="165">quanLyNhanVien(), xemBaoCao()</text>
+  </g>
+
+  <!-- AI -->
+  <g transform="translate(570,790)">
+    <rect class="box" width="460" height="270"/>
+    <path class="head" d="M 10 0 H 450 Q 460 0 460 10 V 52 H 0 V 10 Q 0 0 10 0 Z"/>
+    <circle class="badge" cx="28" cy="26" r="15"/><text class="badge-text" x="28" y="31" text-anchor="middle">C</text>
+    <text class="class-name" x="52" y="33">AI</text>
+    <text class="field" x="16" y="80">maAI, tenMoHinh, phienBan : String</text><text class="field" x="16" y="105">trangThai : String</text>
+    <line class="section" x1="0" y1="125" x2="460" y2="125"/>
+    <text class="method" x="16" y="155">phanTichYeuCau()</text><text class="method" x="16" y="180">xacDinhYeuCau()</text>
+    <text class="method" x="16" y="205">taoPhanHoi(), phanTichCamXuc()</text><text class="method" x="16" y="230">chuyenNhanVien()</text>
+  </g>
+
+  <!-- Tương tác -->
+  <g transform="translate(1050,790)">
+    <rect class="box" width="480" height="300"/>
+    <path class="head" d="M 10 0 H 470 Q 480 0 480 10 V 52 H 0 V 10 Q 0 0 10 0 Z"/>
+    <circle class="badge" cx="28" cy="26" r="15"/><text class="badge-text" x="28" y="31" text-anchor="middle">C</text>
+    <text class="class-name" x="52" y="33">Tương tác</text>
+    <text class="field" x="16" y="80">maTuongTac, maTicket : INT</text><text class="field" x="16" y="105">noiDung : Text</text>
+    <text class="field" x="16" y="130">nguoiGui, loaiPhanHoi : String</text><text class="field" x="16" y="155">thoiGian : DateTime</text>
+    <text class="field" x="16" y="180">camXuc : String</text><line class="section" x1="0" y1="200" x2="480" y2="200"/>
+    <text class="method" x="16" y="230">luuTuongTac()</text><text class="method" x="16" y="255">xemTuongTac()</text>
+    <text class="method" x="16" y="280">capNhatTuongTac()</text>
+  </g>
+</svg>

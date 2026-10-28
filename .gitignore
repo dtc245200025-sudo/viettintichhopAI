@@ -1,8 +1,14 @@
-node_modules/
-.npm-cache/
+.venv/
+.venv-*/
+__pycache__/
+.pytest_cache/
 .env
 .env.*
 !.env.example
 .mysql-test/
 .doc-qa/
 *.log
+.review/
+~$*
+*.db
+hd_run.txt

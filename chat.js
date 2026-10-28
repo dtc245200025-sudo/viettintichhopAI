@@ -1,6 +1,6 @@
 (() => {
   const en = document.documentElement.lang === 'en', t = (vi,eng) => en ? eng : vi, $ = id => document.getElementById(id);
-  let user, selected = null, nextChats = null, nextMessages = null, busy = false, detailSequence = 0, listSequence = 0, assistantReady = false;
+  let user, selected = null, nextChats = null, nextMessages = null, busy = false, detailSequence = 0, listSequence = 0, assistantReady = false, handoverActive = false;
   const retryKeys = new Map();
   const errors = {INVALID_INPUT:t('Nhập từ 1 đến 3.000 ký tự.','Enter between 1 and 3,000 characters.'),CHAT_NOT_FOUND:t('Không tìm thấy hội thoại hoặc bạn không có quyền xem.','Conversation not found or access unavailable.'),CHAT_READ_ONLY:t('Hội thoại chỉ được xem. Hãy làm mới hoặc tạo hội thoại mới.','This conversation is read-only. Refresh or start a new one.'),FORBIDDEN:t('Lịch sử trò chuyện hiện dành cho tài khoản khách hàng.','Conversation history is currently available to customers.'),REQUEST_KEY_CONFLICT:t('Nội dung thử lại không khớp. Hãy tải lại trang.','Retry content does not match. Please reload.')};
   function notice(message,error=false) { $('notice').textContent=message; $('notice').classList.toggle('error',error); }
@@ -30,7 +30,7 @@
   function markSelected() { document.querySelectorAll('.chat-link').forEach(a=>a.setAttribute('aria-current',String(Number(a.dataset.id)===selected))); }
   function assistantState(status, provider) {
     assistantReady=status==='ready';const box=document.querySelector('.availability'),link=box.querySelector('a');
-    box.replaceChildren(node('span',assistantReady?t(`AI trả lời theo nguồn đã xuất bản. Câu hỏi và đoạn nguồn liên quan được gửi đến ${provider==='gemini'?'Google Gemini':'OpenAI'}. Hãy nêu đầy đủ câu hỏi; chưa có nhân viên trực trong hội thoại.`,`AI answers from published sources. Your question and relevant source excerpts are sent to ${provider==='gemini'?'Google Gemini':'OpenAI'}. Ask a complete question; live agent chat is not available.`):t('AI chưa được kết nối. Tin nhắn được lưu vào lịch sử, chưa có phản hồi tự động.','AI is not connected. Messages are saved to history without automated replies.')),link);
+    box.replaceChildren(node('span',assistantReady?t(`AI trả lời theo nguồn đã xuất bản. Câu hỏi và đoạn nguồn liên quan được gửi đến ${provider==='gemini'?'Google Gemini':'OpenAI'}. Bạn có thể yêu cầu nhân viên tiếp nhận khi cần.`,`AI answers from published sources. Your question and relevant source excerpts are sent to ${provider==='gemini'?'Google Gemini':'OpenAI'}. You can request a support agent when needed.`):t('AI chưa được kết nối. Tin nhắn vẫn được lưu và bạn có thể yêu cầu nhân viên hỗ trợ.','AI is not connected. Messages are still saved and you can request a support agent.')),link);
     $('sendMessage').textContent=assistantReady?t('Gửi và hỏi AI','Send and ask AI'):t('Lưu tin nhắn','Save message');
   }
   async function askAI(messageId) {
@@ -62,16 +62,23 @@
       const fragment=document.createDocumentFragment();
       for(const message of data.messages) {
         const own=message.userId===user.id, card=node('article',undefined,`message ${own?'mine':''}`);
-        card.append(node('strong',own?t('Bạn','You'):message.sender==='AI'?'AI':t('Người gửi trong lịch sử','History sender')),node('p',message.content),node('small',date(message.createdAt)));
+        card.append(node('strong',own?t('Bạn','You'):message.sender==='AI'?'AI':message.sender==='Agent'?t('Nhân viên hỗ trợ','Support agent'):t('Người gửi trong lịch sử','History sender')),node('p',message.content),node('small',date(message.createdAt)));
+        if(message.correctionOf)card.append(node('small',t(`Đính chính tin #${message.correctionOf}`,`Correction of message #${message.correctionOf}`)));
+        if(own&&!readOnly){const edit=node('details'),form=node('form'),input=node('textarea'),save=node('button',t('Gửi đính chính','Submit correction'));edit.append(node('summary',t('Đính chính, giữ bản gốc','Correct while preserving original')));input.required=true;input.maxLength=3000;input.setAttribute('aria-label',t('Nội dung đính chính','Correction text'));save.type='submit';form.append(input,save);form.onsubmit=e=>{e.preventDefault();if(form.reportValidity())action(async()=>{await api(`/api/chats/${id}/messages`,{content:input.value,correctionOf:message.id});await loadDetail(id);});};edit.append(form);card.append(edit);}
         if(message.sources?.length){const details=node('details');details.append(node('summary',t('Nguồn tham khảo','Sources')));for(const s of message.sources){details.append(node('strong',`${s.title} · KB-${s.documentId} / #${s.chunkId}`),node('p',s.content));}card.append(details);}
         if(own&&!readOnly&&assistantReady&&!data.messages.some(m=>m.replyTo===message.id)){const retry=node('button',t('Thử hỏi AI','Retry AI'),'secondary');retry.type='button';retry.disabled=busy;retry.addEventListener('click',()=>action(()=>askAI(message.id)));card.append(retry);}
         fragment.append(card);
       }
       if(older)$('messages').prepend(fragment); else $('messages').replaceChildren(fragment);
       nextMessages=data.next; $('olderMessages').hidden=!nextMessages; $('chatForm').hidden=readOnly; $('closeChat').hidden=readOnly; $('closedNote').hidden=!readOnly; $('detailStatus').textContent=''; $('language').hash=id;
+      const transfer=await api(`/api/chats/${id}/handover`); if(sequence!==detailSequence)return; const handover=transfer.handover;
+      handoverActive=!!handover&&['Chờ tiếp nhận','Đã tiếp nhận'].includes(handover.status); $('handoverPanel').hidden=readOnly;
+      if(handoverActive)$('messages').querySelectorAll('.message>button').forEach(button=>button.remove());
+      $('handoverForm').hidden=handoverActive; $('handoverReason').value='';
+      $('handoverStatus').textContent=!handover?'':handover.status==='Chờ tiếp nhận'?t('Đang chờ nhân viên tiếp nhận.','Waiting for an agent to accept.'):handover.status==='Đã tiếp nhận'?t(`Nhân viên ${handover.agentName||''} đã tiếp nhận. Tin nhắn mới sẽ được chuyển cho nhân viên.`,`Agent ${handover.agentName||''} accepted the conversation. New messages go to the agent.`):t('Lượt hỗ trợ gần nhất đã kết thúc.','The latest agent handover has ended.');
     } catch(e) { if(sequence===detailSequence)$('detailStatus').textContent=t('Chưa tải được hội thoại. Nhấn Làm mới để thử lại.','Unable to load this conversation. Select Refresh to retry.'); throw e; }
   }
-  function fresh() { ++detailSequence; selected=null; nextMessages=null; history.replaceState(null,'',location.pathname); $('language').hash=''; $('chatTitle').textContent=t('Hội thoại mới','New conversation'); $('chatCode').textContent=''; $('chatState').textContent=''; $('messages').replaceChildren(); $('detailStatus').textContent=t('Hội thoại sẽ được tạo khi bạn lưu tin nhắn đầu tiên.','A conversation is created when you save your first message.'); $('chatForm').hidden=false; $('closedNote').hidden=true; $('closeChat').hidden=true; $('olderMessages').hidden=true; $('messageInput').value=''; markSelected(); }
+  function fresh() { ++detailSequence; selected=null; nextMessages=null; handoverActive=false; history.replaceState(null,'',location.pathname); $('language').hash=''; $('chatTitle').textContent=t('Hội thoại mới','New conversation'); $('chatCode').textContent=''; $('chatState').textContent=''; $('messages').replaceChildren(); $('detailStatus').textContent=t('Hội thoại sẽ được tạo khi bạn lưu tin nhắn đầu tiên.','A conversation is created when you save your first message.'); $('chatForm').hidden=false; $('handoverPanel').hidden=true; $('closedNote').hidden=true; $('closeChat').hidden=true; $('olderMessages').hidden=true; $('messageInput').value=''; markSelected(); }
   function hashId() { const value=location.hash.slice(1); return /^[1-9]\d{0,9}$/.test(value)&&Number(value)<=2147483647?Number(value):null; }
   $('chatList').addEventListener('click',e=>{ const link=e.target.closest('a'); if(!link)return; e.preventDefault(); if(busy)return; $('messageInput').value=''; history.replaceState(null,'',link.hash); loadDetail(Number(link.dataset.id)).catch(fail); });
   $('newChat').addEventListener('click',()=>{ if(!busy){fresh();notice('');$('messageInput').focus();} });
@@ -82,8 +89,9 @@
     const content=$('messageInput').value.trim(); if(!content)throw new Error('INVALID_INPUT'); notice(t('Đang lưu tin nhắn…','Saving message…'));
     const result=await api(selected?`/api/chats/${selected}/messages`:'/api/chats',{content});
     selected=result.id; $('messageInput').value=''; history.replaceState(null,'',`#${selected}`); notice(t('Đã lưu tin nhắn.','Message saved.'));
-    try { await loadDetail(selected); await loadList(); if(assistantReady)await askAI(result.messageId); } catch { notice(t('Tin nhắn đã lưu, nhưng chưa tải lại được lịch sử. Nhấn Làm mới.','Message saved, but history could not be refreshed. Select Refresh.'),true); }
+    try { await loadDetail(selected); await loadList(); if(assistantReady&&!handoverActive)await askAI(result.messageId); } catch { notice(t('Tin nhắn đã lưu, nhưng chưa tải lại được lịch sử. Nhấn Làm mới.','Message saved, but history could not be refreshed. Select Refresh.'),true); }
   }); });
+  $('handoverForm').addEventListener('submit',e=>{e.preventDefault();if(!$('handoverForm').reportValidity())return;action(async()=>{const reason=$('handoverReason').value.trim();const result=await api(`/api/chats/${selected}/handover`,{reason});await loadDetail(selected);notice(result.agentAvailable===false?t('Chưa có nhân viên trực tuyến. Tin nhắn được giữ trong hàng chờ; bạn có thể tạo Ticket từ hội thoại này.','No agent is online. Your messages remain queued; you can create a ticket from this conversation.'):t('Đã gửi yêu cầu. Bạn vẫn có thể tiếp tục nhắn trong khi chờ.','Agent request sent. You can continue messaging while waiting.'));});});
   $('closeChat').addEventListener('click',()=>action(async()=>{ notice(t('Đang kết thúc…','Ending conversation…')); await api(`/api/chats/${selected}/close`,{}); $('chatForm').hidden=true; $('closeChat').hidden=true; $('closedNote').hidden=false; notice(t('Đã kết thúc hội thoại.','Conversation ended.')); try { await loadDetail(selected); await loadList(); } catch { notice(t('Đã kết thúc hội thoại, nhưng chưa tải lại được lịch sử. Nhấn Làm mới.','Conversation ended, but history could not be refreshed. Select Refresh.'),true); } }));
   window.addEventListener('hashchange',()=>{ if(!user||busy)return; const id=hashId(); if(id)loadDetail(id).catch(fail); else fresh(); });
   const initialId=hashId();

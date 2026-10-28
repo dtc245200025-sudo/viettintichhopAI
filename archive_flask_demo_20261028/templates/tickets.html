@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block page_title %}Danh sách & Quản lý Ticket Hỗ trợ{% endblock %}
+
+{% block content %}
+<div class="page-actions flex-between mb-3">
+    <!-- Filter form -->
+    <form method="GET" action="{{ url_for('tickets.list_tickets') }}" class="filter-bar">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" name="search" placeholder="Tìm theo mã, tiêu đề, mô tả..." value="{{ curr_search or '' }}">
+        </div>
+
+        <select name="status" class="form-select" onchange="this.form.submit()">
+            <option value="">-- Mọi trạng thái --</option>
+            <option value="New" {% if curr_status == 'New' %}selected{% endif %}>Mới (New)</option>
+            <option value="In Progress" {% if curr_status == 'In Progress' %}selected{% endif %}>Đang xử lý (In Progress)</option>
+            <option value="Waiting Customer" {% if curr_status == 'Waiting Customer' %}selected{% endif %}>Chờ khách (Waiting)</option>
+            <option value="Closed" {% if curr_status == 'Closed' %}selected{% endif %}>Đã đóng (Closed)</option>
+        </select>
+
+        <select name="priority" class="form-select" onchange="this.form.submit()">
+            <option value="">-- Mọi độ ưu tiên --</option>
+            <option value="Urgent" {% if curr_priority == 'Urgent' %}selected{% endif %}>Khẩn cấp (Urgent)</option>
+            <option value="High" {% if curr_priority == 'High' %}selected{% endif %}>Cao (High)</option>
+            <option value="Medium" {% if curr_priority == 'Medium' %}selected{% endif %}>Trung bình (Medium)</option>
+            <option value="Low" {% if curr_priority == 'Low' %}selected{% endif %}>Thấp (Low)</option>
+        </select>
+
+        <button type="submit" class="btn btn-secondary"><i class="fa-solid fa-filter"></i> Lọc</button>
+        {% if curr_status or curr_priority or curr_search %}
+            <a href="{{ url_for('tickets.list_tickets') }}" class="btn btn-outline" title="Xóa bộ lọc"><i class="fa-solid fa-xmark"></i></a>
+        {% endif %}
+    </form>
+
+    <!-- Create Button -->
+    <button class="btn btn-primary" onclick="toggleModal('createTicketModal')">
+        <i class="fa-solid fa-plus"></i> Tạo Ticket Mới
+    </button>
+</div>
+
+<!-- Table Card -->
+<div class="card">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Mã Ticket</th>
+                        <th>Khách hàng</th>
+                        <th>Tiêu đề vấn đề</th>
+                        <th>Phân loại AI</th>
+                        <th>Mức ưu tiên</th>
+                        <th>Trạng thái</th>
+                        <th>Nhân viên phụ trách</th>
+                        <th>Ngày tạo</th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in tickets %}
+                    <tr>
+                        <td><span class="ticket-code">{{ t.ticket_number }}</span></td>
+                        <td>
+                            <strong>{{ t.customer_name }}</strong>
+                            {% if t.customer_tier == 'VIP' %}
+                                <span class="badge badge-vip">VIP</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ url_for('tickets.ticket_detail', ticket_id=t.id) }}" class="ticket-link font-medium">
+                                {{ t.title }}
+                            </a>
+                        </td>
+                        <td><span class="badge badge-category">{{ t.category }}</span></td>
+                        <td>
+                            <span class="badge badge-priority badge-{{ t.priority|lower }}">{{ t.priority }}</span>
+                        </td>
+                        <td>
+                            <span class="badge badge-status badge-{{ t.status|lower|replace(' ', '-') }}">{{ t.status }}</span>
+                        </td>
+                        <td>
+                            {% if t.assigned_name %}
+                                <span class="assigned-user"><i class="fa-solid fa-user-check"></i> {{ t.assigned_name }}</span>
+                            {% else %}
+                                <span class="text-muted"><i class="fa-regular fa-circle-question"></i> Chưa gán</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-muted text-sm">{{ (t.created_at|string)[:16] }}</td>
+                        <td>
+                            <a href="{{ url_for('tickets.ticket_detail', ticket_id=t.id) }}" class="btn btn-sm btn-outline">
+                                <i class="fa-solid fa-pen-to-square"></i> Chi tiết
+                            </a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="9" class="text-center py-4 text-muted">
+                            <i class="fa-solid fa-inbox fa-2x mb-2"></i>
+                            <p>Không có ticket nào thỏa mãn điều kiện tìm kiếm.</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Tạo Ticket Mới -->
+<div id="createTicketModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3><i class="fa-solid fa-ticket"></i> Tiếp nhận Ticket Mới</h3>
+            <button class="btn-close" onclick="toggleModal('createTicketModal')">&times;</button>
+        </div>
+        <form action="{{ url_for('tickets.create_ticket') }}" method="POST">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="customer_id">Khách hàng yêu cầu (*)</label>
+                    <select name="customer_id" id="customer_id" class="form-control" required>
+                        {% for c in customers %}
+                            <option value="{{ c.id }}">{{ c.full_name }} ({{ c.company or c.email }}) - {{ c.tier }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="ticket_title">Tiêu đề sự cố (*)</label>
+                    <input type="text" name="title" id="ticket_title" class="form-control" placeholder="Ví dụ: Lỗi thanh toán báo trừ tiền nhưng chưa nhận gói..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="ticket_description">Mô tả chi tiết (*)</label>
+                    <textarea name="description" id="ticket_description" rows="4" class="form-control" placeholder="Mô tả các bước xảy ra lỗi, thông báo lỗi..." required></textarea>
+                </div>
+
+                <div class="ai-assist-box mb-3">
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="triggerAIClassify()">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> AI Gợi ý Phân loại & Mức ưu tiên
+                    </button>
+                    <span id="ai-classify-status" class="text-sm ml-2 text-muted"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="ticket_category">Danh mục vấn đề</label>
+                        <select name="category" id="ticket_category" class="form-control">
+                            <option value="Chưa phân loại">Chưa phân loại</option>
+                            <option value="Tài khoản & Đăng nhập">Tài khoản & Đăng nhập</option>
+                            <option value="Thanh toán & Hóa đơn">Thanh toán & Hóa đơn</option>
+                            <option value="Lỗi kỹ thuật & Phần mềm">Lỗi kỹ thuật & Phần mềm</option>
+                            <option value="Tư vấn & Hướng dẫn sử dụng">Tư vấn & Hướng dẫn sử dụng</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col">
+                        <label for="ticket_priority">Mức độ ưu tiên</label>
+                        <select name="priority" id="ticket_priority" class="form-control">
+                            <option value="Low">Thấp (Low)</option>
+                            <option value="Medium" selected>Trung bình (Medium)</option>
+                            <option value="High">Cao (High)</option>
+                            <option value="Urgent">Khẩn cấp (Urgent)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="assigned_to">Phân công nhân viên</label>
+                    <select name="assigned_to" id="assigned_to" class="form-control">
+                        <option value="">-- Để trống (Chờ nhận sau) --</option>
+                        {% for a in agents %}
+                            <option value="{{ a.id }}">{{ a.full_name }} ({{ a.role }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="toggleModal('createTicketModal')">Hủy</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Lưu & Khởi tạo Ticket</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

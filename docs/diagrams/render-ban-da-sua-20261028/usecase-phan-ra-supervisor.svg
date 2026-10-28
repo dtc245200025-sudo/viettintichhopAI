@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1366" height="962" viewBox="46 10 1366 962">
+<rect x="46" y="10" width="1366" height="962" fill="white"/>
+<defs><marker id="open-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L10 6 L1 11" fill="none" stroke="black" stroke-width="1"/></marker></defs>
+<rect x="252" y="40" width="1130" height="902" fill="#FFFFFF" stroke="#334155"/>
+<polyline points="270,343 446,217" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="311,400 349,400" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="919,268 665,361" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="905,354 752,375" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="924,421 752,413" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="260,454 461,621" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="867,582 696,621" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="903,657 697,660" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="941,729 697,692" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="944,820 630,706" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<g fill="white" stroke="#000000" stroke-width="1.5"><circle cx="193.5" cy="353.48" r="9.48"/><path d="M193.5 362.96 V394.56 M175.32999999999998 372.44 H211.67000000000002 M193.5 394.56 L175.32999999999998 423 M193.5 394.56 L211.67000000000002 423"/></g>
+<ellipse cx="507.0" cy="175.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="551.0" cy="404.0" rx="201.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1038.0" cy="226.0" rx="201.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1126.5" cy="325.0" rx="220.5" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1127.0" cy="432.0" rx="202.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="512.0" cy="664.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1057.0" cy="540.0" rx="268.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1104.5" cy="655.0" rx="200.5" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1127.0" cy="759.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1061.0" cy="863.0" rx="218.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<text x="817.0" y="62.480000000000004" text-anchor="middle" font-family="Arial" font-size="18.0" font-weight="bold" font-style="normal" fill="#000000">VIETINCARE AI — QUẢN LÝ CSKH (SUPERVISOR)</text>
+<text x="193.5" y="446.04" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">Quản lý CSKH (Supervisor)</text>
+<text x="507.0" y="180.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC001 — Đăng nhập</text>
+<text x="551.0" y="409.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC007.S — Phân công và giám sát Ticket</text>
+<text x="1038.0" y="231.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC007.S1 — Phân công Ticket cho Agent</text>
+<rect x="753" y="316" width="94" height="15" fill="white"/>
+<text x="800.0" y="328.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="1126.5" y="330.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC007.S2 — Thay đổi Agent được phân công</text>
+<rect x="787" y="368" width="94" height="15" fill="white"/>
+<text x="834.0" y="380.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="1127.0" y="437.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC007.S3 — Theo dõi tiến độ xử lý Ticket</text>
+<rect x="794" y="422" width="94" height="15" fill="white"/>
+<text x="841.0" y="434.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="512.0" y="669.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC013 — Xem Dashboard</text>
+<text x="1057.0" y="545.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC013.S1 — Xem thống kê Ticket theo trạng thái, nhóm</text>
+<rect x="741" y="604" width="94" height="15" fill="white"/>
+<text x="788.0" y="616.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="1104.5" y="660.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC013.S2 — Xem báo cáo thời gian xử lý</text>
+<rect x="757" y="663" width="94" height="15" fill="white"/>
+<text x="804.0" y="675.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="1127.0" y="764.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC013.S3 — Xem báo cáo SLA</text>
+<rect x="774" y="715" width="94" height="15" fill="white"/>
+<text x="821.0" y="727.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="1061.0" y="868.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC013.S4 — Xem chất lượng hỗ trợ và CSAT</text>
+<rect x="739" y="769" width="94" height="15" fill="white"/>
+<text x="786.0" y="781.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+</svg>

@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1419" height="1451" viewBox="26 35 1419 1451">
+<rect x="26" y="35" width="1419" height="1451" fill="white"/>
+<defs><marker id="open-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L10 6 L1 11" fill="none" stroke="black" stroke-width="1"/></marker></defs>
+<rect x="285" y="65" width="1130" height="1391" fill="#FFFFFF" stroke="#334155"/>
+<polyline points="227,515 497,242" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="291,520 616,383" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="1016,255 865,298" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="1004,342 904,341" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="291,563 458,554" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="966,496 829,516" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="959,559 829,553" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="1002,650 789,587" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="291,617 502,701" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="936,781 793,764" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="246,626 548,857" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="956,930 789,915" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="996,997 775,942" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="208,626 499,1085" fill="none" stroke="#000000" stroke-width="1"/>
+<polyline points="920,1151 712,1138" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="1012,1242 708,1170" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<polyline points="831,1350 585,1170" fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="6 4" marker-end="url(#open-arrow)"/>
+<g fill="white" stroke="#000000" stroke-width="1.5"><circle cx="173.5" cy="525.48" r="9.48"/><path d="M173.5 534.96 V566.56 M155.32999999999998 544.44 H191.67000000000002 M173.5 566.56 L155.32999999999998 595 M173.5 566.56 L191.67000000000002 595"/></g>
+<ellipse cx="540.0" cy="200.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="719.0" cy="341.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1167.0" cy="213.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1190.0" cy="344.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="644.0" cy="545.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1165.0" cy="467.0" rx="198.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1183.0" cy="571.0" rx="223.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1144.5" cy="693.0" rx="190.5" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="608.0" cy="744.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1155.0" cy="807.0" rx="218.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="604.0" cy="900.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1142.0" cy="947.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1165.0" cy="1040.0" rx="205.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="527.0" cy="1128.0" rx="185.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1162.0" cy="1166.0" rx="241.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="1191.0" cy="1285.0" rx="221.0" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<ellipse cx="888.5" cy="1393.0" rx="240.5" ry="42.0" fill="#FFFFFF" stroke="#000000"/>
+<text x="850.0" y="87.48" text-anchor="middle" font-family="Arial" font-size="18.0" font-weight="bold" font-style="normal" fill="#000000">VIETINCARE AI — QUẢN TRỊ HỆ THỐNG (ADMIN)</text>
+<text x="173.5" y="618.04" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">Quản trị hệ thống (Admin)</text>
+<text x="540.0" y="205.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC001 — Đăng nhập</text>
+<text x="719.0" y="346.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC011 — Quản lý Knowledge Base</text>
+<text x="1167.0" y="218.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC011.AD1 — Quản lý FAQ</text>
+<rect x="900" y="279" width="94" height="15" fill="white"/>
+<text x="947.0" y="291.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="1190.0" y="349.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC011.AD2 — Quản lý tài liệu RAG</text>
+<rect x="911" y="346" width="94" height="15" fill="white"/>
+<text x="958.0" y="358.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="644.0" y="550.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC012 — Quản lý người dùng</text>
+<text x="1165.0" y="472.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC012.AD1 — Tạo tài khoản người dùng</text>
+<rect x="856" y="510" width="94" height="15" fill="white"/>
+<text x="903.0" y="522.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="1183.0" y="576.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC012.AD2 — Cập nhật tài khoản người dùng</text>
+<rect x="850" y="561" width="94" height="15" fill="white"/>
+<text x="897.0" y="573.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="1144.5" y="698.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC012.AD3 — Phân quyền người dùng</text>
+<rect x="848" y="624" width="94" height="15" fill="white"/>
+<text x="895.0" y="636.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="608.0" y="749.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC014 — Quản lý Audit Log</text>
+<text x="1155.0" y="812.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC014.AD1 — Tra cứu thao tác trong nhật ký</text>
+<rect x="820" y="777" width="94" height="15" fill="white"/>
+<text x="867.0" y="789.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="604.0" y="905.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC015 — Cấu hình hệ thống</text>
+<text x="1142.0" y="952.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC015.AD1 — Xem tham số vận hành</text>
+<rect x="828" y="927" width="94" height="15" fill="white"/>
+<text x="875.0" y="939.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="1165.0" y="1045.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC015.AD2 — Cập nhật tham số vận hành</text>
+<rect x="839" y="974" width="94" height="15" fill="white"/>
+<text x="886.0" y="986.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="527.0" y="1133.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC016 — Quản lý khách hàng</text>
+<text x="1162.0" y="1171.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC016.AD1 — Xem danh sách và thông tin liên hệ</text>
+<rect x="772" y="1149" width="94" height="15" fill="white"/>
+<text x="819.0" y="1161.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="1191.0" y="1290.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC016.AD2 — Cập nhật thông tin khách hàng</text>
+<rect x="814" y="1211" width="94" height="15" fill="white"/>
+<text x="861.0" y="1223.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+<text x="888.5" y="1398.54" text-anchor="middle" font-family="Arial" font-size="14.0" font-weight="bold" font-style="normal" fill="#000000">UC016.AD3 — Xem lịch sử Ticket của khách hàng</text>
+<rect x="657" y="1265" width="94" height="15" fill="white"/>
+<text x="704.0" y="1277.18" text-anchor="middle" font-family="Arial" font-size="13.0" font-weight="normal" font-style="normal" fill="#000000">«extend»</text>
+</svg>
